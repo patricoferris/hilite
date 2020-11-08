@@ -13,13 +13,13 @@ jobs:
       with:
         ocaml-version: ${{ matrix.ocaml-version }}
     - name: Pin Library
-      run: opam pin add -n -y hilite
+      run: opam pin add -n -y hilite . 
     - name: Packages
       run: opam depext -yt hilite 
     - name: Dependencies
       run: opam install -t -y hilite --deps-only
     - name: Pin CLI
-      run: opam pin add -n -y hilite-cli
+      run: opam pin add -n -y hilite-cli . 
     - name: Packages
       run: opam depext -yt hilite-cli
     - name: Dependencies
