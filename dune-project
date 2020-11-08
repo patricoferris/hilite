@@ -31,3 +31,14 @@
   fmt
   plist-xml
   textmate-language))
+
+(package
+ (name hilite-cli)
+ (synopsis "A CLI tool for highlighting from the command line")
+ (description "A CLI for adding syntax highlighting to output HTML")
+ (depends
+  (alcotest :with-test)
+  (mdx :with-test)
+  bos
+  hilite
+  cmdliner))

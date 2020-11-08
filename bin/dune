@@ -1,4 +1,5 @@
 (executable
  (name main)
+ (package hilite-cli)
  (public_name hilite)
  (libraries hilite bos cmdliner))

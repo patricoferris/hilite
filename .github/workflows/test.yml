@@ -1,4 +1,4 @@
-name: Tests for hilite
+name: Tests for hilite and hilite-cli
 on: [push, pull_request]
 jobs:
   test:
@@ -12,12 +12,18 @@ jobs:
     - uses: avsm/setup-ocaml@v1
       with:
         ocaml-version: ${{ matrix.ocaml-version }}
-    - name: Pinning Package
-      run: opam pin add -n -y .
+    - name: Pin Library
+      run: opam pin add -n -y hilite
     - name: Packages
-      run: opam depext -yt hilite
+      run: opam depext -yt hilite 
     - name: Dependencies
-      run: opam install -t -y . --deps-only
+      run: opam install -t -y hilite --deps-only
+    - name: Pin CLI
+      run: opam pin add -n -y hilite-cli
+    - name: Packages
+      run: opam depext -yt hilite-cli
+    - name: Dependencies
+      run: opam install -t -y hilite-cli --deps-only
     - name: Building
       run: opam exec -- dune build
     - name: Installing
