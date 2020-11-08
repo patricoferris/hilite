@@ -27,8 +27,8 @@
   (mdx :with-test)
   markup
   tyxml
+  tyxml-ppx
   omd
-  fmt
   plist-xml
   textmate-language))
 

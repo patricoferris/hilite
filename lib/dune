@@ -1,7 +1,7 @@
 (library
  (name hilite)
  (public_name hilite)
- (libraries core textmate-language omd markup plist-xml tyxml fmt fmt.tty)
+ (libraries textmate-language omd markup plist-xml tyxml)
  (preprocess
   (pps tyxml-ppx)))
 
