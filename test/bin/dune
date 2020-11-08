@@ -1,0 +1,4 @@
+(cram
+ (deps
+  %{bin:opam-github-workflow}
+  (glob_files *.ml)))
