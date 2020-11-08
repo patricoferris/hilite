@@ -1,4 +1,4 @@
 (cram
  (deps
-  %{bin:opam-github-workflow}
+  %{bin:hilite}
   (glob_files *.ml)))
