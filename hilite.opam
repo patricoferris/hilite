@@ -35,3 +35,6 @@ build: [
   ]
 ]
 dev-repo: "git+https://github.com/patricoferris/hilite.git"
+pin-depends: [
+  ["omd.dev" "git+https://github.com/ocaml/omd"]
+]
