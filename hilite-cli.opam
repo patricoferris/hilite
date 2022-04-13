@@ -12,8 +12,8 @@ depends: [
   "alcotest" {with-test}
   "mdx" {with-test}
   "bos"
-  "hilite"
-  "cmdliner"
+  "hilite" {= version}
+  "cmdliner" {>= "1.1.0"}
   "odoc" {with-doc}
 ]
 build: [

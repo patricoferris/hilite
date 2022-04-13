@@ -8,7 +8,7 @@ let transform blocks =
         else
           match Syntax.src_code_to_html ~lang ~src with
           | Ok html -> Omd.Html_block (attr, html)
-          | Error (`Msg s) -> failwith s )
+          | Error (`Msg s) -> failwith s)
     | _ -> b
   in
   List.map f blocks
