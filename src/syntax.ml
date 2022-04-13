@@ -2,8 +2,8 @@ type 'a res = ('a, [ `Msg of string ]) result
 
 let filteri p l =
   let rec aux i acc = function
-  | [] -> List.rev acc
-  | x::l -> aux (i + 1) (if p i x then x::acc else acc) l
+    | [] -> List.rev acc
+    | x :: l -> aux (i + 1) (if p i x then x :: acc else acc) l
   in
   aux 0 [] l
 
