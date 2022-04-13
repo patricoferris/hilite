@@ -1,2 +1,3 @@
 (mdx
+ (preludes doc/prelude.ml)
  (files README.md))

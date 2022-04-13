@@ -1,29 +1,25 @@
 Hilite 🎨
 ---------
 
-Transform source code to HTML ready for highlighting using CSS. For the moment only OCaml-related things, but it just needs the text-mate plists in `lib/syntaxes` to do other languages too. PRs welcome :) 
+A small library that generates HTML ready for syntax-highlighting with CSS by parsing markdown documents. 
 
-`tests/bin/run.t` shows the CLI in action and `tests/lib/test_md.ml` shows it in action with Markdown files. 
+Currently only some OCaml-related syntaxes are supported.
 
-```sh
-$ hilite --help=plain
-NAME
-       hilite - a command-line interface for highlighting code to HTML
+```ocaml
+let md = {|
+"Hello World!" in OCaml looks like:
 
-SYNOPSIS
-       hilite COMMAND ...
+~~~ocaml
+let () = print_endline "Hello World!"
+~~~
+|}
+```
 
-COMMANDS
-       expr
-           Highlight a single expression
+And converting is as simple as...
 
-       file
-           Highlight a file containing some code
 
-OPTIONS
-       --help[=FMT] (default=auto)
-           Show this help in format FMT. The value FMT must be one of `auto',
-           `pager', `groff' or `plain'. With `auto', the format is `pager` or
-           `plain' whenever the TERM env var is `dumb' or undefined.
-
+```ocaml
+# Omd.of_string md |> Hilite.Md.transform |> Omd.to_html;;
+- : string =
+"<p>&quot;Hello World!&quot; in OCaml looks like:</p>\n<pre><code><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-constant-language'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> <"... (* string length 593; truncated *)
 ```

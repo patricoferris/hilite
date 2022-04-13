@@ -2,8 +2,8 @@
 opam-version: "2.0"
 synopsis: "Build time syntax highlighting"
 description:
-  "A library for adding syntax highlighting to OCaml-related code and outputing to Tyxml.Html or vanilla HTML"
-maintainer: ["pf341@patricoferris.com"]
+  "A library for adding syntax highlighting to OCaml-related code and outputing to HTML"
+maintainer: ["patrick@sirref.org"]
 authors: ["Patrick Ferris"]
 license: "ISC"
 homepage: "https://github.com/patricoferris/hilite"
@@ -11,7 +11,7 @@ bug-reports: "https://github.com/patricoferris/hilite/issues"
 depends: [
   "dune" {>= "2.7"}
   "mdx" {with-test}
-  "omd" {= "2.0.0~alpha2"}
+  "omd" {>= "2.0.0~alpha2"}
   "textmate-language"
   "odoc" {with-doc}
 ]

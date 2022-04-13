@@ -1,6 +1,6 @@
 ## ISC License
 
-Copyright (c) 2020 Patrick Ferris <pf341@patricoferris.com>
+Copyright (c) 2020-2022 Patrick Ferris <patrick@sirref.org>
 
 Permission to use, copy, modify, and distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
