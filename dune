@@ -1,2 +1,5 @@
 (mdx
+ (package hilite)
+ (packages hilite)
+ (preludes doc/prelude.ml)
  (files README.md))

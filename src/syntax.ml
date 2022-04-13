@@ -1,9 +1,16 @@
 type 'a res = ('a, [ `Msg of string ]) result
 
+let filteri p l =
+  let rec aux i acc = function
+    | [] -> List.rev acc
+    | x :: l -> aux (i + 1) (if p i x then x :: acc else acc) l
+  in
+  aux 0 [] l
+
 let span class_gen t =
   let drop_last lst =
     let l = List.length lst in
-    List.filteri (fun i _ -> i < l - 1) lst
+    filteri (fun i _ -> i < l - 1) lst
   in
   let span_gen c s = "<span class='" ^ class_gen c ^ "'>" ^ s ^ "</span>" in
   span_gen (String.concat "-" (drop_last t))
