@@ -11,6 +11,7 @@ bug-reports: "https://github.com/patricoferris/hilite/issues"
 depends: [
   "dune" {>= "2.7"}
   "mdx" {with-test}
+  "yojson"
   "omd" {>= "2.0.0~alpha2"}
   "textmate-language"
   "odoc" {with-doc}
