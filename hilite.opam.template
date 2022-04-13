@@ -1,3 +1,0 @@
-pin-depends: [
-  ["omd.dev" "git+https://github.com/ocaml/omd"]
-]

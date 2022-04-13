@@ -1,4 +1,0 @@
-(cram
- (deps
-  %{bin:hilite}
-  (glob_files *.ml)))

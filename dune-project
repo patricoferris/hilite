@@ -21,15 +21,11 @@
  (name hilite)
  (synopsis "Build time syntax highlighting")
  (description
-   "A library for adding syntax highlighting to OCaml-related code and outputing to Tyxml.Html or vanilla HTML")
+  "A library for adding syntax highlighting to OCaml-related code and outputing to Tyxml.Html or vanilla HTML")
  (depends
-  (alcotest :with-test)
   (mdx :with-test)
-  markup
-  tyxml
-  tyxml-ppx
-  omd
-  plist-xml
+  (omd
+   (= "2.0.0~alpha2"))
   textmate-language))
 
 (package
@@ -40,5 +36,7 @@
   (alcotest :with-test)
   (mdx :with-test)
   bos
-  hilite
-  cmdliner))
+  (hilite
+   (= :version))
+  (cmdliner
+   (>= 1.1.0))))

@@ -9,7 +9,7 @@ let file lang path =
       | Ok s ->
           Format.print_string s;
           0
-      | Error (`Msg m) -> pp_err m )
+      | Error (`Msg m) -> pp_err m)
   | Error (`Msg m) -> pp_err m
 
 let exp lang exp =
@@ -38,18 +38,19 @@ let expression =
 
 let file =
   let doc = "Highlight a file containing some code" in
-  (Term.(const file $ lang $ path), Term.info "file" ~doc)
+  Cmd.v (Cmd.info "file" ~doc) Term.(const file $ lang $ path)
 
 let expr =
   let doc = "Highlight a single expression" in
-  (Term.(const exp $ lang $ expression), Term.info "expr" ~doc)
+  Cmd.v (Cmd.info "expr" ~doc) Term.(const exp $ lang $ expression)
 
 let cmds = [ file; expr ]
+let default = Term.(ret (const (`Help (`Pager, None))))
 
-let default_cmd =
+let info =
   let doc = "a command-line interface for highlighting code to HTML" in
-  (Term.(ret (const (`Help (`Pager, None)))), Term.info "hilite" ~doc)
+  Cmd.info "hilite" ~doc
 
-let term_exit (x : int Term.result) = Term.exit x
-
-let () = term_exit @@ Term.eval_choice default_cmd cmds
+let () =
+  let main = Cmdliner.Cmd.group ~default info cmds in
+  Stdlib.exit @@ Cmd.eval' main

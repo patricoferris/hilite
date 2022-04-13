@@ -10,13 +10,8 @@ homepage: "https://github.com/patricoferris/hilite"
 bug-reports: "https://github.com/patricoferris/hilite/issues"
 depends: [
   "dune" {>= "2.7"}
-  "alcotest" {with-test}
   "mdx" {with-test}
-  "markup"
-  "tyxml"
-  "tyxml-ppx"
-  "omd"
-  "plist-xml"
+  "omd" {= "2.0.0~alpha2"}
   "textmate-language"
   "odoc" {with-doc}
 ]
@@ -35,6 +30,3 @@ build: [
   ]
 ]
 dev-repo: "git+https://github.com/patricoferris/hilite.git"
-pin-depends: [
-  ["omd.dev" "git+https://github.com/ocaml/omd"]
-]
