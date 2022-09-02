@@ -45,11 +45,17 @@ let highlight_string t grammar stack str =
   in
   loop stack [] lines
 
+let add_name name = function
+  | `Assoc assoc -> `Assoc (("name", `String name) :: assoc)
+  | _ -> failwith "Failed to add name, object not given"
+
 let lang_to_plist s =
   match String.lowercase_ascii s with
   | "ocaml" -> Jsons.ocaml |> Yojson.Basic.from_string
   | "dune" -> Jsons.dune |> Yojson.Basic.from_string
   | "opam" -> Jsons.opam |> Yojson.Basic.from_string
+  | "sh" -> Jsons.shell |> Yojson.Basic.from_string |> add_name "sh"
+  | "bash" -> Jsons.shell |> Yojson.Basic.from_string |> add_name "bash"
   | l -> failwith ("Language not supported: " ^ l)
 
 let src_code_to_tyxml_html ~lang ~src =
