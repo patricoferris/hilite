@@ -5,6 +5,17 @@ let md =
 let add a b = a + b 
 ```
 
+And some bash...
+
+```bash
+~/$ ls ~/.opam
+```
+
+And some sh...
+
+```sh
+~/$ ls ~/.opam
+```
 |}
 
 let test_transform () =

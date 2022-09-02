@@ -19,3 +19,12 @@ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ```
+
+The shell script syntax highlighting is from https://github.com/textmate/shellscript.tmbundle/blob/1c0cc0b904bb87b18b6987109e694f9d0058656d/Syntaxes/Shell-Unix-Bash.tmLanguage with license
+
+```
+Permission to copy, use, modify, sell and distribute this
+software is granted. This software is provided "as is" without
+express or implied warranty, and with no claim as to its
+suitability for any purpose.
+```
