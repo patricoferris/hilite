@@ -27,4 +27,4 @@
   yojson
   (omd
    (>= "2.0.0~alpha2"))
-  textmate-language))
+  (textmate-language (>= 0.3.3))))
