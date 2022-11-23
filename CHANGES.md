@@ -1,4 +1,4 @@
-## v0.1.1 (02/09/2022)
+## v0.1.1 (23/11/2022) Cambridge
 
 - Add shell script syntax highlighting (#4, @patricoferris)
 
