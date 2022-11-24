@@ -21,5 +21,5 @@ And converting is as simple as...
 ```ocaml
 # Omd.of_string md |> Hilite.Md.transform |> Omd.to_html;;
 - : string =
-"<p>&quot;Hello World!&quot; in OCaml looks like:</p>\n<pre><code><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-constant-language'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> <"... (* string length 593; truncated *)
+"<p>&quot;Hello World!&quot; in OCaml looks like:</p>\n<pre><code><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-constant-language'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> <"... (* string length 603; truncated *)
 ```
