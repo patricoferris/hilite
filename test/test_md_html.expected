@@ -1,0 +1,2 @@
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>html</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>&lt;h1&gt;Hello World!&lt;/h1&gt;</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>
+</span></code></pre>
