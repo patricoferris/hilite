@@ -7,29 +7,13 @@ let filteri p l =
   in
   aux 0 [] l
 
-(* Copied from omd *)
-let htmlentities s =
-  let b = Buffer.create (String.length s) in
-  let rec loop i =
-    if i >= String.length s then Buffer.contents b
-    else (
-      (match s.[i] with
-      | '"' -> Buffer.add_string b "&quot;"
-      | '&' -> Buffer.add_string b "&amp;"
-      | '<' -> Buffer.add_string b "&lt;"
-      | '>' -> Buffer.add_string b "&gt;"
-      | c -> Buffer.add_char b c);
-      loop (succ i))
-  in
-  loop 0
-
 let span class_gen t =
   let drop_last lst =
     let l = List.length lst in
     filteri (fun i _ -> i < l - 1) lst
   in
   let span_gen c s =
-    let s = htmlentities s in
+    let s = Omd.escape_html_entities s in
     "<span class='" ^ class_gen c ^ "'>" ^ s ^ "</span>"
   in
   span_gen (String.concat "-" (drop_last t))
