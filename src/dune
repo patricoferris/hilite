@@ -8,6 +8,12 @@
 (rule
  (mode promote)
  (target jsons.ml)
+ (deps
+  syntaxes/ocaml.interface.json
+  syntaxes/ocaml.json
+  syntaxes/dune.json
+  syntaxes/shell.json
+  syntaxes/opam.json)
  (action
   (with-stdout-to
    %{target}
