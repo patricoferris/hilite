@@ -68,21 +68,25 @@ let add_name name = function
   | `Assoc assoc -> `Assoc (("name", `String name) :: assoc)
   | _ -> failwith "Failed to add name, object not given"
 
-let lang_to_plist s =
+let lang_to_plists s =
   match String.lowercase_ascii s with
-  | "ocaml" -> Jsons.ocaml |> Yojson.Basic.from_string
-  | "dune" -> Jsons.dune |> Yojson.Basic.from_string
-  | "opam" -> Jsons.opam |> Yojson.Basic.from_string
-  | "sh" -> Jsons.shell |> Yojson.Basic.from_string |> add_name "sh"
-  | "shell" -> Jsons.shell |> Yojson.Basic.from_string |> add_name "shell"
-  | "bash" -> Jsons.shell |> Yojson.Basic.from_string |> add_name "bash"
+  | "ocaml" ->
+      [
+        Jsons.ocaml_interface |> Yojson.Basic.from_string;
+        Jsons.ocaml |> Yojson.Basic.from_string;
+      ]
+  | "dune" -> [ Jsons.dune |> Yojson.Basic.from_string ]
+  | "opam" -> [ Jsons.opam |> Yojson.Basic.from_string ]
+  | "sh" -> [ Jsons.shell |> Yojson.Basic.from_string |> add_name "sh" ]
+  | "shell" -> [ Jsons.shell |> Yojson.Basic.from_string |> add_name "shell" ]
+  | "bash" -> [ Jsons.shell |> Yojson.Basic.from_string |> add_name "bash" ]
   | l -> failwith ("Language not supported: " ^ l)
 
 let src_code_to_tyxml_html ~lang ~src =
   let t = TmLanguage.create () in
-  let plist = lang_to_plist lang in
-  let grammar = TmLanguage.of_yojson_exn plist in
-  TmLanguage.add_grammar t grammar;
+  let plist = lang_to_plists lang in
+  let grammars = List.map TmLanguage.of_yojson_exn plist in
+  List.iter (TmLanguage.add_grammar t) grammars;
   match TmLanguage.find_by_name t lang with
   | None -> Error (`Msg ("Unknown language " ^ lang))
   | Some grammar ->
