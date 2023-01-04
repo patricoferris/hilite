@@ -54,17 +54,13 @@ let add_name name = function
 
 let lang_to_plists s =
   match String.lowercase_ascii s with
-  | "ocaml" ->
-      [
-        Jsons.ocaml_interface |> Yojson.Basic.from_string;
-        Jsons.ocaml |> Yojson.Basic.from_string;
-      ]
-  | "dune" -> [ Jsons.dune |> Yojson.Basic.from_string ]
-  | "opam" -> [ Jsons.opam |> Yojson.Basic.from_string ]
-  | "sh" -> [ Jsons.shell |> Yojson.Basic.from_string |> add_name "sh" ]
-  | "shell" -> [ Jsons.shell |> Yojson.Basic.from_string |> add_name "shell" ]
-  | "diff" -> [ Jsons.diff |> Yojson.Basic.from_string |> add_name "diff" ]
-  | "bash" -> [ Jsons.shell |> Yojson.Basic.from_string |> add_name "bash" ]
+  | "ocaml" -> [ Jsons.ocaml_interface; Jsons.ocaml ]
+  | "dune" -> [ Jsons.dune ]
+  | "opam" -> [ Jsons.opam ]
+  | "sh" -> [ Jsons.shell |> add_name "sh" ]
+  | "shell" -> [ Jsons.shell |> add_name "shell" ]
+  | "bash" -> [ Jsons.shell |> add_name "bash" ]
+  | "diff" -> [ Jsons.diff |> add_name "diff" ]
   | l -> failwith ("Language not supported: " ^ l)
 
 let src_code_to_tyxml_html ~lang ~src =
