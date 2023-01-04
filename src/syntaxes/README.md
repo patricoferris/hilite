@@ -1,4 +1,5 @@
 The JSON files are from https://github.com/ocamllabs/vscode-ocaml-platform/commit/13dd8260294f940a64d9cfdefad62d803da960ed with a few minor modifications. They are distributed under the ISC License. 
+The OCaml JSON file is taken from https://github.com/ocamllabs/vscode-ocaml-platform/blob/bde6e565e5da8d4d942e029559f2b27d7ae7525a/syntaxes/ocaml.json with a few minor modifications. They are distributed under the ISC License.
 
 VSCode License
 
