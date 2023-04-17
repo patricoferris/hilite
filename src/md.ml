@@ -1,4 +1,4 @@
-let langs = [ "ocaml"; "dune"; "opam"; "sh"; "shell"; "bash" ]
+let langs = [ "ocaml"; "dune"; "opam"; "sh"; "shell"; "diff"; "bash" ]
 
 let transform blocks =
   let f (b : 'a Omd.block) =
