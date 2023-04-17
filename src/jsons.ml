@@ -1290,10 +1290,10 @@ let diff =
     {
       "captures": {
         "3": {
-          "name": "punctuation.definition.inserted.diff"
+          "name": "punctuation.definition.deleted.diff"
         },
         "6": {
-          "name": "punctuation.definition.inserted.diff"
+          "name": "punctuation.definition.deleted.diff"
         }
       },
       "match": "^(((<)( .*)?)|((-).*))$\\n?",
