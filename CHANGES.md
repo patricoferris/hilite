@@ -1,6 +1,6 @@
 ## Unreleased
 
-- Add support for `diff` language (#6, @tmattio)
+- Add support for `diff` language (#10, @tmattio)
 
   The syntax is coming from the [official
   repository](https://github.com/microsoft/vscode-textmate/blob/main/test-cases/themes/syntaxes/diff.tmLanguage)
