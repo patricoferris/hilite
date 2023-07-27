@@ -1,10 +1,10 @@
 <pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>html</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>&lt;h1&gt;Hello World!&lt;/h1&gt;</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>
-</span></code></pre><pre><code><span class='diff-punctuation-definition-deleted'>-</span><span class='diff-markup-deleted'>  module Sel = (val if is_osx () then (module Mac)
+</span></code></pre>
+<pre><code><span class='diff-punctuation-definition-deleted'>-</span><span class='diff-markup-deleted'>  module Sel = (val if is_osx () then (module Mac)
 </span><span class='diff-punctuation-definition-deleted'>-</span><span class='diff-markup-deleted'>                    else if Sys.unix then (module Unix)
 </span><span class='diff-punctuation-definition-deleted'>-</span><span class='diff-markup-deleted'>                    else (module Fail) : Unix_socket)
 </span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>  module Sel =
 </span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>    (val if is_osx () then (module Mac)
 </span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>         else if Sys.unix then (module Unix)
 </span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>         else (module Fail)
-</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>        : Unix_socket)
 </span></code></pre>

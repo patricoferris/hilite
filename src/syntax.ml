@@ -13,7 +13,11 @@ let span class_gen t =
     filteri (fun i _ -> i < l - 1) lst
   in
   let span_gen c s =
-    let s = Omd.escape_html_entities s in
+    let s =
+      let buf = Buffer.create 128 in
+      Cmarkit_html.buffer_add_html_escaped_string buf s;
+      Buffer.contents buf
+    in
     "<span class='" ^ class_gen c ^ "'>" ^ s ^ "</span>"
   in
   span_gen (String.concat "-" (drop_last t))
