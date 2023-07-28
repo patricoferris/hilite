@@ -1,5 +1,6 @@
-## Unreleased
+## v0.3.0 (28/07/2023)
 
+- Remove Yojson dependency (#12, @panglesd)
 - Add support for `diff` language (#10, @tmattio)
 
   The syntax is coming from the [official

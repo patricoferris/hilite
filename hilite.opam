@@ -6,6 +6,7 @@ description:
 maintainer: ["patrick@sirref.org"]
 authors: ["Patrick Ferris"]
 license: "ISC"
+tags: ["syntax" "highlighting"]
 homepage: "https://github.com/patricoferris/hilite"
 bug-reports: "https://github.com/patricoferris/hilite/issues"
 depends: [
