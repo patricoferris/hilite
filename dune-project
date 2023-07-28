@@ -24,7 +24,6 @@
   "A library for adding syntax highlighting to OCaml-related code and outputing to HTML")
  (depends
   (mdx :with-test)
-  yojson
   (omd
    (>= "2.0.0~alpha3"))
   (textmate-language (>= 0.3.3))))
