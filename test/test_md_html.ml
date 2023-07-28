@@ -1,4 +1,5 @@
-let md = {|
+let md =
+  {|
 ```ocaml
 let html = "<h1>Hello World!</h1>"
 ```
