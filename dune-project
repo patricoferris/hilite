@@ -20,6 +20,7 @@
 (package
  (name hilite)
  (synopsis "Build time syntax highlighting")
+ (tags ("syntax" "highlighting"))
  (description
   "A library for adding syntax highlighting to OCaml-related code and outputing to HTML")
  (depends
