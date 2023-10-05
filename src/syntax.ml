@@ -88,7 +88,6 @@ let drop_last lst =
 let src_code_to_html ~lang ~src =
   src_code_to_tyxml_html ~lang ~src |> function
   | Ok tyxml ->
-      let lst = if List.length tyxml = 1 then tyxml else drop_last tyxml in
       Ok
-        ("<pre><code>" ^ (String.concat "" @@ List.concat lst) ^ "</code></pre>")
+        ("<pre><code>" ^ (String.concat "" @@ List.concat tyxml) ^ "</code></pre>")
   | Error (`Msg m) -> Error (`Msg m)
