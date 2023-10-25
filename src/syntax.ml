@@ -77,14 +77,6 @@ let src_code_to_tyxml_html ~lang ~src =
   | Some grammar ->
       Ok (highlight_string t grammar TmLanguage.empty src |> mk_block lang)
 
-let drop_last lst =
-  let rec aux acc = function
-    | [] -> List.rev acc
-    | [ _ ] -> List.rev acc
-    | x :: xs -> aux (x :: acc) xs
-  in
-  aux [] lst
-
 let src_code_to_html ~lang ~src =
   src_code_to_tyxml_html ~lang ~src |> function
   | Ok tyxml ->

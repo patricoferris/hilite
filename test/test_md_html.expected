@@ -7,4 +7,5 @@
 </span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>    (val if is_osx () then (module Mac)
 </span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>         else if Sys.unix then (module Unix)
 </span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>         else (module Fail)
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>        : Unix_socket)
 </span></code></pre>
