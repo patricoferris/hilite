@@ -4,6 +4,10 @@ let md =
 let html = "<h1>Hello World!</h1>"
 ```
 
+ - ```ocaml
+   let indented_code_block f = f
+   ```
+
 ```diff
 -  module Sel = (val if is_osx () then (module Mac)
 -                    else if Sys.unix then (module Unix)

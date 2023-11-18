@@ -81,5 +81,7 @@ let src_code_to_html ~lang ~src =
   src_code_to_tyxml_html ~lang ~src |> function
   | Ok tyxml ->
       Ok
-        ("<pre><code>" ^ (String.concat "" @@ List.concat tyxml) ^ "</code></pre>")
+        ("<pre><code>"
+        ^ (String.concat "" @@ List.concat tyxml)
+        ^ "</code></pre>")
   | Error (`Msg m) -> Error (`Msg m)
