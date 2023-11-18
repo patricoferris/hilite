@@ -19,7 +19,7 @@ And converting is as simple as...
 
 
 ```ocaml
-# Cmarkit.Doc.of_string md |> Hilite.Md.transform |> Cmarkit_html.of_doc ~safe:true;;
+# Cmarkit.Doc.of_string md |> Hilite.Md.transform |> Cmarkit_html.of_doc ~safe:false;;
 - : string =
-"<p>&quot;Hello World!&quot; in OCaml looks like:</p>\n<!-- CommonMark HTML block omitted -->\n"
+"<p>&quot;Hello World!&quot; in OCaml looks like:</p>\n<pre><code><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-sourc"... (* string length 609; truncated *)
 ```
