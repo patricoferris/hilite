@@ -13,7 +13,11 @@ let span class_gen t =
     filteri (fun i _ -> i < l - 1) lst
   in
   let span_gen c s =
-    let s = Omd.escape_html_entities s in
+    let s =
+      let buf = Buffer.create 128 in
+      Cmarkit_html.buffer_add_html_escaped_string buf s;
+      Buffer.contents buf
+    in
     "<span class='" ^ class_gen c ^ "'>" ^ s ^ "</span>"
   in
   span_gen (String.concat "-" (drop_last t))
@@ -73,18 +77,11 @@ let src_code_to_tyxml_html ~lang ~src =
   | Some grammar ->
       Ok (highlight_string t grammar TmLanguage.empty src |> mk_block lang)
 
-let drop_last lst =
-  let rec aux acc = function
-    | [] -> List.rev acc
-    | [ _ ] -> List.rev acc
-    | x :: xs -> aux (x :: acc) xs
-  in
-  aux [] lst
-
 let src_code_to_html ~lang ~src =
   src_code_to_tyxml_html ~lang ~src |> function
   | Ok tyxml ->
-      let lst = if List.length tyxml = 1 then tyxml else drop_last tyxml in
       Ok
-        ("<pre><code>" ^ (String.concat "" @@ List.concat lst) ^ "</code></pre>")
+        ("<pre><code>"
+        ^ (String.concat "" @@ List.concat tyxml)
+        ^ "</code></pre>")
   | Error (`Msg m) -> Error (`Msg m)

@@ -1,7 +1,7 @@
 (library
  (name hilite)
  (public_name hilite)
- (libraries textmate-language omd))
+ (libraries textmate-language cmarkit))
 
 (data_only_dirs syntaxes)
 
