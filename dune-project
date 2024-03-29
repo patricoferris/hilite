@@ -24,6 +24,6 @@
  (description
   "A library for adding syntax highlighting to OCaml-related code and outputing to HTML")
  (depends
-  (mdx :with-test)
+  (mdx (and (>= 2.4.1) :with-test))
   (cmarkit :with-test)
   (textmate-language (>= 0.3.3))))

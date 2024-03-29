@@ -22,7 +22,12 @@ val src_code_to_html :
 (** [src_code_to_html ~lang src] will highlight the source code [src] in language [lang] and
     return a string *)
 
-(** {1 Predefined Grammars} *)
+(** {1 Predefined Grammars}
+
+    The {! Grammars} module contains some predefined grammars for OCaml-specific
+    languages including OCaml itself and [dune], [opam] and interface files.
+*)
+
 module Grammars : sig
   val ocaml : TmLanguage.yojson
   val ocaml_interface : TmLanguage.yojson
