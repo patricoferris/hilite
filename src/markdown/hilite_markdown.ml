@@ -1,6 +1,5 @@
-let langs = [ "ocaml"; "dune"; "opam"; "sh"; "shell"; "diff"; "bash" ]
-
-let transform (doc : Cmarkit.Doc.t) =
+let transform ?(skip_unknown_languages = true) ?lookup_method ?tm
+    (doc : Cmarkit.Doc.t) =
   let block _mapper (b : Cmarkit.Block.t) =
     match b with
     | Cmarkit.Block.Code_block (node, meta) -> (
@@ -16,13 +15,13 @@ let transform (doc : Cmarkit.Doc.t) =
           Option.bind info Cmarkit.Block.Code_block.language_of_info_string
         with
         | Some (lang, _) -> (
-            if not (List.mem lang langs) then `Map (Some b)
-            else
-              match Hilite.Syntax.src_code_to_html ~lang ~src:code with
-              | Ok html ->
-                  let h = Cmarkit.Block_line.list_of_string html in
-                  `Map (Some (Cmarkit.Block.Html_block (h, meta)))
-              | Error (`Msg s) -> failwith s)
+            match Hilite.src_code_to_html ?lookup_method ?tm ~lang code with
+            | Ok html ->
+                let h = Cmarkit.Block_line.list_of_string html in
+                `Map (Some (Cmarkit.Block.Html_block (h, meta)))
+            | Error (`Unknown_lang s) ->
+                if skip_unknown_languages then `Map (Some b)
+                else failwith ("Unknown language: " ^ s))
         | _ -> `Map (Some b))
     | _ -> `Default
   in
