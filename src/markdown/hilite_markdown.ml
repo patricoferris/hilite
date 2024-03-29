@@ -18,7 +18,7 @@ let transform (doc : Cmarkit.Doc.t) =
         | Some (lang, _) -> (
             if not (List.mem lang langs) then `Map (Some b)
             else
-              match Syntax.src_code_to_html ~lang ~src:code with
+              match Hilite.Syntax.src_code_to_html ~lang ~src:code with
               | Ok html ->
                   let h = Cmarkit.Block_line.list_of_string html in
                   `Map (Some (Cmarkit.Block.Html_block (h, meta)))

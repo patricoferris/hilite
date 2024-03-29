@@ -10,9 +10,9 @@ tags: ["syntax" "highlighting"]
 homepage: "https://github.com/patricoferris/hilite"
 bug-reports: "https://github.com/patricoferris/hilite/issues"
 depends: [
-  "dune" {>= "2.9"}
+  "dune" {>= "3.8"}
   "mdx" {with-test}
-  "cmarkit"
+  "cmarkit" {with-test}
   "textmate-language" {>= "0.3.3"}
   "odoc" {with-doc}
 ]
@@ -25,11 +25,9 @@ build: [
     name
     "-j"
     jobs
-    "--promote-install-files=false"
     "@install"
     "@runtest" {with-test}
     "@doc" {with-doc}
   ]
-  ["dune" "install" "-p" name "--create-install-files" name]
 ]
 dev-repo: "git+https://github.com/patricoferris/hilite.git"

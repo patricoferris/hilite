@@ -21,7 +21,7 @@ let html = "<h1>Hello World!</h1>"
 |}
 
 let test_transform () =
-  let omd_t = Cmarkit.Doc.of_string md |> Hilite.Md.transform in
+  let omd_t = Cmarkit.Doc.of_string md |> Hilite_markdown.transform in
   Format.printf "%s" (Cmarkit_html.of_doc ~safe:false omd_t)
 
 let () = test_transform ()

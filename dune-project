@@ -1,4 +1,4 @@
-(lang dune 2.9)
+(lang dune 3.8)
 
 (name hilite)
 
@@ -9,7 +9,7 @@
 
 (cram enable)
 
-(using mdx 0.1)
+(using mdx 0.4)
 
 (license ISC)
 
@@ -25,5 +25,5 @@
   "A library for adding syntax highlighting to OCaml-related code and outputing to HTML")
  (depends
   (mdx :with-test)
-  cmarkit
+  (cmarkit :with-test)
   (textmate-language (>= 0.3.3))))
