@@ -1,5 +1,6 @@
 (mdx
  (package hilite)
- (packages hilite)
- (preludes doc/prelude.ml)
+ (deps test/test.md test/prelude.ml)
+ (libraries hilite hilite.markdown cmarkit)
+ (preludes test/prelude.ml)
  (files README.md))
