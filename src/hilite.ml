@@ -67,7 +67,7 @@ let lang_to_plists s =
   | "shell" -> [ Jsons.shell |> add_name "shell" ]
   | "bash" -> [ Jsons.shell |> add_name "bash" ]
   | "diff" -> [ Jsons.diff |> add_name "diff" ]
-  | l -> failwith ("Language not supported: " ^ l)
+  | _ -> []
 
 type tm_lookup_method = [ `Name | `Scope_name | `Filetype ]
 
