@@ -1,3 +1,8 @@
+## v0.5.0 (31/03/2024) Cambridge, UK
+
+- Allow users to supply their own grammars and bypass the built-in ones (#19, @patricoferris)
+- Separate markdown package into an optional `hilite.markdown` package (#18, @patricoferris)
+
 ## v0.4.0 (18/11/2023) Cambridge, UK
 
 - Use cmarkit as the markdown library instead of omd (#11, @patricoferris with help from @oyenuga17)
