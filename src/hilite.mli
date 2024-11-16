@@ -13,6 +13,17 @@ val langs : string list
     textmate grammers used in {! src_code_to_html} if no [tm] argument
     is provided. The grammars for these languages can be found in {! Grammars}. *)
 
+val src_code_to_pairs:
+  ?lookup_method:tm_lookup_method ->
+  ?tm:TmLanguage.t ->
+  lang:string ->
+  string ->
+  ( (string * string) list list,
+    [> `Unknown_lang of string ] )
+  result
+(** The same as {! src_code_to_html} except it only returns (class, content) pairs
+    -- so agnostic to HTML. *)
+
 val src_code_to_html :
   ?lookup_method:tm_lookup_method ->
   ?tm:TmLanguage.t ->
@@ -20,7 +31,7 @@ val src_code_to_html :
   string ->
   (string, error) result
 (** [src_code_to_html ~lang src] will highlight the source code [src] in language [lang] and
-    return a string *)
+    return a string of HTML using span's with keyword classes. *)
 
 (** {1 Predefined Grammars}
 

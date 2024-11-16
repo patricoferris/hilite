@@ -20,7 +20,7 @@ let span class_gen t =
       Cmarkit_html.buffer_add_html_escaped_string buf s;
       Buffer.contents buf
     in
-    "<span class='" ^ class_gen c ^ "'>" ^ s ^ "</span>"
+    class_gen c, s
   in
   span_gen (String.concat "-" (drop_last t))
 
@@ -76,7 +76,7 @@ let find_grammar_fun = function
   | `Scope_name -> TmLanguage.find_by_scope_name
   | `Filetype -> TmLanguage.find_by_filetype
 
-let src_code_to_tyxml_html ?(lookup_method = `Name) ?tm ~lang src =
+let src_code_to_pairs ?(lookup_method = `Name) ?tm ~lang src =
   let t =
     match tm with
     | Some tm -> tm
@@ -93,11 +93,12 @@ let src_code_to_tyxml_html ?(lookup_method = `Name) ?tm ~lang src =
       Ok (highlight_string t grammar TmLanguage.empty src |> mk_block lang)
 
 let src_code_to_html ?lookup_method ?tm ~lang src =
-  src_code_to_tyxml_html ?lookup_method ?tm ~lang src |> function
-  | Ok tyxml ->
+  let pair_to_span (class_, content) = "<span class='" ^ class_ ^ "'>" ^ content ^ "</span>" in
+  src_code_to_pairs ?lookup_method ?tm ~lang src |> function
+  | Ok pairs ->
       Ok
         ("<pre><code>"
-        ^ (String.concat "" @@ List.concat tyxml)
+        ^ (String.concat "" @@ (List.map pair_to_span @@ List.concat pairs))
         ^ "</code></pre>")
   | Error _ as e -> e
 
