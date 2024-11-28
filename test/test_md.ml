@@ -19,7 +19,7 @@ And some sh...
 |}
 
 let test_transform () =
-  let omd_t = Cmarkit.Doc.of_string md |> Hilite_markdown.transform in
+  let omd_t = Cmarkit.Doc.of_string md |> Highlight_markdown.transform in
   Format.printf "%s" (Cmarkit_html.of_doc ~safe:false omd_t)
 
 let () = test_transform ()

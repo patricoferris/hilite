@@ -1,6 +1,6 @@
 (mdx
- (package hilite)
+ (package highlight)
  (deps test/test.md test/test_diff.md test/prelude.ml)
- (libraries hilite hilite.markdown cmarkit textmate-language)
+ (libraries highlight highlight.markdown cmarkit textmate-language)
  (preludes test/prelude.ml)
  (files README.md))

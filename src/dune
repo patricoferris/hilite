@@ -1,6 +1,6 @@
 (library
- (name hilite)
- (public_name hilite)
+ (name highlight)
+ (public_name highlight)
  (libraries textmate-language cmarkit))
 
 (data_only_dirs syntaxes)

@@ -7,8 +7,8 @@ maintainer: ["patrick@sirref.org"]
 authors: ["Patrick Ferris"]
 license: "ISC"
 tags: ["syntax" "highlighting"]
-homepage: "https://github.com/patricoferris/hilite"
-bug-reports: "https://github.com/patricoferris/hilite/issues"
+homepage: "https://github.com/patricoferris/highlight"
+bug-reports: "https://github.com/patricoferris/highlight/issues"
 depends: [
   "dune" {>= "3.8"}
   "mdx" {>= "2.4.1" & with-test}
@@ -30,4 +30,4 @@ build: [
     "@doc" {with-doc}
   ]
 ]
-dev-repo: "git+https://github.com/patricoferris/hilite.git"
+dev-repo: "git+https://github.com/patricoferris/highlight.git"

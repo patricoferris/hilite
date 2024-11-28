@@ -1,11 +1,11 @@
 (lang dune 3.8)
 
-(name hilite)
+(name highlight)
 
 (generate_opam_files true)
 
 (source
- (github patricoferris/hilite))
+ (github patricoferris/highlight))
 
 (cram enable)
 
@@ -18,7 +18,7 @@
 (maintainers "patrick@sirref.org")
 
 (package
- (name hilite)
+ (name highlight)
  (synopsis "Build time syntax highlighting")
  (tags ("syntax" "highlighting"))
  (description

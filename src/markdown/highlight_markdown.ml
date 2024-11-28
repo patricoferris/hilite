@@ -15,7 +15,7 @@ let transform ?(skip_unknown_languages = true) ?lookup_method ?tm
           Option.bind info Cmarkit.Block.Code_block.language_of_info_string
         with
         | Some (lang, _) -> (
-            match Hilite.src_code_to_html ?lookup_method ?tm ~lang code with
+            match Highlight.src_code_to_html ?lookup_method ?tm ~lang code with
             | Ok html ->
                 let h = Cmarkit.Block_line.list_of_string html in
                 `Map (Some (Cmarkit.Block.Html_block (h, meta)))
