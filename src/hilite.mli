@@ -1,43 +1,43 @@
 (** {1 Core}*)
 
 type error = [ `Unknown_lang of string ]
-(** Error type for catching code blocks with languages not supported
-    by the provided collection of textmate grammars. *)
+(** Error type for catching code blocks with languages not supported by the
+    provided collection of textmate grammars. *)
 
 type tm_lookup_method = [ `Name | `Scope_name | `Filetype ]
 (** Methods for looking up grammars, see {! TmLanguage} for the various
     functions. *)
 
 val langs : string list
-(** The list of supported languages for the default collection of
-    textmate grammers used in {! src_code_to_html} if no [tm] argument
-    is provided. The grammars for these languages can be found in {! Grammars}. *)
+(** The list of supported languages for the default collection of textmate
+    grammers used in {! src_code_to_html} if no [tm] argument is provided. The
+    grammars for these languages can be found in {! Grammars}. *)
 
-val src_code_to_pairs:
+val src_code_to_pairs :
+  ?escape:bool ->
   ?lookup_method:tm_lookup_method ->
   ?tm:TmLanguage.t ->
   lang:string ->
   string ->
-  ( (string * string) list list,
-    [> `Unknown_lang of string ] )
-  result
-(** The same as {! src_code_to_html} except it only returns (class, content) pairs
-    -- so agnostic to HTML. *)
+  ((string * string) list list, [> `Unknown_lang of string ]) result
+(** The same as {! src_code_to_html} except it only returns (class, content)
+    pairs -- so agnostic to HTML. *)
 
 val src_code_to_html :
+  ?escape:bool ->
   ?lookup_method:tm_lookup_method ->
   ?tm:TmLanguage.t ->
   lang:string ->
   string ->
   (string, error) result
-(** [src_code_to_html ~lang src] will highlight the source code [src] in language [lang] and
-    return a string of HTML using span's with keyword classes. *)
+(** [src_code_to_html ~lang src] will highlight the source code [src] in
+    language [lang] and return a string of HTML using span's with keyword
+    classes. *)
 
 (** {1 Predefined Grammars}
 
     The {! Grammars} module contains some predefined grammars for OCaml-specific
-    languages including OCaml itself and [dune], [opam] and interface files.
-*)
+    languages including OCaml itself and [dune], [opam] and interface files. *)
 
 module Grammars : sig
   val ocaml : TmLanguage.yojson

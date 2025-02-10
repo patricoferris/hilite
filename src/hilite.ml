@@ -9,7 +9,7 @@ let filteri p l =
   in
   aux 0 [] l
 
-let span class_gen t =
+let span ?(escape = true) class_gen t =
   let drop_last lst =
     let l = List.length lst in
     filteri (fun i _ -> i < l - 1) lst
@@ -17,16 +17,18 @@ let span class_gen t =
   let span_gen c s =
     let s =
       let buf = Buffer.create 128 in
-      Cmarkit_html.buffer_add_html_escaped_string buf s;
+      if escape then Cmarkit_html.buffer_add_html_escaped_string buf s
+      else Buffer.add_string buf s;
       Buffer.contents buf
     in
-    class_gen c, s
+    (class_gen c, s)
   in
   span_gen (String.concat "-" (drop_last t))
 
-let mk_block lang =
+let mk_block ?escape lang =
   List.map
-    (List.map (fun (scope, str) -> (span (fun c -> lang ^ "-" ^ c) scope) str))
+    (List.map (fun (scope, str) ->
+         (span ?escape (fun c -> lang ^ "-" ^ c) scope) str))
 
 let rec highlight_tokens i spans line = function
   | [] -> List.rev spans
@@ -76,7 +78,7 @@ let find_grammar_fun = function
   | `Scope_name -> TmLanguage.find_by_scope_name
   | `Filetype -> TmLanguage.find_by_filetype
 
-let src_code_to_pairs ?(lookup_method = `Name) ?tm ~lang src =
+let src_code_to_pairs ?escape ?(lookup_method = `Name) ?tm ~lang src =
   let t =
     match tm with
     | Some tm -> tm
@@ -90,15 +92,19 @@ let src_code_to_pairs ?(lookup_method = `Name) ?tm ~lang src =
   match (find_grammar_fun lookup_method) t lang with
   | None -> Error (`Unknown_lang lang)
   | Some grammar ->
-      Ok (highlight_string t grammar TmLanguage.empty src |> mk_block lang)
+      Ok
+        (highlight_string t grammar TmLanguage.empty src
+        |> mk_block ?escape lang)
 
-let src_code_to_html ?lookup_method ?tm ~lang src =
-  let pair_to_span (class_, content) = "<span class='" ^ class_ ^ "'>" ^ content ^ "</span>" in
-  src_code_to_pairs ?lookup_method ?tm ~lang src |> function
+let src_code_to_html ?escape ?lookup_method ?tm ~lang src =
+  let pair_to_span (class_, content) =
+    "<span class='" ^ class_ ^ "'>" ^ content ^ "</span>"
+  in
+  src_code_to_pairs ?escape ?lookup_method ?tm ~lang src |> function
   | Ok pairs ->
       Ok
         ("<pre><code>"
-        ^ (String.concat "" @@ (List.map pair_to_span @@ List.concat pairs))
+        ^ (String.concat "" @@ List.map pair_to_span @@ List.concat pairs)
         ^ "</code></pre>")
   | Error _ as e -> e
 
