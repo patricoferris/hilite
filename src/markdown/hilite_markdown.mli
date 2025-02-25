@@ -8,11 +8,13 @@ val transform :
   ?tm:TmLanguage.t ->
   Cmarkit.Doc.t ->
   Cmarkit.Doc.t
-(** [transform ?tm md] will extract code blocks from [md] and replace them with HTML
-    code blocks with syntax highlighting spans.
+(** [transform ?tm md] will extract code blocks from [md] and replace them with
+    HTML code blocks with syntax highlighting spans.
 
-    @param lookup_method How to lookup grammars using {! TmLanguage}, by default
-    it will use [`Name].
+    @param lookup_method
+      How to lookup grammars using {! TmLanguage}, by default it will use
+      [`Name].
 
-    @param tm If no collection of textmate grammars is provided, then a default
-    OCaml-centric on will be used. See {! Hilite.Syntax.langs} for details. *)
+    @param tm
+      If no collection of textmate grammars is provided, then a default
+      OCaml-centric on will be used. See {! Hilite.Syntax.langs} for details. *)
