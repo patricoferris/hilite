@@ -9,6 +9,48 @@ let filteri p l =
   in
   aux 0 [] l
 
+(* The following HTML escaping logic is borrowed from Cmarkit_html.
+   
+   Copyright (c) 2021 The cmarkit programmers. All rights reserved.
+   SPDX-License-Identifier: ISC *)
+
+let buffer_add_html_escaped_string b s =
+  let string = Buffer.add_string in
+  let len = String.length s in
+  let max_idx = len - 1 in
+  let flush b start i =
+    if start < len then Buffer.add_substring b s start (i - start)
+  in
+  let rec loop start i =
+    if i > max_idx then flush b start i
+    else
+      let next = i + 1 in
+      match String.get s i with
+      | '\x00' ->
+          flush b start i;
+          Buffer.add_utf_8_uchar b Uchar.rep;
+          loop next next
+      | '&' ->
+          flush b start i;
+          string b "&amp;";
+          loop next next
+      | '<' ->
+          flush b start i;
+          string b "&lt;";
+          loop next next
+      | '>' ->
+          flush b start i;
+          string b "&gt;";
+          loop next next
+      (*    | '\'' -> flush c start i; string c "&apos;"; loop next next *)
+      | '\"' ->
+          flush b start i;
+          string b "&quot;";
+          loop next next
+      | _c -> loop start next
+  in
+  loop 0 0
+
 let span ?(escape = true) class_gen t =
   let drop_last lst =
     let l = List.length lst in
@@ -17,7 +59,7 @@ let span ?(escape = true) class_gen t =
   let span_gen c s =
     let s =
       let buf = Buffer.create 128 in
-      if escape then Cmarkit_html.buffer_add_html_escaped_string buf s
+      if escape then buffer_add_html_escaped_string buf s
       else Buffer.add_string buf s;
       Buffer.contents buf
     in
