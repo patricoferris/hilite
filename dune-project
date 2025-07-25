@@ -26,4 +26,7 @@
  (depends
   (mdx (and (>= 2.4.1) :with-test))
   (cmarkit (and (>= 0.3.0) :with-test))
-  (textmate-language (>= 0.3.3))))
+  (textmate-language (>= 0.3.3)))
+ (depopts
+  (cmarkit (>= 0.3.0)))
+)
