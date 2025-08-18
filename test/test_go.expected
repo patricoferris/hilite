@@ -1,0 +1,10 @@
+<html><body><pre><code><span class='go-keyword-other-external'>package</span><span class='go-source'> main
+</span><span class='go-source'>
+</span><span class='go-punctuation-definition-comment'>//</span><span class='go-comment-line-double-slash'>go:wasmexport add
+</span><span class='go-storage-type-structure'>func</span><span class='go-meta-definition-method'> </span><span class='go-entity-name-function'>add</span><span class='go-meta-definition-method'>(a </span><span class='go-support-type-stdint'>int32</span><span class='go-meta-definition-method'>, b </span><span class='go-support-type-stdint'>int32</span><span class='go-meta-definition-method'>) </span><span class='go-support-type-stdint'>int32</span><span class='go-meta-definition-method'> </span><span class='go-source'>{
+</span><span class='go-source'>	</span><span class='go-keyword-control'>return</span><span class='go-source'> a </span><span class='go-keyword-operator-arithmetic'>+</span><span class='go-source'> b;
+</span><span class='go-source'>}
+</span><span class='go-source'>
+</span><span class='go-keyword-control-statement'>func</span><span class='go-source'> main {}
+</span></code></pre>
+</body></html>

@@ -1,3 +1,4 @@
 (tests
- (names test_md test_md_html test_md_syntax)
- (libraries hilite hilite.markdown))
+ (deps go.plist)
+ (names test_md test_md_html test_md_syntax test_go)
+ (libraries hilite hilite.markdown plist-xml yojson))
