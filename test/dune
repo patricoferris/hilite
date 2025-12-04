@@ -1,3 +1,3 @@
 (tests
- (names test_md test_md_html test_md_syntax)
+ (names test_md test_md_html test_md_syntax test_ocaml_operators)
  (libraries hilite hilite.markdown))
