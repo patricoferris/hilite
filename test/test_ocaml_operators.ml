@@ -22,6 +22,13 @@ val u : int list = [1; 2; 3; 4]
 # 9 :: u;;
 - : int list = [9; 1; 2; 3; 4]
 ```
+
+Testing line directive (should be highlighted as directive):
+
+```ocaml
+# 1 "src/example.ml"
+let x = 42
+```
 |}
 
 let test_transform () =
