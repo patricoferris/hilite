@@ -437,7 +437,7 @@ let ocaml =
                                `List ([`Assoc ([("comment",
                                                  `String ("line number directive"));
                                                  ("begin",
-                                                  `String ("^[[:space:]]*(#)[[:space:]]*([[:digit:]]+)"));
+                                                  `String ("^[[:space:]]*(#)[[:space:]]*([[:digit:]]+)[[:space:]]+\""));
                                                  ("end", `String ("$"));
                                                  ("beginCaptures",
                                                   `Assoc ([("1",
@@ -1435,7 +1435,7 @@ let ocaml =
                                                    ("name",
                                                     `String ("constant.numeric.decimal.float.ocaml"));
                                                    ("match",
-                                                    `String ("\\b([[:digit:]][[:digit:]_]*)(\\.[[:digit:]_]*[g-zG-Z]?\\b|\\.)"))
+                                                    `String ("\\b([[:digit:]][[:digit:]_]*\\.[[:digit:]][[:digit:]_]*[g-zG-Z]?)\\b"))
                                                    ]);
                                          `Assoc ([("comment",
                                                    `String ("floating point hexadecimal literal with exponent part"));
