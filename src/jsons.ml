@@ -437,7 +437,7 @@ let ocaml =
                                `List ([`Assoc ([("comment",
                                                  `String ("line number directive"));
                                                  ("begin",
-                                                  `String ("^[[:space:]]*(#)[[:space:]]*([[:digit:]]+)[[:space:]]+\""));
+                                                  `String ("^[[:space:]]*(#)[[:space:]]*([[:digit:]]+)"));
                                                  ("end", `String ("$"));
                                                  ("beginCaptures",
                                                   `Assoc ([("1",

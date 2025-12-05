@@ -4,16 +4,16 @@
   "fileTypes": ["ml", "eliom", ".ocamlinit"],
   "patterns": [
     { "include": "#directives" },
+    { "include": "#comments" },
     { "include": "#strings" },
     { "include": "#characters" },
     { "include": "#attributes" },
     { "include": "#extensions" },
+    { "include": "#modules" },
+    { "include": "#bindings" },
     { "include": "#operators" },
     { "include": "#keywords" },
     { "include": "#literals" },
-    { "include": "#comments" },
-    { "include": "#modules" },
-    { "include": "#bindings" },
     { "include": "#types" },
     { "include": "#identifiers" }
   ],
@@ -22,7 +22,7 @@
       "patterns": [
         {
           "comment": "line number directive",
-          "begin": "^[[:space:]]*(#)[[:space:]]*([[:digit:]]+)[[:space:]]+\"",
+          "begin": "^[[:space:]]*(#)[[:space:]]*([[:digit:]]+)",
           "end": "$",
           "beginCaptures": {
             "1": { "name": "keyword.other.ocaml" },
@@ -517,7 +517,7 @@
         {
           "comment": "floating point decimal literal",
           "name": "constant.numeric.decimal.float.ocaml",
-          "match": "\\b([[:digit:]][[:digit:]_]*\\.[[:digit:]][[:digit:]_]*[g-zG-Z]?)\\b"
+          "match": "\\b([[:digit:]][[:digit:]_]*)(\\.[[:digit:]_]*[g-zG-Z]?\\b|\\.)"
         },
         {
           "comment": "floating point hexadecimal literal with exponent part",
