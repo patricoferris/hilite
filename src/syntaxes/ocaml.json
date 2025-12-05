@@ -22,7 +22,7 @@
       "patterns": [
         {
           "comment": "line number directive",
-          "begin": "^[[:space:]]*(#)[[:space:]]*([[:digit:]]+)",
+          "begin": "^[[:space:]]*(#)[[:space:]]*([[:digit:]]+)[[:space:]]+\"",
           "end": "$",
           "beginCaptures": {
             "1": { "name": "keyword.other.ocaml" },
