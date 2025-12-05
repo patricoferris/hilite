@@ -3,9 +3,24 @@ let md =
 
 ```ocaml
 # 50 * 50;;
+- : int = 2500
+```
+
+```ocaml
 # 6.28;;
-# 2 * if "hello" = "world" then 3 else 5;;
-# 50 + (* A comment *) 50;;
+- : float = 6.28
+
+```ocaml
+# let u = [1; 2; 3; 4];;
+val u : int list = [1; 2; 3; 4]
+
+# ["this"; "is"; "mambo"];;
+- : string list = ["this"; "is"; "mambo"]
+```
+
+```ocaml
+# 9 :: u;;
+- : int list = [9; 1; 2; 3; 4]
 ```
 |}
 
