@@ -1,3 +1,7 @@
+## Unreleased
+
+- Add python and go syntaxes to the library (#30, @patricoferris)
+
 ## v0.5.0 (31/03/2024) Cambridge, UK
 
 - Allow users to supply their own grammars and bypass the built-in ones (#19, @patricoferris)
