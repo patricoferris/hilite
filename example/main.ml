@@ -71,8 +71,9 @@ span[class*='inserted'] {
 let () =
   let file = In_channel.with_open_bin "./README.md" In_channel.input_all in
   let doc = Cmarkit.Doc.of_string file in
+  let options = Hilite_markdown.Options.(set_ocaml_mdx_syntax true default) in
   let s =
-    Hilite_markdown.transform ~lookup_method:`Name doc
+    Hilite_markdown.transform ~options ~lookup_method:`Name doc
     |> Cmarkit_html.of_doc ~safe:false
   in
   Format.printf
