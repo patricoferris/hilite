@@ -1,9 +1,3 @@
-let () =
-  Printexc.register_printer (function
-    | Xmlm.Error ((pos1, pos2), _error) ->
-        Format.sprintf "pos: (%i, %i)" pos1 pos2 |> Option.some
-    | _ -> None)
-
 let css =
   {|
 body {

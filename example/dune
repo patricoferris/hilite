@@ -1,6 +1,6 @@
 (executable
  (name main)
- (libraries plist-xml hilite.markdown))
+ (libraries hilite.markdown))
 
 (rule
  (mode promote)
