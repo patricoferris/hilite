@@ -174,3 +174,38 @@ aoh = land * filtered_elv * mask
 result = RasterLayer.empty_raster_layer_like("aoh.tif", result)
 aoh.save(result)
 ```
+
+## Go
+
+Some `go` code... consider using OCaml. From [https://go.dev/blog/wasmexport](https://go.dev/blog/wasmexport)
+
+```go
+package main
+
+//go:wasmexport add
+func add(a int32, b int32) int32 {
+	return a + b;
+}
+
+// Create a Wasm runtime, set up WASI.
+r := wazero.NewRuntime(ctx)
+defer r.Close(ctx)
+wasi_snapshot_preview1.MustInstantiate(ctx, r)
+
+// Configure the module to initialize the reactor.
+config := wazero.NewModuleConfig().WithStartFunctions("_initialize")
+
+// Instantiate the module.
+wasmModule, _ := r.InstantiateWithConfig(ctx, wasmFile, config)
+
+// Call the exported function.
+fn := wasmModule.ExportedFunction("add")
+var a, b int32 = 1, 2
+res, _ := fn.Call(ctx, api.EncodeI32(a), api.EncodeI32(b))
+c := api.DecodeI32(res[0])
+fmt.Printf("add(%d, %d) = %d\n", a, b, c)
+
+// The instance is still alive. We can call the function again.
+res, _ = fn.Call(ctx, api.EncodeI32(b), api.EncodeI32(c))
+fmt.Printf("add(%d, %d) = %d\n", b, c, api.DecodeI32(res[0]))
+```

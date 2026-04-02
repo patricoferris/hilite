@@ -16,6 +16,7 @@
 ;   syntaxes/shell.json
 ;   syntaxes/opam.json
 ;   syntaxes/python.json
+;   syntaxes/go.json
 ;   syntaxes/diff.json)
 ;  (action
 ;   (with-stdout-to
@@ -38,6 +39,9 @@
 ;     (echo "\n\n")
 ;     (echo "let python =\n")
 ;     (run ./pp/pp.exe syntaxes/python.json)
+;     (echo "\n\n")
+;     (echo "let go =\n")
+;     (run ./pp/pp.exe syntaxes/go.json)
 ;     (echo "\n\n")
 ;     (echo "let diff =\n")
 ;     (run ./pp/pp.exe ./syntaxes/diff.json)

@@ -7580,6 +7580,630 @@ let python =
           ("uuid", `String ("11B0273F-0284-4483-B17B-4B8D0A9294CC"))])
 
 
+let go =
+`Assoc ([("comment", `String ("Go language"));
+          ("fileTypes", `List ([`String ("go")]));
+          ("foldingStartMarker",
+           `String ("(?x)/\\*\\*(?!\\*)|^(?![^{]*?//|[^{]*?/\\*(?!.*?\\*/.*?\\{)).*?\\{\\s*($|//|/\\*(?!.*?\\*/.*\\S))"));
+          ("foldingStopMarker", `String ("(?<!\\*)\\*\\*/|^\\s*\\}"));
+          ("keyEquivalent", `String ("^~G")); ("name", `String ("Go"));
+          ("patterns",
+           `List ([`Assoc ([("captures",
+                             `Assoc ([("0",
+                                       `Assoc ([("name",
+                                                 `String ("punctuation.definition.comment.go"))
+                                                 ]))
+                                       ]));
+                             ("match", `String ("/\\*\\*/"));
+                             ("name", `String ("comment.block.empty.go"))]);
+                    `Assoc ([("include", `String ("text.html.javadoc"))]);
+                    `Assoc ([("begin",
+                              `String ("(?x)^\\s*\n\t\t\t\t\t((?:\\b(public|private|protected|static|final|native|synchronized|abstract|export)\\b\\s*)*) # modifier\n\t\t\t\t\t(class|interface)\\s+\n\t\t\t\t\t(\\w+)\\s* # identifier\n\t\t\t\t\t(?:\\(\\s*([^\\)]+)\\s*\\)|)\\s* # Template type\n\t\t\t\t\t(?:\n\t\t\t\t\t  \\s*(:)\\s*\n\t\t\t\t\t  (\\w+)\n\t\t\t\t\t  (?:\\s*,\\s*(\\w+))?\n\t\t\t\t\t  (?:\\s*,\\s*(\\w+))?\n\t\t\t\t\t  (?:\\s*,\\s*(\\w+))?\n\t\t\t\t\t  (?:\\s*,\\s*(\\w+))?\n\t\t\t\t\t  (?:\\s*,\\s*(\\w+))?\n\t\t\t\t\t  (?:\\s*,\\s*(\\w+))?\n\t\t\t\t\t)? # super class\n\t\t\t\t\t"));
+                              ("beginCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("storage.modifier.go"))
+                                                   ]));
+                                         ("10",
+                                          `Assoc ([("name",
+                                                    `String ("entity.other.inherited-class.go"))
+                                                    ]));
+                                         ("11",
+                                          `Assoc ([("name",
+                                                    `String ("entity.other.inherited-class.go"))
+                                                    ]));
+                                         ("12",
+                                          `Assoc ([("name",
+                                                    `String ("entity.other.inherited-class.go"))
+                                                    ]));
+                                         ("13",
+                                          `Assoc ([("name",
+                                                    `String ("entity.other.inherited-class.go"))
+                                                    ]));
+                                         ("3",
+                                          `Assoc ([("name",
+                                                    `String ("storage.type.structure.go"))
+                                                    ]));
+                                         ("4",
+                                          `Assoc ([("name",
+                                                    `String ("entity.name.type.class.go"))
+                                                    ]));
+                                         ("5",
+                                          `Assoc ([("name",
+                                                    `String ("storage.type.template.go"))
+                                                    ]));
+                                         ("6",
+                                          `Assoc ([("name",
+                                                    `String ("punctuation.separator.inheritance.go"))
+                                                    ]));
+                                         ("7",
+                                          `Assoc ([("name",
+                                                    `String ("entity.other.inherited-class.go"))
+                                                    ]));
+                                         ("8",
+                                          `Assoc ([("name",
+                                                    `String ("entity.other.inherited-class.go"))
+                                                    ]));
+                                         ("9",
+                                          `Assoc ([("name",
+                                                    `String ("entity.other.inherited-class.go"))
+                                                    ]))
+                                         ]));
+                              ("end", `String ("(?={)"));
+                              ("name", `String ("meta.definition.class.go"));
+                              ("patterns",
+                               `List ([`Assoc ([("begin",
+                                                 `String ("\\b(_|:)\\b"));
+                                                 ("captures",
+                                                  `Assoc ([("1",
+                                                            `Assoc ([("name",
+                                                                    `String (
+                                                                    "storage.modifier.go"))
+                                                                    ]))
+                                                            ]));
+                                                 ("end", `String ("(?={)"));
+                                                 ("name",
+                                                  `String ("meta.definition.class.extends.go"));
+                                                 ("patterns",
+                                                  `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#all-types"))
+                                                                    ])
+                                                           ]))
+                                                 ])
+                                        ]))
+                              ]);
+                    `Assoc ([("begin",
+                              `String ("(?x)^\\s*\n\t\t\t\t\t((?:\\b(public|private|protected|static|final|native|synchronized|abstract|export)\\b\\s*)*) # modifier\n\t\t\t\t\t(struct)\\s+\n\t\t\t\t\t(\\w+)\\s* # identifier\n\t\t\t\t\t(?:\\(\\s*([^\\)]+)\\s*\\)|)\\s* # Template type\n\t\t\t\t\t"));
+                              ("beginCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("storage.modifier.go"))
+                                                   ]));
+                                         ("3",
+                                          `Assoc ([("name",
+                                                    `String ("storage.type.structure.go"))
+                                                    ]));
+                                         ("4",
+                                          `Assoc ([("name",
+                                                    `String ("entity.name.type.struct.go"))
+                                                    ]));
+                                         ("5",
+                                          `Assoc ([("name",
+                                                    `String ("storage.type.template.go"))
+                                                    ]))
+                                         ]));
+                              ("end", `String ("(?={)"));
+                              ("name", `String ("meta.definition.struct.go"));
+                              ("patterns",
+                               `List ([`Assoc ([("begin",
+                                                 `String ("\\b(_|:)\\b"));
+                                                 ("captures",
+                                                  `Assoc ([("1",
+                                                            `Assoc ([("name",
+                                                                    `String (
+                                                                    "storage.modifier.go"))
+                                                                    ]))
+                                                            ]));
+                                                 ("end", `String ("(?={)"));
+                                                 ("name",
+                                                  `String ("meta.definition.class.extends.go"));
+                                                 ("patterns",
+                                                  `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#all-types"))
+                                                                    ])
+                                                           ]))
+                                                 ])
+                                        ]))
+                              ]);
+                    `Assoc ([("begin",
+                              `String ("(?x)^\\s*\n\t\t\t\t\t((?:\\b(public|private|protected|static|final|native|synchronized|abstract|threadsafe|transient|export)\\b\\s*)*) # modifier\n\t\t\t\t\t(\\b(this))\\s* # identifier\n\t\t\t\t\t(?!.*;)  # abort if line has a ;\n\t\t\t\t\t(?=\\()"));
+                              ("captures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("storage.modifier.go"))
+                                                   ]));
+                                         ("3",
+                                          `Assoc ([("name",
+                                                    `String ("entity.name.function.constructor.go"))
+                                                    ]))
+                                         ]));
+                              ("end", `String ("(?={)"));
+                              ("name",
+                               `String ("meta.definition.constructor.go"));
+                              ("patterns",
+                               `List ([`Assoc ([("include", `String ("$base"))
+                                                 ])
+                                        ]))
+                              ]);
+                    `Assoc ([("begin",
+                              `String ("(?x)\n    \t\t\t\t(?:  ^                                 # begin-of-line\n    \t\t\t\t  |  (?: (?<!else|new|=) )             #  or word + space before name\n    \t\t\t\t)\n\t\t\t\t\t((?:\\b(?:public|private|protected|static|final|native|synchronized|abstract|threadsafe|transient|export)\\b\\s*)*) # modifier\n    \t\t\t\t(~this) # actual name\n    \t\t\t\t \\s*(\\()                           # start bracket or end-of-line\n    \t\t\t"));
+                              ("captures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("storage.modifier.go"))
+                                                   ]));
+                                         ("2",
+                                          `Assoc ([("name",
+                                                    `String ("entity.name.function.destructor.go"))
+                                                    ]))
+                                         ]));
+                              ("end", `String ("\\)"));
+                              ("endCaptures",
+                               `Assoc ([("0",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.parameters.go"))
+                                                   ]))
+                                         ]));
+                              ("name",
+                               `String ("meta.definition.destructor.go"));
+                              ("patterns",
+                               `List ([`Assoc ([("include", `String ("$base"))
+                                                 ])
+                                        ]))
+                              ]);
+                    `Assoc ([("begin",
+                              `String ("(?x)^\\s*\n\t\t\t\t\t((?:\\b(?:public|private|protected|static|final|native|lazy|synchronized|abstract|threadsafe|transient|export)\\b\\s*)*) # modifier\n\t\t\t\t\t(\\b(?:void|boolean|byte|char|short|int|float|long|double|[\\w_]+[\\w0-9_]*|(?:\\w+\\.)*[A-Z]\\w+)\\b(?:<(?:(?:(?:\\w+\\.)*[A-Z]\\w+)(?:\\s*,\\s*)?)+>|(?:\\[\\s*\\])*)?)\\s* # type\n\t\t\t\t\t(\\w+)\\s* # identifier\n\t\t\t\t\t(?!.*;)  # abort if line has a ;\n\t\t\t\t\t(?=\\()"));
+                              ("beginCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("storage.modifier.go"))
+                                                   ]));
+                                         ("2",
+                                          `Assoc ([("name",
+                                                    `String ("storage.type.structure.go"))
+                                                    ]));
+                                         ("3",
+                                          `Assoc ([("name",
+                                                    `String ("entity.name.function.go"))
+                                                    ]))
+                                         ]));
+                              ("end", `String ("(?={)"));
+                              ("name", `String ("meta.definition.method.go"));
+                              ("patterns",
+                               `List ([`Assoc ([("include", `String ("$base"))
+                                                 ])
+                                        ]))
+                              ]);
+                    `Assoc ([("match", `String ("\\b([A-Z][A-Z0-9_]+)\\b"));
+                              ("name", `String ("constant.other.go"))]);
+                    `Assoc ([("include", `String ("#comments"))]);
+                    `Assoc ([("include", `String ("#all-types"))]);
+                    `Assoc ([("match", `String ("<-"));
+                              ("name",
+                               `String ("constant.language.chsendrecv.go"))
+                              ]);
+                    `Assoc ([("match",
+                              `String ("\\b(private|protected|public|export)\\b"));
+                              ("name",
+                               `String ("storage.modifier.access-control.go"))
+                              ]);
+                    `Assoc ([("match",
+                              `String ("\\b(auto|static|override|final|const|abstract|volatile|synchronized|lazy|map|seq|gen)\\b"));
+                              ("name", `String ("storage.modifier.go"))]);
+                    `Assoc ([("match",
+                              `String ("\\b(template|interface|class|enum|struct|union|range)\\b"));
+                              ("name", `String ("storage.type.structure.go"))
+                              ]);
+                    `Assoc ([("match",
+                              `String ("\\b(var|ushort|int|uint|long|ulong|float|void|byte|ubyte|double|bit|char|wchar|ucent|cent|short|bool|dchar|real|ireal|ifloat|idouble|creal|cfloat|cdouble|lazy)\\b"));
+                              ("name", `String ("storage.type.go"))]);
+                    `Assoc ([("match",
+                              `String ("\\b(try|catch|finally|throw)\\b"));
+                              ("name",
+                               `String ("keyword.control.exception.go"))
+                              ]);
+                    `Assoc ([("match",
+                              `String ("\\b(return|break|select|case|continue|default|do|while|for|switch|if|else)\\b"));
+                              ("name", `String ("keyword.control.go"))]);
+                    `Assoc ([("match",
+                              `String ("\\b(if|else|switch|iftype)\\b"));
+                              ("name",
+                               `String ("keyword.control.conditional.go"))
+                              ]);
+                    `Assoc ([("match",
+                              `String ("\\b(goto|break|continue|go)\\b"));
+                              ("name", `String ("keyword.control.branch.go"))
+                              ]);
+                    `Assoc ([("match",
+                              `String ("\\b(while|for|do|foreach(_reverse)?)\\b"));
+                              ("name", `String ("keyword.control.repeat.go"))
+                              ]);
+                    `Assoc ([("match",
+                              `String ("\\b(version|return|with|invariant|body|scope|in|ta|chan|out|inout|asm|mixin|delegate|type|func)\\b"));
+                              ("name",
+                               `String ("keyword.control.statement.go"))
+                              ]);
+                    `Assoc ([("match", `String ("\\b(pragma)\\b"));
+                              ("name", `String ("keyword.control.pragma.go"))
+                              ]);
+                    `Assoc ([("match", `String ("\\b(alias|typedef)\\b"));
+                              ("name", `String ("keyword.control.alias.go"))]);
+                    `Assoc ([("match", `String ("\\b(import)\\b"));
+                              ("name", `String ("keyword.control.import.go"))
+                              ]);
+                    `Assoc ([("captures",
+                              `Assoc ([("1",
+                                        `Assoc ([("name",
+                                                  `String ("keyword.control.module.go"))
+                                                  ]));
+                                        ("2",
+                                         `Assoc ([("name",
+                                                   `String ("entity.name.function.package.go"))
+                                                   ]))
+                                        ]));
+                              ("match",
+                               `String ("^\\s*(module)\\s+([^ ;]+?);"));
+                              ("name", `String ("meta.module.go"))]);
+                    `Assoc ([("match", `String ("\\b(true|false)\\b"));
+                              ("name",
+                               `String ("constant.language.boolean.go"))
+                              ]);
+                    `Assoc ([("match",
+                              `String ("\\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|nil|_)\\b"));
+                              ("name", `String ("constant.language.go"))]);
+                    `Assoc ([("match", `String ("\\b(this|super)\\b"));
+                              ("name", `String ("variable.language.go"))]);
+                    `Assoc ([("match",
+                              `String ("\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)([LlFfUuDd]|UL|ul)?\\b"));
+                              ("name", `String ("constant.numeric.go"))]);
+                    `Assoc ([("include", `String ("#string_escaped_char"))]);
+                    `Assoc ([("include", `String ("#strings"))]);
+                    `Assoc ([("match", `String ("(==|!=|<=|>=|<>|<|>)"));
+                              ("name",
+                               `String ("keyword.operator.comparison.go"))
+                              ]);
+                    `Assoc ([("match", `String ("(\\-\\-|\\+\\+)"));
+                              ("name",
+                               `String ("keyword.operator.increment-decrement.go"))
+                              ]);
+                    `Assoc ([("match", `String ("(\\-|\\+|\\*|\\/|~|%)"));
+                              ("name",
+                               `String ("keyword.operator.arithmetic.go"))
+                              ]);
+                    `Assoc ([("match", `String ("(!|&&|\\|\\|)"));
+                              ("name",
+                               `String ("keyword.operator.logical.go"))
+                              ]);
+                    `Assoc ([("match",
+                              `String ("\\b(opNeg|opCom|opPostInc|opPostDec|opCast|opAdd|opSub|opSub_r|opMul|opDiv|opDiv_r|opMod|opMod_r|opAnd|opOr|opXor|opShl|opShl_r|opShr|opShr_r|opUShr|opUShr_r|opCat|opCat_r|opEquals|opEquals|opCmp|opCmp|opCmp|opCmp|opAddAssign|opSubAssign|opMulAssign|opDivAssign|opModAssign|opAndAssign|opOrAssign|opXorAssign|opShlAssign|opShrAssign|opUShrAssign|opCatAssign|opIndex|opIndexAssign|opCall|opSlice|opSliceAssign|opPos|opAdd_r|opMul_r|opAnd_r|opOr_r|opXor_r)\\b"));
+                              ("name",
+                               `String ("keyword.operator.overload.go"))
+                              ]);
+                    `Assoc ([("match",
+                              `String ("\\b(new|delete|typeof|typeid|cast|align|is|make|expect)\\b"));
+                              ("name", `String ("keyword.operator.go"))]);
+                    `Assoc ([("match", `String ("\\b(new|throws)\\b"));
+                              ("name", `String ("keyword.other.class-fns.go"))
+                              ]);
+                    `Assoc ([("match", `String ("\\b(package|extern)\\b"));
+                              ("name", `String ("keyword.other.external.go"))
+                              ]);
+                    `Assoc ([("match",
+                              `String ("\\b(deprecated|unittest|debug)\\b"));
+                              ("name", `String ("keyword.other.debug.go"))]);
+                    `Assoc ([("match",
+                              `String ("\\b(u_char|u_short|u_int|u_long|ushort|uint|u_quad_t|quad_t|qaddr_t|caddr_t|daddr_t|dev_t|fixpt_t|blkcnt_t|blksize_t|gid_t|in_addr_t|in_port_t|ino_t|key_t|mode_t|nlink_t|id_t|pid_t|off_t|segsz_t|swblk_t|uid_t|id_t|clock_t|size_t|ssize_t|time_t|useconds_t|suseconds_t)\\b"));
+                              ("name", `String ("support.type.sys-types.c"))]);
+                    `Assoc ([("match",
+                              `String ("\\b(pthread_attr_t|pthread_cond_t|pthread_condattr_t|pthread_mutex_t|pthread_mutexattr_t|pthread_once_t|pthread_rwlock_t|pthread_rwlockattr_t|pthread_t|pthread_key_t)\\b"));
+                              ("name", `String ("support.type.pthread.c"))]);
+                    `Assoc ([("match",
+                              `String ("\\b(int8|int16|int32|int64|uint8|uint16|uint32|uint64|int_least8|int_least16|int_least32|int_least64|uint_least8|uint_least16|uint_least32|uint_least64|int_fast8|int_fast16|int_fast32|int_fast64|uint_fast8|uint_fast16|uint_fast32|uint_fast64|intptr|uintptr|intmax|intmax|uintmax|uintmax|float64|float32)\\b"));
+                              ("name", `String ("support.type.stdint.c"))])
+                    ]));
+          ("repository",
+           `Assoc ([("all-types",
+                     `Assoc ([("patterns",
+                               `List ([`Assoc ([("include",
+                                                 `String ("#support-type-built-ins-d"))
+                                                 ]);
+                                        `Assoc ([("include",
+                                                  `String ("#storage-type-d"))
+                                                  ])
+                                        ]))
+                               ]));
+                     ("comments",
+                      `Assoc ([("patterns",
+                                `List ([`Assoc ([("begin", `String ("/\\*"));
+                                                  ("captures",
+                                                   `Assoc ([("0",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.comment.go"))
+                                                               ]))
+                                                             ]));
+                                                  ("end", `String ("\\*/"));
+                                                  ("name",
+                                                   `String ("comment.block.go"))
+                                                  ]);
+                                         `Assoc ([("begin", `String ("/\\+"));
+                                                   ("captures",
+                                                    `Assoc ([("0",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.comment.go"))
+                                                                ]))
+                                                              ]));
+                                                   ("end", `String ("\\+/"));
+                                                   ("name",
+                                                    `String ("comment.block.nested.go"))
+                                                   ]);
+                                         `Assoc ([("captures",
+                                                   `Assoc ([("1",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.comment.go"))
+                                                               ]))
+                                                             ]));
+                                                   ("match",
+                                                    `String ("(//).*$\\n?"));
+                                                   ("name",
+                                                    `String ("comment.line.double-slash.go"))
+                                                   ])
+                                         ]))
+                                ]));
+                     ("constant_placeholder",
+                      `Assoc ([("match",
+                                `String ("(?i:%(\\([a-z_]+\\))?#?0?\\-?[ ]?\\+?([0-9]*|\\*)(\\.([0-9]*|\\*))?[hL]?[a-z%])"));
+                                ("name",
+                                 `String ("constant.other.placeholder.go"))
+                                ]));
+                     ("regular_expressions",
+                      `Assoc ([("comment",
+                                `String ("Change disabled to 1 to turn off syntax highlighting in \226\128\156r\226\128\157 strings."));
+                                ("disabled", `Int (1));
+                                ("patterns",
+                                 `List ([`Assoc ([("include",
+                                                   `String ("source.regexp.python"))
+                                                   ])
+                                          ]))
+                                ]));
+                     ("statement-remainder",
+                      `Assoc ([("patterns",
+                                `List ([`Assoc ([("begin", `String ("\\("));
+                                                  ("end", `String ("(?=\\))"));
+                                                  ("name",
+                                                   `String ("meta.definition.param-list.go"));
+                                                  ("patterns",
+                                                   `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#all-types"))
+                                                                    ])
+                                                            ]))
+                                                  ]);
+                                         `Assoc ([("begin",
+                                                   `String ("(throws)"));
+                                                   ("captures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "keyword.other.class-fns.go"))
+                                                                ]))
+                                                              ]));
+                                                   ("end", `String ("(?={)"));
+                                                   ("name",
+                                                    `String ("meta.definition.throws.go"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#all-types"))
+                                                                    ])
+                                                             ]))
+                                                   ])
+                                         ]))
+                                ]));
+                     ("storage-type-d",
+                      `Assoc ([("match",
+                                `String ("\\b(void|byte|short|char|int|long|float|string|double|boolean|([a-z]\\w+\\.)*[A-Z]\\w+)\\b"));
+                                ("name", `String ("storage.type.go"))]));
+                     ("string_escaped_char",
+                      `Assoc ([("patterns",
+                                `List ([`Assoc ([("match",
+                                                  `String ("\\\\(\\\\|[abefnprtv'\"?]|[0-3]\\d{,2}|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|&\\w+;)"));
+                                                  ("name",
+                                                   `String ("constant.character.escape.go"))
+                                                  ]);
+                                         `Assoc ([("match", `String ("\\\\."));
+                                                   ("name",
+                                                    `String ("invalid.illegal.unknown-escape.go"))
+                                                   ])
+                                         ]))
+                                ]));
+                     ("strings",
+                      `Assoc ([("patterns",
+                                `List ([`Assoc ([("begin", `String ("\""));
+                                                  ("beginCaptures",
+                                                   `Assoc ([("0",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.string.begin.go"))
+                                                               ]))
+                                                             ]));
+                                                  ("end", `String ("\""));
+                                                  ("endCaptures",
+                                                   `Assoc ([("0",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.string.end.go"))
+                                                               ]))
+                                                             ]));
+                                                  ("name",
+                                                   `String ("string.quoted.double.go"));
+                                                  ("patterns",
+                                                   `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#string_escaped_char"))
+                                                                    ])
+                                                            ]))
+                                                  ]);
+                                         `Assoc ([("begin",
+                                                   `String ("(r)(\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.go"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.go"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=\")(\")|\")"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.go"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.go"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.raw.go"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#regular_expressions"))
+                                                                    ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin", `String ("`"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("0",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.begin.go"))
+                                                                ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=`)(`)|`)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.go"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.go"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.raw.backtick.go"))
+                                                   ]);
+                                         `Assoc ([("begin", `String ("'"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("0",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.begin.go"))
+                                                                ]))
+                                                              ]));
+                                                   ("end", `String ("'"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("0",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.go"))
+                                                                ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.go"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#string_escaped_char"))
+                                                                    ])
+                                                             ]))
+                                                   ])
+                                         ]))
+                                ]));
+                     ("support-type-built-ins-classes-d",
+                      `Assoc ([("match",
+                                `String ("\\b(print|println|assert|panic|panicln)\\b"));
+                                ("name",
+                                 `String ("support.type.built-ins.functions.go"))
+                                ]));
+                     ("support-type-built-ins-d",
+                      `Assoc ([("patterns",
+                                `List ([`Assoc ([("include",
+                                                  `String ("#support-type-built-ins-exceptions-d"))
+                                                  ]);
+                                         `Assoc ([("include",
+                                                   `String ("#support-type-built-ins-classes-d"))
+                                                   ]);
+                                         `Assoc ([("include",
+                                                   `String ("#support-type-built-ins-interfaces-d"))
+                                                   ]);
+                                         `Assoc ([("include",
+                                                   `String ("#support-type-built-ins-structs-d"))
+                                                   ])
+                                         ]))
+                                ]));
+                     ("support-type-built-ins-exceptions-d",
+                      `Assoc ([("match", `String ("\\b(__todo__)\\b"));
+                                ("name",
+                                 `String ("support.type.built-ins.exceptions.go"))
+                                ]));
+                     ("support-type-built-ins-interfaces-d",
+                      `Assoc ([("match", `String ("\\b(__todo__)\\b"));
+                                ("name",
+                                 `String ("support.type.built-ins.interfaces.go"))
+                                ]));
+                     ("support-type-built-ins-structs-d",
+                      `Assoc ([("match", `String ("\\b(__todo__)\\b"));
+                                ("name",
+                                 `String ("support.type.built-ins.structs.go"))
+                                ]))
+                     ]));
+          ("scopeName", `String ("source.go"));
+          ("uuid", `String ("B64C47C0-FDE6-434B-A547-B6D05DC2CC90"))])
+
+
 let diff =
 `Assoc ([("fileTypes",
           `List ([`String ("patch"); `String ("diff"); `String ("rej")]));

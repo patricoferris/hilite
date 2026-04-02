@@ -52,6 +52,15 @@ span[class*='numeric'] {
 
 span[class*='comment'] {
   font-style: italic
+  color: #969696
+}
+
+span[class*='function'] {
+  color: #77ce0e 
+}
+
+span[class*='storage-type'] {
+ color: #83a598
 }
 
 span[class*='deleted'] {
@@ -211,6 +220,37 @@ HTML. You can view this at
 </span><span class='python-source'>
 </span><span class='python-source'>result</span><span class='python-source'> </span><span class='python-keyword-operator-assignment'>=</span><span class='python-source'> </span><span class='python-source'>RasterLayer.</span><span class='python-meta-function-call-generic'>empty_raster_layer_like</span><span class='python-punctuation-definition-arguments-begin'>(</span><span class='python-punctuation-definition-string-begin'>&quot;</span><span class='python-string-quoted-double-single-line'>aoh.tif</span><span class='python-punctuation-definition-string-end'>&quot;</span><span class='python-meta-function-call-arguments'>, </span><span class='python-meta-function-call-arguments'>result</span><span class='python-punctuation-definition-arguments-end'>)</span><span class='python-source'>
 </span><span class='python-source'>aoh.</span><span class='python-meta-function-call-generic'>save</span><span class='python-punctuation-definition-arguments-begin'>(</span><span class='python-meta-function-call-arguments'>result</span><span class='python-punctuation-definition-arguments-end'>)</span><span class='python-source'>
+</span></code></pre>
+<h2>Go</h2>
+<p>Some <code>go</code> code... consider using OCaml. From <a href="https://go.dev/blog/wasmexport">https://go.dev/blog/wasmexport</a></p>
+<pre><code><span class='go-keyword-other-external'>package</span><span class='go-source'> main
+</span><span class='go-source'>
+</span><span class='go-punctuation-definition-comment'>//</span><span class='go-comment-line-double-slash'>go:wasmexport add
+</span><span class='go-storage-type-structure'>func</span><span class='go-meta-definition-method'> </span><span class='go-entity-name-function'>add</span><span class='go-meta-definition-method'>(a </span><span class='go-support-type-stdint'>int32</span><span class='go-meta-definition-method'>, b </span><span class='go-support-type-stdint'>int32</span><span class='go-meta-definition-method'>) </span><span class='go-support-type-stdint'>int32</span><span class='go-meta-definition-method'> </span><span class='go-source'>{
+</span><span class='go-source'>	</span><span class='go-keyword-control'>return</span><span class='go-source'> a </span><span class='go-keyword-operator-arithmetic'>+</span><span class='go-source'> b;
+</span><span class='go-source'>}
+</span><span class='go-source'>
+</span><span class='go-punctuation-definition-comment'>//</span><span class='go-comment-line-double-slash'> Create a Wasm runtime, set up WASI.
+</span><span class='go-source'>r := </span><span class='go-storage-type'>wazero.NewRuntime</span><span class='go-source'>(ctx)
+</span><span class='go-source'>defer r.</span><span class='go-storage-type'>Close</span><span class='go-source'>(ctx)
+</span><span class='go-storage-type'>wasi_snapshot_preview1.MustInstantiate</span><span class='go-source'>(ctx, r)
+</span><span class='go-source'>
+</span><span class='go-punctuation-definition-comment'>//</span><span class='go-comment-line-double-slash'> Configure the module to initialize the reactor.
+</span><span class='go-source'>config := </span><span class='go-storage-type'>wazero.NewModuleConfig</span><span class='go-source'>().</span><span class='go-storage-type'>WithStartFunctions</span><span class='go-source'>(</span><span class='go-punctuation-definition-string-begin'>&quot;</span><span class='go-string-quoted-double'>_initialize</span><span class='go-punctuation-definition-string-end'>&quot;</span><span class='go-source'>)
+</span><span class='go-source'>
+</span><span class='go-punctuation-definition-comment'>//</span><span class='go-comment-line-double-slash'> Instantiate the module.
+</span><span class='go-source'>wasmModule, </span><span class='go-constant-language'>_</span><span class='go-source'> := r.</span><span class='go-storage-type'>InstantiateWithConfig</span><span class='go-source'>(ctx, wasmFile, config)
+</span><span class='go-source'>
+</span><span class='go-punctuation-definition-comment'>//</span><span class='go-comment-line-double-slash'> Call the exported function.
+</span><span class='go-source'>fn := </span><span class='go-storage-type'>wasmModule.ExportedFunction</span><span class='go-source'>(</span><span class='go-punctuation-definition-string-begin'>&quot;</span><span class='go-string-quoted-double'>add</span><span class='go-punctuation-definition-string-end'>&quot;</span><span class='go-source'>)
+</span><span class='go-storage-type'>var</span><span class='go-source'> a, b </span><span class='go-support-type-stdint'>int32</span><span class='go-source'> = </span><span class='go-constant-numeric'>1</span><span class='go-source'>, </span><span class='go-constant-numeric'>2</span><span class='go-source'>
+</span><span class='go-source'>res, </span><span class='go-constant-language'>_</span><span class='go-source'> := </span><span class='go-storage-type'>fn.Call</span><span class='go-source'>(ctx, </span><span class='go-storage-type'>api.EncodeI32</span><span class='go-source'>(a), </span><span class='go-storage-type'>api.EncodeI32</span><span class='go-source'>(b))
+</span><span class='go-source'>c := </span><span class='go-storage-type'>api.DecodeI32</span><span class='go-source'>(res[</span><span class='go-constant-numeric'>0</span><span class='go-source'>])
+</span><span class='go-storage-type'>fmt.Printf</span><span class='go-source'>(</span><span class='go-punctuation-definition-string-begin'>&quot;</span><span class='go-string-quoted-double'>add(%d, %d) = %d</span><span class='go-constant-character-escape'>\n</span><span class='go-punctuation-definition-string-end'>&quot;</span><span class='go-source'>, a, b, c)
+</span><span class='go-source'>
+</span><span class='go-punctuation-definition-comment'>//</span><span class='go-comment-line-double-slash'> The instance is still alive. We can call the function again.
+</span><span class='go-source'>res, </span><span class='go-constant-language'>_</span><span class='go-source'> = </span><span class='go-storage-type'>fn.Call</span><span class='go-source'>(ctx, </span><span class='go-storage-type'>api.EncodeI32</span><span class='go-source'>(b), </span><span class='go-storage-type'>api.EncodeI32</span><span class='go-source'>(c))
+</span><span class='go-storage-type'>fmt.Printf</span><span class='go-source'>(</span><span class='go-punctuation-definition-string-begin'>&quot;</span><span class='go-string-quoted-double'>add(%d, %d) = %d</span><span class='go-constant-character-escape'>\n</span><span class='go-punctuation-definition-string-end'>&quot;</span><span class='go-source'>, b, c, </span><span class='go-storage-type'>api.DecodeI32</span><span class='go-source'>(res[</span><span class='go-constant-numeric'>0</span><span class='go-source'>]))
 </span></code></pre>
 
   </body>

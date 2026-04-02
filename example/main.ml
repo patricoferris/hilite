@@ -54,6 +54,15 @@ span[class*='numeric'] {
 
 span[class*='comment'] {
   font-style: italic
+  color: #969696
+}
+
+span[class*='function'] {
+  color: #77ce0e 
+}
+
+span[class*='storage-type'] {
+ color: #83a598
 }
 
 span[class*='deleted'] {
