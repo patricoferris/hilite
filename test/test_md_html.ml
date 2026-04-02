@@ -18,6 +18,11 @@ let html = "<h1>Hello World!</h1>"
 +         else (module Fail)
 +        : Unix_socket)
 ```
+
+```ocaml
+let x =
+  f (1 + 1)
+```
 |}
 
 let test_transform () =

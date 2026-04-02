@@ -3913,6 +3913,3673 @@ let opam =
           ])
 
 
+let python =
+`Assoc ([("author", `String ("Matt Morrison @MattDMo mattdmo@pigimal.com"));
+          ("bundleUUID", `String ("EB590797-FBEE-4BEA-A140-8339AFD2CE1B"));
+          ("comment",
+           `String ("To make PythonImproved your default Python syntax, open a .py file and select View|Syntax|Open all with current extension as...|PythonImproved."));
+          ("fileTypes",
+           `List ([`String ("py"); `String ("py3"); `String ("rpy");
+                    `String ("pyw"); `String ("cpy"); `String ("SConstruct");
+                    `String ("Sconstruct"); `String ("sconstruct");
+                    `String ("SConscript")]));
+          ("firstLineMatch", `String ("^#!/.*\\bpython[0-9.-]*\\b"));
+          ("foldingStartMarker",
+           `String ("^\\s*(((?:async\\s+)?def)|class)\\s+([.[:alnum:]_ <]+)\\s*(\\((.*)\\))?\\s*:|\\{\\s*$|\\(\\s*$|\\[\\s*$|^\\s*\"\"\"(?=.)(?!.*\"\"\")"));
+          ("foldingStopMarker",
+           `String ("^\\s*$|^\\s*\\}|^\\s*\\]|^\\s*\\)|^\\s*\"\"\"\\s*$"));
+          ("keyEquivalent", `String ("^~P")); ("name", `String ("python"));
+          ("patterns",
+           `List ([`Assoc ([("match",
+                             `String ("(?<!^from\\s|^import\\s)(\\b\\.{3}\\b)"));
+                             ("name",
+                              `String ("support.type.ellipsis.python"))
+                             ]);
+                    `Assoc ([("captures",
+                              `Assoc ([("2",
+                                        `Assoc ([("name",
+                                                  `String ("support.ipython.cell-number.python"))
+                                                  ]))
+                                        ]));
+                              ("match", `String ("(^In \\[(\\d+)\\]\\:)"));
+                              ("name", `String ("support.ipython.in.python"))
+                              ]);
+                    `Assoc ([("captures",
+                              `Assoc ([("2",
+                                        `Assoc ([("name",
+                                                  `String ("support.ipython.cell-number.python"))
+                                                  ]))
+                                        ]));
+                              ("match", `String ("(^Out\\[(\\d+)\\]\\:)"));
+                              ("name", `String ("support.ipython.out.python"))
+                              ]);
+                    `Assoc ([("include", `String ("#comments"))]);
+                    `Assoc ([("comment",
+                              `String ("Match identifiers in ALL_CAPS as constants, except when followed by `.`, `(`, `'`, or `\"`."));
+                              ("match",
+                               `String ("\\b([[:upper:]_][[:upper:][:digit:]_]*)\\b(?![\\.\\(\\'\\\"])"));
+                              ("name",
+                               `String ("constant.other.allcaps.python"))
+                              ]);
+                    `Assoc ([("match", `String ("\\b(?i:(0x\\h+)L)"));
+                              ("name",
+                               `String ("constant.numeric.integer.hexadecimal.long.python"))
+                              ]);
+                    `Assoc ([("match", `String ("\\b(?i:(0x\\h+))"));
+                              ("name",
+                               `String ("constant.numeric.integer.hexadecimal.python"))
+                              ]);
+                    `Assoc ([("match", `String ("\\b(?i:(0b[01]+)L)"));
+                              ("name",
+                               `String ("constant.numeric.integer.binary.long.python"))
+                              ]);
+                    `Assoc ([("match", `String ("\\b(?i:(0b[01]+))"));
+                              ("name",
+                               `String ("constant.numeric.integer.binary.python"))
+                              ]);
+                    `Assoc ([("match", `String ("\\b(?i:(0[o]?[0-7]+)L)"));
+                              ("name",
+                               `String ("constant.numeric.integer.octal.long.python"))
+                              ]);
+                    `Assoc ([("match", `String ("\\b(?i:(0[o]?[0-7]+))"));
+                              ("name",
+                               `String ("constant.numeric.integer.octal.python"))
+                              ]);
+                    `Assoc ([("comment", `String ("Not quite perfect..."));
+                              ("match",
+                               `String ("\\b(?i:(((\\d+(\\.(?=[^[:alpha:]_])\\d*)?|(?<=[^[:alnum:]_])\\.\\d+)(e[\\-\\+]?\\d+)?))J)"));
+                              ("name",
+                               `String ("constant.numeric.complex.python"))
+                              ]);
+                    `Assoc ([("comment",
+                              `String ("Ummm... why do we have three of these? This is one..."));
+                              ("match",
+                               `String ("\\b(?i:(\\d+\\.\\d*(e[\\-\\+]?\\d+)?))(?=[^[:alpha:]_])"));
+                              ("name",
+                               `String ("constant.numeric.float.python"))
+                              ]);
+                    `Assoc ([("comment", `String ("This is two..."));
+                              ("match",
+                               `String ("(?<=[^[:alnum:]_])(?i:(\\.\\d+(e[\\-\\+]?\\d+)?))"));
+                              ("name",
+                               `String ("constant.numeric.float.python"))
+                              ]);
+                    `Assoc ([("comment", `String ("And this is three..."));
+                              ("match",
+                               `String ("\\b(?i:(\\d+e[\\-\\+]?\\d+))"));
+                              ("name",
+                               `String ("constant.numeric.float.python"))
+                              ]);
+                    `Assoc ([("match", `String ("\\b(?i:([1-9]+[0-9]*|0)L)"));
+                              ("name",
+                               `String ("constant.numeric.integer.decimal.long.python"))
+                              ]);
+                    `Assoc ([("match", `String ("\\b([1-9]+[0-9]*|0)"));
+                              ("name",
+                               `String ("constant.numeric.integer.decimal.python"))
+                              ]);
+                    `Assoc ([("match",
+                              `String ("\\b(None|True|False|Ellipsis|NotImplemented)\\b"));
+                              ("name", `String ("constant.language.python"))]);
+                    `Assoc ([("match", `String ("\\b(global|nonlocal)\\b"));
+                              ("name",
+                               `String ("storage.modifier.declaration.python"))
+                              ]);
+                    `Assoc ([("match", `String ("\\b(?:(import|from|as))\\b"));
+                              ("name",
+                               `String ("keyword.control.import.python"))
+                              ]);
+                    `Assoc ([("comment",
+                              `String ("keyword operators that evaluate to True or False"));
+                              ("match", `String ("\\b(and|in|is|not|or)\\b"));
+                              ("name",
+                               `String ("keyword.operator.logical.python"))
+                              ]);
+                    `Assoc ([("comment",
+                              `String ("keywords that do not fit into other groups."));
+                              ("match", `String ("\\b(assert|del)\\b"));
+                              ("name", `String ("keyword.other.python"))]);
+                    `Assoc ([("match", `String ("<>"));
+                              ("name",
+                               `String ("invalid.deprecated.operator.python"))
+                              ]);
+                    `Assoc ([("match",
+                              `String ("(?<!\\.)(apply|buffer|coerce|intern)\\s*(?=\\()"));
+                              ("name",
+                               `String ("invalid.deprecated.function.python"))
+                              ]);
+                    `Assoc ([("match",
+                              `String ("<\\=|>\\=|\\=\\=|<|>|\\!\\="));
+                              ("name",
+                               `String ("keyword.operator.comparison.python"))
+                              ]);
+                    `Assoc ([("match",
+                              `String ("\\+\\=|-\\=|\\*\\=|/\\=|//\\=|%\\=|&\\=|\\|\\=|\\^\\=|>>\\=|<<\\=|\\*\\*\\=|@\\="));
+                              ("name",
+                               `String ("keyword.operator.assignment.augmented.python"))
+                              ]);
+                    `Assoc ([("match",
+                              `String ("\\+|\\-|\\*|\\*\\*|/|//|%|<<|>>|&|\\||\\^|~|(?!^)@"));
+                              ("name",
+                               `String ("keyword.operator.arithmetic.python"))
+                              ]);
+                    `Assoc ([("match", `String ("\\="));
+                              ("name",
+                               `String ("keyword.operator.assignment.python"))
+                              ]);
+                    `Assoc ([("begin",
+                              `String ("\\s*(class)\\s+(?=[[:alpha:]_][[:alnum:]_]*\\s*\\:)"));
+                              ("beginCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("storage.type.class.python"))
+                                                   ]))
+                                         ]));
+                              ("contentName",
+                               `String ("entity.name.type.class.python"));
+                              ("end", `String ("\\s*(:)"));
+                              ("endCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.section.class.begin.python"))
+                                                   ]))
+                                         ]));
+                              ("name",
+                               `String ("meta.class.old-style.python"));
+                              ("patterns",
+                               `List ([`Assoc ([("include",
+                                                 `String ("#entity_name_class"))
+                                                 ])
+                                        ]))
+                              ]);
+                    `Assoc ([("begin",
+                              `String ("\\s*(class)\\s+(?=[[:alpha:]_][[:alnum:]_]*\\s*\\()"));
+                              ("beginCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("storage.type.class.python"))
+                                                   ]))
+                                         ]));
+                              ("end",
+                               `String ("(\\))\\s*(?:(\\:)|(.*$\\n?))"));
+                              ("endCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.inheritance.end.python"))
+                                                   ]));
+                                         ("2",
+                                          `Assoc ([("name",
+                                                    `String ("punctuation.section.class.begin.python"))
+                                                    ]));
+                                         ("3",
+                                          `Assoc ([("name",
+                                                    `String ("invalid.illegal.missing-section-begin.python"))
+                                                    ]))
+                                         ]));
+                              ("name", `String ("meta.class.python"));
+                              ("patterns",
+                               `List ([`Assoc ([("begin",
+                                                 `String ("(?=[[:alpha:]_][[:alnum:]_]*)"));
+                                                 ("contentName",
+                                                  `String ("entity.name.type.class.python"));
+                                                 ("end",
+                                                  `String ("(?![[:alnum:]_])"));
+                                                 ("patterns",
+                                                  `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#entity_name_class"))
+                                                                    ])
+                                                           ]))
+                                                 ]);
+                                        `Assoc ([("begin", `String ("(\\()"));
+                                                  ("beginCaptures",
+                                                   `Assoc ([("1",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.inheritance.begin.python"))
+                                                               ]))
+                                                             ]));
+                                                  ("contentName",
+                                                   `String ("meta.class.inheritance.python"));
+                                                  ("end",
+                                                   `String ("(?=\\)|:)"));
+                                                  ("patterns",
+                                                   `List ([`Assoc ([("begin",
+                                                                    `String (
+                                                                    "(?<=\\(|,)\\s*"));
+                                                                    ("contentName",
+                                                                    `String (
+                                                                    "entity.other.inherited-class.python"));
+                                                                    ("end",
+                                                                    `String (
+                                                                    "\\s*(?:(,)|(?=\\)))"));
+                                                                    ("endCaptures",
+                                                                    `Assoc (
+                                                                    [("1",
+                                                                    `Assoc (
+                                                                    [("name",
+                                                                    `String (
+                                                                    "punctuation.separator.inheritance.python"))
+                                                                    ]))]));
+                                                                    ("patterns",
+                                                                    `List (
+                                                                    [`Assoc (
+                                                                    [("include",
+                                                                    `String (
+                                                                    "$self"))
+                                                                    ])]))])
+                                                            ]))
+                                                  ])
+                                        ]))
+                              ]);
+                    `Assoc ([("begin",
+                              `String ("\\s*(class)\\s+(?=[[:alpha:]_][[:alnum:]_]*)"));
+                              ("beginCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("storage.type.class.python"))
+                                                   ]))
+                                         ]));
+                              ("end", `String ("(\\()|\\s*($\\n?|#.*$\\n?)"));
+                              ("endCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.inheritance.begin.python"))
+                                                   ]));
+                                         ("2",
+                                          `Assoc ([("name",
+                                                    `String ("invalid.illegal.missing-inheritance.python"))
+                                                    ]))
+                                         ]));
+                              ("name", `String ("meta.class.python"));
+                              ("patterns",
+                               `List ([`Assoc ([("begin",
+                                                 `String ("(?=[[:alpha:]_][[:alnum:]_]*)"));
+                                                 ("contentName",
+                                                  `String ("entity.name.type.class.python"));
+                                                 ("end",
+                                                  `String ("(?![[:alnum:]_])"));
+                                                 ("patterns",
+                                                  `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#entity_name_function"))
+                                                                    ])
+                                                           ]))
+                                                 ])
+                                        ]))
+                              ]);
+                    `Assoc ([("begin",
+                              `String ("\\s*(?:(async)\\s+)?(def)\\s+(?=[[:alpha:]_][[:alnum:]_]*\\s*\\()"));
+                              ("beginCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("storage.modifier.async.python"))
+                                                   ]));
+                                         ("2",
+                                          `Assoc ([("name",
+                                                    `String ("storage.type.function.python"))
+                                                    ]))
+                                         ]));
+                              ("end", `String ("(\\:)"));
+                              ("endCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.section.function.begin.python"))
+                                                   ]))
+                                         ]));
+                              ("name", `String ("meta.function.python"));
+                              ("patterns",
+                               `List ([`Assoc ([("begin",
+                                                 `String ("(?=[[:alpha:]_][[:alnum:]_]*)"));
+                                                 ("contentName",
+                                                  `String ("entity.name.function.python"));
+                                                 ("end",
+                                                  `String ("(?![[:alnum:]_])"));
+                                                 ("patterns",
+                                                  `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#entity_name_function"))
+                                                                    ])
+                                                           ]))
+                                                 ]);
+                                        `Assoc ([("begin", `String ("(\\()"));
+                                                  ("beginCaptures",
+                                                   `Assoc ([("1",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.parameters.begin.python"))
+                                                               ]))
+                                                             ]));
+                                                  ("contentName",
+                                                   `String ("meta.function.parameters.python"));
+                                                  ("end",
+                                                   `String ("(?=\\)\\s*(?:\\:|-\\>))"));
+                                                  ("patterns",
+                                                   `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#annotated_arguments"))
+                                                                    ]);
+                                                            `Assoc ([("include",
+                                                                    `String (
+                                                                    "#keyword_arguments"))
+                                                                    ]);
+                                                            `Assoc ([("include",
+                                                                    `String (
+                                                                    "#comments"))
+                                                                    ]);
+                                                            `Assoc ([("captures",
+                                                                    `Assoc (
+                                                                    [("1",
+                                                                    `Assoc (
+                                                                    [("name",
+                                                                    `String (
+                                                                    "variable.parameter.function.language.python"))
+                                                                    ]));
+                                                                    ("2",
+                                                                    `Assoc (
+                                                                    [("name",
+                                                                    `String (
+                                                                    "variable.parameter.function.python"))
+                                                                    ]));
+                                                                    ("3",
+                                                                    `Assoc (
+                                                                    [("name",
+                                                                    `String (
+                                                                    "punctuation.separator.parameters.python"))
+                                                                    ]))]));
+                                                                    ("match",
+                                                                    `String (
+                                                                    "\\b(?:(self|cls)|([[:alpha:]_][[:alnum:]_]*))\\s*(?:(,)|(?=[\\n\\)]))"))
+                                                                    ])
+                                                            ]))
+                                                  ]);
+                                        `Assoc ([("begin",
+                                                  `String ("(\\))\\s*(\\->)"));
+                                                  ("beginCaptures",
+                                                   `Assoc ([("1",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.parameters.end.python"))
+                                                               ]));
+                                                             ("2",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.separator.annotation.result.python"))
+                                                                ]))
+                                                             ]));
+                                                  ("end", `String ("(?=\\:)"));
+                                                  ("patterns",
+                                                   `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "$self"))
+                                                                    ])
+                                                            ]))
+                                                  ])
+                                        ]))
+                              ]);
+                    `Assoc ([("begin",
+                              `String ("\\s*(?:(async)\\s+)?(def)\\s+(?=[[:alpha:]_][[:alnum:]_]*)"));
+                              ("beginCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("storage.modifier.async.python"))
+                                                   ]));
+                                         ("2",
+                                          `Assoc ([("name",
+                                                    `String ("storage.type.function.python"))
+                                                    ]))
+                                         ]));
+                              ("end", `String ("(\\()|\\s*($\\n?|#.*$\\n?)"));
+                              ("endCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.parameters.begin.python"))
+                                                   ]));
+                                         ("2",
+                                          `Assoc ([("name",
+                                                    `String ("invalid.illegal.missing-parameters.python"))
+                                                    ]))
+                                         ]));
+                              ("name", `String ("meta.function.python"));
+                              ("patterns",
+                               `List ([`Assoc ([("begin",
+                                                 `String ("(?=[[:alpha:]_][[:alnum:]_]*)"));
+                                                 ("contentName",
+                                                  `String ("entity.name.function.python"));
+                                                 ("end",
+                                                  `String ("(?![[:alnum:]_])"));
+                                                 ("patterns",
+                                                  `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#entity_name_function"))
+                                                                    ])
+                                                           ]))
+                                                 ])
+                                        ]))
+                              ]);
+                    `Assoc ([("captures",
+                              `Assoc ([("1",
+                                        `Assoc ([("name",
+                                                  `String ("storage.modifier.async.python"))
+                                                  ]));
+                                        ("2",
+                                         `Assoc ([("name",
+                                                   `String ("storage.type.function.python"))
+                                                   ]));
+                                        ("3",
+                                         `Assoc ([("name",
+                                                   `String ("storage.type.function.inline.python"))
+                                                   ]))
+                                        ]));
+                              ("match",
+                               `String ("\\b(?:(?:(async)\\s+)?(def)|(lambda))\\b"))
+                              ]);
+                    `Assoc ([("comment",
+                              `String ("Keywords that delimit flow blocks or alter flow from within a block. This block should be matched *after* meta.function.python to let `async def` be matched *first*."));
+                              ("match",
+                               `String ("(?x) \\b(\n  async | await | break | continue | elif | else | except | finally |\n  for | if | pass | raise | return | try | while | with |\n  (yield(?:\\s+from)?)\n)\\b"));
+                              ("name",
+                               `String ("keyword.control.flow.python"))
+                              ]);
+                    `Assoc ([("begin", `String ("(lambda)(?=\\s+|:)"));
+                              ("beginCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("storage.type.function.inline.python"))
+                                                   ]))
+                                         ]));
+                              ("end", `String ("(\\:)"));
+                              ("endCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.parameters.end.python"))
+                                                   ]));
+                                         ("2",
+                                          `Assoc ([("name",
+                                                    `String ("punctuation.section.function.begin.python"))
+                                                    ]));
+                                         ("3",
+                                          `Assoc ([("name",
+                                                    `String ("invalid.illegal.missing-section-begin.python"))
+                                                    ]))
+                                         ]));
+                              ("name",
+                               `String ("meta.function.inline.python"));
+                              ("patterns",
+                               `List ([`Assoc ([("begin", `String ("\\s+"));
+                                                 ("contentName",
+                                                  `String ("meta.function.inline.parameters.python"));
+                                                 ("end", `String ("(?=\\:)"));
+                                                 ("patterns",
+                                                  `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#keyword_arguments"))
+                                                                    ]);
+                                                           `Assoc ([("captures",
+                                                                    `Assoc (
+                                                                    [("1",
+                                                                    `Assoc (
+                                                                    [("name",
+                                                                    `String (
+                                                                    "variable.parameter.function.python"))
+                                                                    ]));
+                                                                    ("2",
+                                                                    `Assoc (
+                                                                    [("name",
+                                                                    `String (
+                                                                    "punctuation.separator.parameters.python"))
+                                                                    ]))]));
+                                                                    ("match",
+                                                                    `String (
+                                                                    "\\b([[:alpha:]_][[:alnum:]_]*)\\s*(?:(,)|(?=[\\n\\)\\:]))"))
+                                                                    ])
+                                                           ]))
+                                                 ])
+                                        ]))
+                              ]);
+                    `Assoc ([("begin",
+                              `String ("^\\s*(?=@\\s*[[:alpha:]_][[:alnum:]_]*(?:\\s*\\.\\s*[[:alpha:]_][[:alnum:]_]*)*\\s*\\()"));
+                              ("comment",
+                               `String ("a decorator may be a function call which returns a decorator."));
+                              ("end", `String ("(?<=\\))"));
+                              ("endCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.arguments.end.python"))
+                                                   ]))
+                                         ]));
+                              ("name",
+                               `String ("meta.function.decorator.python"));
+                              ("patterns",
+                               `List ([`Assoc ([("begin",
+                                                 `String ("(?=(@)\\s*[[:alpha:]_][[:alnum:]_]*(?:\\s*\\.\\s*[[:alpha:]_][[:alnum:]_]*)*\\s*\\()"));
+                                                 ("beginCaptures",
+                                                  `Assoc ([("1",
+                                                            `Assoc ([("name",
+                                                                    `String (
+                                                                    "punctuation.definition.decorator.python"))
+                                                                    ]))
+                                                            ]));
+                                                 ("contentName",
+                                                  `String ("entity.name.function.decorator.python"));
+                                                 ("end",
+                                                  `String ("(?=\\s*\\()"));
+                                                 ("patterns",
+                                                  `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#dotted_name"))
+                                                                    ])
+                                                           ]))
+                                                 ]);
+                                        `Assoc ([("begin", `String ("(\\()"));
+                                                  ("beginCaptures",
+                                                   `Assoc ([("1",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.arguments.begin.python"))
+                                                               ]))
+                                                             ]));
+                                                  ("contentName",
+                                                   `String ("meta.function.decorator.arguments.python"));
+                                                  ("end",
+                                                   `String ("(?=(\\)))"));
+                                                  ("endCaptures",
+                                                   `Assoc ([("1",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.arguments.end.python"))
+                                                               ]))
+                                                             ]));
+                                                  ("patterns",
+                                                   `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#keyword_arguments"))
+                                                                    ]);
+                                                            `Assoc ([("include",
+                                                                    `String (
+                                                                    "$self"))
+                                                                    ])
+                                                            ]))
+                                                  ])
+                                        ]))
+                              ]);
+                    `Assoc ([("begin",
+                              `String ("^\\s*(?=@\\s*[[:alpha:]_][[:alnum:]_]*(?:\\s*\\.\\s*[[:alpha:]_][[:alnum:]_]*)*)"));
+                              ("contentName",
+                               `String ("entity.name.function.decorator.python"));
+                              ("end", `String ("(?=\\s|$\\n?|#)"));
+                              ("name",
+                               `String ("meta.function.decorator.python"));
+                              ("patterns",
+                               `List ([`Assoc ([("begin",
+                                                 `String ("(?=(@)\\s*[[:alpha:]_][[:alnum:]_]*(\\s*\\.\\s*[[:alpha:]_][[:alnum:]_]*)*)"));
+                                                 ("beginCaptures",
+                                                  `Assoc ([("1",
+                                                            `Assoc ([("name",
+                                                                    `String (
+                                                                    "punctuation.definition.decorator.python"))
+                                                                    ]))
+                                                            ]));
+                                                 ("end",
+                                                  `String ("(?=\\s|$\\n?|#)"));
+                                                 ("patterns",
+                                                  `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#dotted_name"))
+                                                                    ])
+                                                           ]))
+                                                 ])
+                                        ]))
+                              ]);
+                    `Assoc ([("begin", `String ("(?<=\\)|\\])\\s*(\\()"));
+                              ("beginCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.arguments.begin.python"))
+                                                   ]))
+                                         ]));
+                              ("contentName",
+                               `String ("meta.function-call.arguments.python"));
+                              ("end", `String ("(\\))"));
+                              ("endCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.arguments.end.python"))
+                                                   ]))
+                                         ]));
+                              ("name", `String ("meta.function-call.python"));
+                              ("patterns",
+                               `List ([`Assoc ([("include",
+                                                 `String ("#keyword_arguments"))
+                                                 ]);
+                                        `Assoc ([("include",
+                                                  `String ("$self"))])
+                                        ]))
+                              ]);
+                    `Assoc ([("include", `String ("#builtin_types"))]);
+                    `Assoc ([("include", `String ("#builtin_functions_name"))
+                              ]);
+                    `Assoc ([("include", `String ("#builtin_functions_call"))
+                              ]);
+                    `Assoc ([("include",
+                              `String ("#errors_warnings_exceptions"))]);
+                    `Assoc ([("include", `String ("#docstrings"))]);
+                    `Assoc ([("include", `String ("#magic_function_names"))]);
+                    `Assoc ([("include", `String ("#magic_function_calls"))]);
+                    `Assoc ([("include", `String ("#magic_variable_names"))]);
+                    `Assoc ([("begin",
+                              `String ("\\b(self|cls)\\b\\s*(?=(\\())"));
+                              ("beginCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("variable.language.python"))
+                                                   ]));
+                                         ("2",
+                                          `Assoc ([("name",
+                                                    `String ("punctuation.definition.arguments.begin.python"))
+                                                    ]))
+                                         ]));
+                              ("end", `String ("(\\))"));
+                              ("endCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.arguments.end.python"))
+                                                   ]))
+                                         ]));
+                              ("name", `String ("meta.function-call.python"));
+                              ("patterns",
+                               `List ([`Assoc ([("begin", `String ("(\\()"));
+                                                 ("beginCaptures",
+                                                  `Assoc ([("1",
+                                                            `Assoc ([("name",
+                                                                    `String (
+                                                                    "punctuation.definition.arguments.begin.python"))
+                                                                    ]))
+                                                            ]));
+                                                 ("contentName",
+                                                  `String ("meta.function-call.arguments.python"));
+                                                 ("end",
+                                                  `String ("(?=(\\)))"));
+                                                 ("endCaptures",
+                                                  `Assoc ([("1",
+                                                            `Assoc ([("name",
+                                                                    `String (
+                                                                    "punctuation.definition.arguments.end.python"))
+                                                                    ]))
+                                                            ]));
+                                                 ("patterns",
+                                                  `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#keyword_arguments"))
+                                                                    ]);
+                                                           `Assoc ([("include",
+                                                                    `String (
+                                                                    "$self"))
+                                                                    ])
+                                                           ]))
+                                                 ])
+                                        ]))
+                              ]);
+                    `Assoc ([("include", `String ("#language_variables"))]);
+                    `Assoc ([("include", `String ("#generic_object_names"))]);
+                    `Assoc ([("begin",
+                              `String ("(?:\\.)?([[:alpha:]_][[:alnum:]_]*)\\s*(?=(\\())"));
+                              ("beginCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("meta.function-call.generic.python"))
+                                                   ]));
+                                         ("2",
+                                          `Assoc ([("name",
+                                                    `String ("punctuation.definition.arguments.begin.python"))
+                                                    ]))
+                                         ]));
+                              ("end", `String ("(\\))"));
+                              ("endCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.arguments.end.python"))
+                                                   ]))
+                                         ]));
+                              ("name", `String ("meta.function-call.python"));
+                              ("patterns",
+                               `List ([`Assoc ([("begin",
+                                                 `String ("(?=[[:alpha:]_][[:alnum:]_]*(?:\\.[[:alpha:]_][[:alnum:]_]*)*\\s*\\()"));
+                                                 ("end",
+                                                  `String ("(?=\\s*\\()"));
+                                                 ("patterns",
+                                                  `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#dotted_name"))
+                                                                    ])
+                                                           ]))
+                                                 ]);
+                                        `Assoc ([("begin", `String ("(\\()"));
+                                                  ("beginCaptures",
+                                                   `Assoc ([("1",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.arguments.begin.python"))
+                                                               ]))
+                                                             ]));
+                                                  ("contentName",
+                                                   `String ("meta.function-call.arguments.python"));
+                                                  ("end",
+                                                   `String ("(?=(\\)))"));
+                                                  ("endCaptures",
+                                                   `Assoc ([("1",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.arguments.end.python"))
+                                                               ]))
+                                                             ]));
+                                                  ("patterns",
+                                                   `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#keyword_arguments"))
+                                                                    ]);
+                                                            `Assoc ([("include",
+                                                                    `String (
+                                                                    "$self"))
+                                                                    ])
+                                                            ]))
+                                                  ]);
+                                        `Assoc ([("begin", `String ("\\G"));
+                                                  ("end", `String ("(?=\\()"));
+                                                  ("patterns",
+                                                   `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#dotted_name"))
+                                                                    ])
+                                                            ]))
+                                                  ])
+                                        ]))
+                              ]);
+                    `Assoc ([("comment",
+                              `String ("Py2 print statement that should only be matched after function calls"));
+                              ("match",
+                               `String ("(?<!\\.)\\b(print)(?=\\s|$)"));
+                              ("name", `String ("keyword.other.print.python"))
+                              ]);
+                    `Assoc ([("begin",
+                              `String ("(?=[[:alpha:]_][[:alnum:]_]*(?:\\s*\\.\\s*[[:alpha:]_][[:alnum:]_]*)*\\s*\\[)"));
+                              ("end", `String ("(\\])"));
+                              ("endCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.arguments.end.python"))
+                                                   ]))
+                                         ]));
+                              ("name", `String ("meta.item-access.python"));
+                              ("patterns",
+                               `List ([`Assoc ([("begin",
+                                                 `String ("(?=[[:alpha:]_][[:alnum:]_]*(?:\\s*\\.\\s*[[:alpha:]_][[:alnum:]_]*)*\\s*\\[)"));
+                                                 ("end",
+                                                  `String ("(?=\\s*\\[)"));
+                                                 ("patterns",
+                                                  `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#dotted_name"))
+                                                                    ])
+                                                           ]))
+                                                 ]);
+                                        `Assoc ([("begin", `String ("(\\[)"));
+                                                  ("beginCaptures",
+                                                   `Assoc ([("1",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.arguments.begin.python"))
+                                                               ]))
+                                                             ]));
+                                                  ("contentName",
+                                                   `String ("meta.item-access.arguments.python"));
+                                                  ("end",
+                                                   `String ("(?=(\\]))"));
+                                                  ("endCaptures",
+                                                   `Assoc ([("1",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.arguments.end.python"))
+                                                               ]))
+                                                             ]));
+                                                  ("patterns",
+                                                   `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "$self"))
+                                                                    ])
+                                                            ]))
+                                                  ]);
+                                        `Assoc ([("begin", `String ("\\G"));
+                                                  ("end", `String ("(?=\\[)"));
+                                                  ("patterns",
+                                                   `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#dotted_name"))
+                                                                    ])
+                                                            ]))
+                                                  ])
+                                        ]))
+                              ]);
+                    `Assoc ([("captures",
+                              `Assoc ([("1",
+                                        `Assoc ([("name",
+                                                  `String ("storage.type.class.python"))
+                                                  ]))
+                                        ]));
+                              ("match", `String ("\\b(class)\\b"))]);
+                    `Assoc ([("include", `String ("#line_continuation"))]);
+                    `Assoc ([("include", `String ("#string_quoted_single"))]);
+                    `Assoc ([("include", `String ("#string_quoted_double"))]);
+                    `Assoc ([("include", `String ("#dotted_name"))]);
+                    `Assoc ([("begin", `String ("(\\()"));
+                              ("end", `String ("(\\))"));
+                              ("patterns",
+                               `List ([`Assoc ([("include", `String ("$self"))
+                                                 ])
+                                        ]))
+                              ]);
+                    `Assoc ([("captures",
+                              `Assoc ([("1",
+                                        `Assoc ([("name",
+                                                  `String ("punctuation.definition.list.begin.python"))
+                                                  ]));
+                                        ("2",
+                                         `Assoc ([("name",
+                                                   `String ("meta.empty-list.python"))
+                                                   ]));
+                                        ("3",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.list.end.python"))
+                                                   ]))
+                                        ]));
+                              ("match", `String ("(\\[)(\\s*(\\]))\\b"))]);
+                    `Assoc ([("begin", `String ("(\\[)"));
+                              ("beginCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.list.begin.python"))
+                                                   ]))
+                                         ]));
+                              ("end", `String ("(\\])"));
+                              ("endCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.list.end.python"))
+                                                   ]))
+                                         ]));
+                              ("name", `String ("meta.structure.list.python"));
+                              ("patterns",
+                               `List ([`Assoc ([("begin",
+                                                 `String ("(?<=\\[|\\,)\\s*(?![\\],])"));
+                                                 ("contentName",
+                                                  `String ("meta.structure.list.item.python"));
+                                                 ("end",
+                                                  `String ("\\s*(?:(,)|(?=\\]))"));
+                                                 ("endCaptures",
+                                                  `Assoc ([("1",
+                                                            `Assoc ([("name",
+                                                                    `String (
+                                                                    "punctuation.separator.list.python"))
+                                                                    ]))
+                                                            ]));
+                                                 ("patterns",
+                                                  `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "$self"))
+                                                                    ])
+                                                           ]))
+                                                 ])
+                                        ]))
+                              ]);
+                    `Assoc ([("captures",
+                              `Assoc ([("1",
+                                        `Assoc ([("name",
+                                                  `String ("punctuation.definition.tuple.begin.python"))
+                                                  ]));
+                                        ("2",
+                                         `Assoc ([("name",
+                                                   `String ("meta.empty-tuple.python"))
+                                                   ]));
+                                        ("3",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.tuple.end.python"))
+                                                   ]))
+                                        ]));
+                              ("match", `String ("\\b(\\()(\\s*(\\)))\\b"));
+                              ("name",
+                               `String ("meta.structure.tuple.python"))
+                              ]);
+                    `Assoc ([("captures",
+                              `Assoc ([("1",
+                                        `Assoc ([("name",
+                                                  `String ("punctuation.definition.dictionary.begin.python"))
+                                                  ]));
+                                        ("2",
+                                         `Assoc ([("name",
+                                                   `String ("meta.empty-dictionary.python"))
+                                                   ]));
+                                        ("3",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.dictionary.end.python"))
+                                                   ]))
+                                        ]));
+                              ("match", `String ("(\\{)(\\s*(\\}))"));
+                              ("name",
+                               `String ("meta.structure.dictionary.python"))
+                              ]);
+                    `Assoc ([("begin", `String ("(\\{)"));
+                              ("beginCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.dictionary.begin.python"))
+                                                   ]))
+                                         ]));
+                              ("end", `String ("(\\})"));
+                              ("endCaptures",
+                               `Assoc ([("1",
+                                         `Assoc ([("name",
+                                                   `String ("punctuation.definition.dictionary.end.python"))
+                                                   ]))
+                                         ]));
+                              ("name",
+                               `String ("meta.structure.dictionary.python"));
+                              ("patterns",
+                               `List ([`Assoc ([("begin",
+                                                 `String ("(?<=\\{|\\,|^)\\s*(?![\\},])"));
+                                                 ("contentName",
+                                                  `String ("meta.structure.dictionary.key.python"));
+                                                 ("end",
+                                                  `String ("\\s*(?:(?=\\})|(\\:))"));
+                                                 ("endCaptures",
+                                                  `Assoc ([("1",
+                                                            `Assoc ([("name",
+                                                                    `String (
+                                                                    "punctuation.separator.valuepair.dictionary.python"))
+                                                                    ]))
+                                                            ]));
+                                                 ("patterns",
+                                                  `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "$self"))
+                                                                    ])
+                                                           ]))
+                                                 ]);
+                                        `Assoc ([("begin",
+                                                  `String ("(?<=\\:|^)\\s*"));
+                                                  ("contentName",
+                                                   `String ("meta.structure.dictionary.value.python"));
+                                                  ("end",
+                                                   `String ("\\s*(?:(?=\\})|(,))"));
+                                                  ("endCaptures",
+                                                   `Assoc ([("1",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.separator.dictionary.python"))
+                                                               ]))
+                                                             ]));
+                                                  ("patterns",
+                                                   `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "$self"))
+                                                                    ])
+                                                            ]))
+                                                  ])
+                                        ]))
+                              ])
+                    ]));
+          ("repository",
+           `Assoc ([("annotated_arguments",
+                     `Assoc ([("begin",
+                               `String ("\\b([[:alpha:]_][[:alnum:]_]*)\\s*(:)|(?=\\()"));
+                               ("beginCaptures",
+                                `Assoc ([("1",
+                                          `Assoc ([("name",
+                                                    `String ("variable.parameter.function.python"))
+                                                    ]));
+                                          ("2",
+                                           `Assoc ([("name",
+                                                     `String ("punctuation.separator.annotation.python"))
+                                                     ]))
+                                          ]));
+                               ("end",
+                                `String ("\\s*(?:(,)|(?=$\\n?|[\\)\\:]))"));
+                               ("endCaptures",
+                                `Assoc ([("1",
+                                          `Assoc ([("name",
+                                                    `String ("punctuation.separator.parameters.python"))
+                                                    ]))
+                                          ]));
+                               ("patterns",
+                                `List ([`Assoc ([("include",
+                                                  `String ("#annotated_group"))
+                                                  ]);
+                                         `Assoc ([("match", `String ("="));
+                                                   ("name",
+                                                    `String ("keyword.operator.assignment.python"))
+                                                   ]);
+                                         `Assoc ([("include",
+                                                   `String ("$self"))])
+                                         ]))
+                               ]));
+                     ("annotated_group",
+                      `Assoc ([("begin", `String ("(\\()"));
+                                ("beginCaptures",
+                                 `Assoc ([("1",
+                                           `Assoc ([("name",
+                                                     `String ("punctuation.definition.parameters-group.begin.python"))
+                                                     ]))
+                                           ]));
+                                ("end", `String ("(\\))"));
+                                ("endCaptures",
+                                 `Assoc ([("1",
+                                           `Assoc ([("name",
+                                                     `String ("punctuation.definition.parameters-group.end.python"))
+                                                     ]))
+                                           ]));
+                                ("patterns",
+                                 `List ([`Assoc ([("begin",
+                                                   `String ("\\b([[:alpha:]_][[:alnum:]_]*)\\s*(:)"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "variable.parameter.function.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.separator.annotation.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("\\s*(?:(,)|(?=$\\n?|\\)))"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.separator.parameters.python"))
+                                                                ]))
+                                                              ]));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "$self"))
+                                                                    ])
+                                                             ]))
+                                                   ]);
+                                          `Assoc ([("begin",
+                                                    `String ("\\b([[:alpha:]_][[:alnum:]_]*)"));
+                                                    ("beginCaptures",
+                                                     `Assoc ([("1",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "variable.parameter.function.python"))
+                                                                 ]))
+                                                               ]));
+                                                    ("end",
+                                                     `String ("\\s*(?:(,)|(?=$\\n?|\\)))"));
+                                                    ("endCaptures",
+                                                     `Assoc ([("1",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.separator.parameters.python"))
+                                                                 ]))
+                                                               ]))
+                                                    ]);
+                                          `Assoc ([("include",
+                                                    `String ("#comments"))])
+                                          ]))
+                                ]));
+                     ("builtin_functions_call",
+                      `Assoc ([("patterns",
+                                `List ([`Assoc ([("begin",
+                                                  `String ("(?x)\n  (?<!\\.)\\b(\n    __import__ | abs | all | any | ascii | basestring | bin | bool |\n    bytearray | bytes | callable | chr | classmethod | cmp | compile |\n    complex | delattr | dict | dir | divmod | enumerate | eval | exec |\n    execfile | file | filter | float | format | frozenset | getattr |\n    globals | hasattr | hash | help | hex | id | input | int |\n    isinstance | issubclass | iter | len | list | locals | long | map |\n    max | memoryview | min | next | object | oct | open | ord | pow |\n    print | property | range | raw_input | reduce | reload | repr |\n    reversed | round | set | setattr | slice | sorted | staticmethod |\n    str | sum | super | tuple | type | unichr | unicode | vars |\n    xrange | zip)\n  \\b\\s*(?=(\\())"));
+                                                  ("beginCaptures",
+                                                   `Assoc ([("1",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "support.function.builtin.call.python"))
+                                                               ]));
+                                                             ("2",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.arguments.begin.python"))
+                                                                ]))
+                                                             ]));
+                                                  ("end", `String ("(\\))"));
+                                                  ("endCaptures",
+                                                   `Assoc ([("1",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.arguments.end.python"))
+                                                               ]))
+                                                             ]));
+                                                  ("name",
+                                                   `String ("meta.function-call.python"));
+                                                  ("patterns",
+                                                   `List ([`Assoc ([("begin",
+                                                                    `String (
+                                                                    "(?=[[:alpha:]_][[:alnum:]_]*(?:\\s*\\.\\s*[[:alpha:]_][[:alnum:]_]*)*\\s*\\()"));
+                                                                    ("end",
+                                                                    `String (
+                                                                    "(?=\\s*\\()"));
+                                                                    ("patterns",
+                                                                    `List (
+                                                                    [`Assoc (
+                                                                    [("include",
+                                                                    `String (
+                                                                    "#dotted_name"))
+                                                                    ])]))]);
+                                                            `Assoc ([("begin",
+                                                                    `String (
+                                                                    "(\\()"));
+                                                                    ("beginCaptures",
+                                                                    `Assoc (
+                                                                    [("1",
+                                                                    `Assoc (
+                                                                    [("name",
+                                                                    `String (
+                                                                    "punctuation.definition.arguments.begin.python"))
+                                                                    ]))]));
+                                                                    ("contentName",
+                                                                    `String (
+                                                                    "meta.function-call.arguments.python"));
+                                                                    ("end",
+                                                                    `String (
+                                                                    "(?=\\))"));
+                                                                    ("endCaptures",
+                                                                    `Assoc (
+                                                                    [("0",
+                                                                    `Assoc (
+                                                                    [("name",
+                                                                    `String (
+                                                                    "punctuation.definition.arguments.end.python"))
+                                                                    ]))]));
+                                                                    ("patterns",
+                                                                    `List (
+                                                                    [`Assoc (
+                                                                    [("include",
+                                                                    `String (
+                                                                    "#keyword_arguments"))
+                                                                    ]);
+                                                                    `Assoc (
+                                                                    [("include",
+                                                                    `String (
+                                                                    "$self"))
+                                                                    ])]))])
+                                                            ]))
+                                                  ])
+                                         ]))
+                                ]));
+                     ("builtin_functions_name",
+                      `Assoc ([("match",
+                                `String ("(?x)\n  (?<!\\.|@)\n  \\b(\n    __import__ | abs | all | any | ascii | basestring | bin | bool |\n    bytearray | bytes | callable | chr | classmethod | cmp | compile |\n    complex | delattr | dict | dir | divmod | enumerate | eval | exec |\n    execfile | file | filter | float | format | frozenset | getattr |\n    globals | hasattr | hash | help | hex | id | input | int |\n    isinstance | issubclass | iter | len | list | locals | long | map |\n    max | memoryview | min | next | object | oct | open | ord | pow |\n    property | range | raw_input | reduce | reload | repr |\n    reversed | round | set | setattr | slice | sorted | staticmethod |\n    str | sum | super | tuple | type | unichr | unicode | vars |\n    xrange | zip)\n  \\b\\s*(?!(\\())"));
+                                ("name",
+                                 `String ("support.function.builtin.name.python"))
+                                ]));
+                     ("builtin_types",
+                      `Assoc ([("comment",
+                                `String ("These are from https://docs.python.org/X/library/functions.html where X is 2.7 or 3.5 and the item is a class. Also stdtypes.html"));
+                                ("match",
+                                 `String ("(?x)\n  (?<!\\.)\n  \\b(\n    bool | buffer | bytearray | bytes | complex | dict | float |\n    frozenset | int | list | long | memoryview | object | property |\n    range | set | slice | str | tuple | type | unicode | xrange)\n  \\b(?!(\\s*\\())"));
+                                ("name", `String ("support.type.python"))]));
+                     ("character-class",
+                      `Assoc ([("patterns",
+                                `List ([`Assoc ([("match",
+                                                  `String ("\\\\[wWsSdDhH]|\\."));
+                                                  ("name",
+                                                   `String ("constant.character.character-class.regex.python"))
+                                                  ]);
+                                         `Assoc ([("match", `String ("\\\\."));
+                                                   ("name",
+                                                    `String ("constant.character.escape.backslash.regex.python"))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("(\\[)(\\^)?"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.character-class.regex.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "keyword.operator.negation.regex.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end", `String ("(\\])"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.character-class.regex.python"))
+                                                                ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("constant.other.character-class.set.regex.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#character-class"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("captures",
+                                                               `Assoc (
+                                                               [("2",
+                                                                 `Assoc (
+                                                                 [("name",
+                                                                   `String (
+                                                                   "constant.character.escape.backslash.regex.python"))
+                                                                   ]));
+                                                                 ("4",
+                                                                  `Assoc (
+                                                                  [("name",
+                                                                    `String (
+                                                                    "constant.character.escape.backslash.regex.python"))
+                                                                    ]))
+                                                                 ]));
+                                                               ("match",
+                                                                `String (
+                                                                "((\\\\.)|.)\\-((\\\\.)|[^\\]])"));
+                                                               ("name",
+                                                                `String (
+                                                                "constant.other.character-class.range.regex.python"))
+                                                               ])
+                                                             ]))
+                                                   ])
+                                         ]))
+                                ]));
+                     ("comments",
+                      `Assoc ([("patterns",
+                                `List ([`Assoc ([("captures",
+                                                  `Assoc ([("1",
+                                                            `Assoc ([("name",
+                                                                    `String (
+                                                                    "punctuation.definition.comment.python"))
+                                                                    ]));
+                                                            ("2",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "comment.line.note.notation.python"))
+                                                               ]))
+                                                            ]));
+                                                  ("match",
+                                                   `String ("(#+)\\s*(BUG|FIXME|TODO|XXX).*$"));
+                                                  ("name",
+                                                   `String ("comment.line.note.python"))
+                                                  ]);
+                                         `Assoc ([("captures",
+                                                   `Assoc ([("1",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.comment.python"))
+                                                               ]))
+                                                             ]));
+                                                   ("match",
+                                                    `String ("(#+).*$"));
+                                                   ("name",
+                                                    `String ("comment.line.number-sign.python"))
+                                                   ])
+                                         ]))
+                                ]));
+                     ("constant_placeholder",
+                      `Assoc ([("match",
+                                `String ("(?i:%(\\([[:lower:]_]+\\))?#?0?\\-?[ ]?\\+?([0-9]*|\\*)(\\.([0-9]*|\\*))?[hL]?[[:lower:]%])"));
+                                ("name",
+                                 `String ("constant.other.placeholder.python"))
+                                ]));
+                     ("docstrings",
+                      `Assoc ([("patterns",
+                                `List ([`Assoc ([("begin",
+                                                  `String ("^\\s*(?=[uU]?[rR]?\"\"\")"));
+                                                  ("end",
+                                                   `String ("(?<=\"\"\")"));
+                                                  ("name",
+                                                   `String ("comment.block.python"));
+                                                  ("patterns",
+                                                   `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#string_quoted_double"))
+                                                                    ])
+                                                            ]))
+                                                  ]);
+                                         `Assoc ([("begin",
+                                                   `String ("^\\s*(?=[uU]?[rR]?''')"));
+                                                   ("end",
+                                                    `String ("(?<=''')"));
+                                                   ("name",
+                                                    `String ("comment.block.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#string_quoted_single"))
+                                                                    ])
+                                                             ]))
+                                                   ])
+                                         ]))
+                                ]));
+                     ("dotted_name",
+                      `Assoc ([("begin",
+                                `String ("(?x)(?=\n  (?:\\.(?!\\s+import)\\s*)?\n  [[:alpha:]_][[:alnum:]_]*\n  (?:\\s*\\.\\s*[[:alpha:]_][[:alnum:]_]*)*\n)"));
+                                ("end",
+                                 `String ("(?![[:alnum:]_\\.\\s])|(?=(?<!\\.)\\s+[^.])|$"));
+                                ("patterns",
+                                 `List ([`Assoc ([("begin",
+                                                   `String ("(\\.)(?=[[:alpha:]_][[:alnum:]_]*)"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "meta.dot.python"))
+                                                                ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("(?![[:alnum:]_])"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#builtin_functions_name"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#magic_function_names"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#magic_variable_names"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#generic_names"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#illegal_names"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                          `Assoc ([("begin",
+                                                    `String ("(?<!\\.)(?=[[:alpha:]_][[:alnum:]_]*)"));
+                                                    ("end",
+                                                     `String ("(?![[:alnum:]_])"));
+                                                    ("patterns",
+                                                     `List ([`Assoc (
+                                                              [("include",
+                                                                `String (
+                                                                "#builtin_types"))
+                                                                ]);
+                                                              `Assoc (
+                                                              [("include",
+                                                                `String (
+                                                                "#builtin_functions_name"))
+                                                                ]);
+                                                              `Assoc (
+                                                              [("include",
+                                                                `String (
+                                                                "#builtin_functions_call"))
+                                                                ]);
+                                                              `Assoc (
+                                                              [("include",
+                                                                `String (
+                                                                "#errors_warnings_exceptions"))
+                                                                ]);
+                                                              `Assoc (
+                                                              [("include",
+                                                                `String (
+                                                                "#magic_function_names"))
+                                                                ]);
+                                                              `Assoc (
+                                                              [("include",
+                                                                `String (
+                                                                "#magic_function_calls"))
+                                                                ]);
+                                                              `Assoc (
+                                                              [("include",
+                                                                `String (
+                                                                "#magic_variable_names"))
+                                                                ]);
+                                                              `Assoc (
+                                                              [("include",
+                                                                `String (
+                                                                "#language_variables"))
+                                                                ]);
+                                                              `Assoc (
+                                                              [("include",
+                                                                `String (
+                                                                "#generic_names"))
+                                                                ]);
+                                                              `Assoc (
+                                                              [("include",
+                                                                `String (
+                                                                "#illegal_names"))
+                                                                ])
+                                                              ]))
+                                                    ])
+                                          ]))
+                                ]));
+                     ("entity_name_class",
+                      `Assoc ([("patterns",
+                                `List ([`Assoc ([("include",
+                                                  `String ("#generic_names"))
+                                                  ]);
+                                         `Assoc ([("include",
+                                                   `String ("#illegal_names"))
+                                                   ])
+                                         ]))
+                                ]));
+                     ("entity_name_function",
+                      `Assoc ([("patterns",
+                                `List ([`Assoc ([("include",
+                                                  `String ("#builtin_functions_name"))
+                                                  ]);
+                                         `Assoc ([("include",
+                                                   `String ("#magic_function_names"))
+                                                   ]);
+                                         `Assoc ([("include",
+                                                   `String ("#illegal_names"))
+                                                   ])
+                                         ]))
+                                ]));
+                     ("errors_warnings_exceptions",
+                      `Assoc ([("match",
+                                `String ("(?x)\n\\b(\n  (\n      Arithmetic | Assertion | Attribute | Buffer | BlockingIO |\n      BrokenPipe | ChildProcess | (Connection(Aborted | Refused | Reset)?) |\n      EOF | Environment | FileExists | FileNotFound | FloatingPoint | IO |\n      Import | Indentation | Index | Interrupted | IsADirectory |\n      NotADirectory | Permission | ProcessLookup | Timeout | Key | Lookup |\n      Memory | Name | NotImplemented | OS | Overflow | Reference | Runtime |\n      Recursion | Standard | Syntax | System | Tab | Type | UnboundLocal |\n      Unicode(Encode | Decode | Translate)? | Value | VMS | Windows |\n      ZeroDivision | ([[:alpha:]_][[:alnum:]_]*))\n    ?Error\n    |\n    (\n      (Pending)?Deprecation | Bytes | Future | Import | Resource |\n      Runtime | Syntax | Unicode | User | [[:alpha:]_][[:alnum:]_]*)\n    ?Warning\n    |\n    SystemExit | Stop(Async)?Iteration | NotImplemented |\n    KeyboardInterrupt | GeneratorExit\n    |\n    ([[:alpha:]_][[:alnum:]_]*)\n    ?Exception\n  )\n\\b"));
+                                ("name",
+                                 `String ("support.type.exception.python"))
+                                ]));
+                     ("escaped_char",
+                      `Assoc ([("captures",
+                                `Assoc ([("1",
+                                          `Assoc ([("name",
+                                                    `String ("constant.character.escape.hex.python"))
+                                                    ]));
+                                          ("10",
+                                           `Assoc ([("name",
+                                                     `String ("constant.character.escape.linefeed.python"))
+                                                     ]));
+                                          ("11",
+                                           `Assoc ([("name",
+                                                     `String ("constant.character.escape.return.python"))
+                                                     ]));
+                                          ("12",
+                                           `Assoc ([("name",
+                                                     `String ("constant.character.escape.tab.python"))
+                                                     ]));
+                                          ("13",
+                                           `Assoc ([("name",
+                                                     `String ("constant.character.escape.vertical-tab.python"))
+                                                     ]));
+                                          ("2",
+                                           `Assoc ([("name",
+                                                     `String ("constant.character.escape.octal.python"))
+                                                     ]));
+                                          ("3",
+                                           `Assoc ([("name",
+                                                     `String ("constant.character.escape.newline.python"))
+                                                     ]));
+                                          ("4",
+                                           `Assoc ([("name",
+                                                     `String ("constant.character.escape.backslash.python"))
+                                                     ]));
+                                          ("5",
+                                           `Assoc ([("name",
+                                                     `String ("constant.character.escape.double-quote.python"))
+                                                     ]));
+                                          ("6",
+                                           `Assoc ([("name",
+                                                     `String ("constant.character.escape.single-quote.python"))
+                                                     ]));
+                                          ("7",
+                                           `Assoc ([("name",
+                                                     `String ("constant.character.escape.bell.python"))
+                                                     ]));
+                                          ("8",
+                                           `Assoc ([("name",
+                                                     `String ("constant.character.escape.backspace.python"))
+                                                     ]));
+                                          ("9",
+                                           `Assoc ([("name",
+                                                     `String ("constant.character.escape.formfeed.python"))
+                                                     ]))
+                                          ]));
+                                ("match",
+                                 `String ("(?x)\n  (\\\\x[\\h]{2}) |\n  (\\\\[0-7]{3}) |\n  (\\\\\\n) |\n  (\\\\\\\\) |\n  (\\\\\") |\n  (\\\\') |\n  (\\\\a) |\n  (\\\\b) |\n  (\\\\f) |\n  (\\\\n) |\n  (\\\\r) |\n  (\\\\t) |\n  (\\\\v)"))
+                                ]));
+                     ("escaped_char_raw_double",
+                      `Assoc ([("match", `String ("\\\\\""));
+                                ("name",
+                                 `String ("constant.character.escape.quote.python"))
+                                ]));
+                     ("escaped_char_raw_single",
+                      `Assoc ([("match", `String ("\\\\'"));
+                                ("name",
+                                 `String ("constant.character.escape.quote.python"))
+                                ]));
+                     ("escaped_unicode_char",
+                      `Assoc ([("captures",
+                                `Assoc ([("1",
+                                          `Assoc ([("name",
+                                                    `String ("constant.character.escape.unicode.32-bit-hex.python"))
+                                                    ]));
+                                          ("2",
+                                           `Assoc ([("name",
+                                                     `String ("constant.character.escape.unicode.16-bit-hex.python"))
+                                                     ]));
+                                          ("3",
+                                           `Assoc ([("name",
+                                                     `String ("constant.character.escape.unicode.name.python"))
+                                                     ]))
+                                          ]));
+                                ("match",
+                                 `String ("(\\\\U[\\h]{8})|(\\\\u[\\h]{4})|(\\\\N\\{[a-zA-Z0-9\\, ]+\\})"))
+                                ]));
+                     ("generic_names",
+                      `Assoc ([("match",
+                                `String ("[[:alpha:]_][[:alnum:]_]*"))]));
+                     ("generic_object_names",
+                      `Assoc ([("match",
+                                `String ("(\\.\\b([[:alpha:]_][[:alnum:]_]*)\\b(?!\\(|\\[)|\\b([[:alpha:]_][[:alnum:]_]*)\\b\\.)"))
+                                ]));
+                     ("illegal_names",
+                      `Assoc ([("comment",
+                                `String ("from Lib/keyword.py, in kwlist. `async` and `await` not keywords until Python 3.7 (according to PEP-0492)"));
+                                ("match",
+                                 `String ("(?x)\n\\b (\n  False | None | True | and | as | assert | break | class | continue | def |\n  del | elif | else | except | exec | finally | for | from | global | if |\n  import | in | is | lambda | nonlocal | not | or | pass | print | raise |\n  return | try | while | with | yield)\n\\b"));
+                                ("name",
+                                 `String ("invalid.illegal.name.python"))
+                                ]));
+                     ("keyword_arguments",
+                      `Assoc ([("begin",
+                                `String ("\\b([[:alpha:]_][[:alnum:]_]*)\\s*(=)(?!=)"));
+                                ("beginCaptures",
+                                 `Assoc ([("1",
+                                           `Assoc ([("name",
+                                                     `String ("variable.parameter.function.keyword.python"))
+                                                     ]));
+                                           ("2",
+                                            `Assoc ([("name",
+                                                      `String ("keyword.operator.assignment.python"))
+                                                      ]))
+                                           ]));
+                                ("end", `String ("\\s*(?:(,)|(?=[\\)\\:]))"));
+                                ("endCaptures",
+                                 `Assoc ([("1",
+                                           `Assoc ([("name",
+                                                     `String ("punctuation.separator.parameters.python"))
+                                                     ]))
+                                           ]));
+                                ("patterns",
+                                 `List ([`Assoc ([("include",
+                                                   `String ("$self"))])
+                                          ]))
+                                ]));
+                     ("language_variables",
+                      `Assoc ([("captures",
+                                `Assoc ([("1",
+                                          `Assoc ([("name",
+                                                    `String ("variable.language.python"))
+                                                    ]))
+                                          ]));
+                                ("match",
+                                 `String ("(?<!\\.)\\b(self|cls)\\b(?:\\.|\\()?"))
+                                ]));
+                     ("line_continuation",
+                      `Assoc ([("captures",
+                                `Assoc ([("1",
+                                          `Assoc ([("name",
+                                                    `String ("punctuation.separator.continuation.line.python"))
+                                                    ]))
+                                          ]));
+                                ("match", `String ("(\\\\)(.*)$\\n?"))]));
+                     ("magic_function_calls",
+                      `Assoc ([("patterns",
+                                `List ([`Assoc ([("begin",
+                                                  `String ("(?x)\n  (\\.)?\n  \\b(\n    __(?:\n      abs | add | aenter | aexit | aiter | and | anext | await | bool |\n      bytes | call | ceil | cmp | coerce | complex | contains | copy |\n      deepcopy | del | delattr | delete | delitem | delslice | dir | div |\n      divmod | enter | eq | exit | float | floor | floordiv | format | ge |\n      get | getattr | getattribute | getinitargs | getitem | getnewargs |\n      getnewargs_ex | getslice | getstate | gt | hash | hex | iadd | iand |\n      idiv | idivmod | ifloordiv | ilshift | imatmul | imod | imul | index |\n      init | instancecheck | int | invert | iop | ior | ipow | irshift |\n      isub | iter | itruediv | ixor | le | len | length_hint | long |\n      lshift | lt | matmul | missing | mod | mul | ne | neg | new | next |\n      nonzero | oct | op | or | pos | pow | prepare | radd | rand | rcmp |\n      rdiv | rdivmod | reduce | reduce_ex | repr | reversed | rfloordiv |\n      rlshift | rmatmul | rmod | rmul | rop | ror | round | rpow | rrshift |\n      rshift | rsub | rtruediv | rxor | set | setattr | setitem | setslice |\n      setstate | sizeof | str | sub | subclasscheck | truediv | trunc |\n      unicode | xor)\n    __)\n  \\s*(?=(\\())"));
+                                                  ("beginCaptures",
+                                                   `Assoc ([("2",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "support.function.magic.call.python"))
+                                                               ]));
+                                                             ("4",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.arguments.begin.python"))
+                                                                ]))
+                                                             ]));
+                                                  ("end", `String ("(\\))"));
+                                                  ("endCaptures",
+                                                   `Assoc ([("1",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.arguments.end.python"))
+                                                               ]))
+                                                             ]));
+                                                  ("name",
+                                                   `String ("meta.function-call.python"));
+                                                  ("patterns",
+                                                   `List ([`Assoc ([("begin",
+                                                                    `String (
+                                                                    "(?=[[:alpha:]_][[:alnum:]_]*(?:\\s*\\.\\s*[[:alpha:]_][[:alnum:]_]*)*\\s*\\()"));
+                                                                    ("end",
+                                                                    `String (
+                                                                    "(?=\\s*\\()"));
+                                                                    ("patterns",
+                                                                    `List (
+                                                                    [`Assoc (
+                                                                    [("include",
+                                                                    `String (
+                                                                    "#dotted_name"))
+                                                                    ])]))]);
+                                                            `Assoc ([("begin",
+                                                                    `String (
+                                                                    "(\\()"));
+                                                                    ("beginCaptures",
+                                                                    `Assoc (
+                                                                    [("1",
+                                                                    `Assoc (
+                                                                    [("name",
+                                                                    `String (
+                                                                    "punctuation.definition.arguments.begin.python"))
+                                                                    ]))]));
+                                                                    ("contentName",
+                                                                    `String (
+                                                                    "meta.function-call.arguments.python"));
+                                                                    ("end",
+                                                                    `String (
+                                                                    "(?=\\))"));
+                                                                    ("endCaptures",
+                                                                    `Assoc (
+                                                                    [("0",
+                                                                    `Assoc (
+                                                                    [("name",
+                                                                    `String (
+                                                                    "punctuation.definition.arguments.end.python"))
+                                                                    ]))]));
+                                                                    ("patterns",
+                                                                    `List (
+                                                                    [`Assoc (
+                                                                    [("include",
+                                                                    `String (
+                                                                    "#keyword_arguments"))
+                                                                    ]);
+                                                                    `Assoc (
+                                                                    [("include",
+                                                                    `String (
+                                                                    "$self"))
+                                                                    ])]))])
+                                                            ]))
+                                                  ])
+                                         ]))
+                                ]));
+                     ("magic_function_names",
+                      `Assoc ([("captures",
+                                `Assoc ([("2",
+                                          `Assoc ([("name",
+                                                    `String ("support.function.magic.name.python"))
+                                                    ]))
+                                          ]));
+                                ("comment",
+                                 `String ("these methods have magic interpretation by python and are generally called indirectly through syntactic constructs. Names are from https://docs.python.org/X/reference/datamodel.html where X is 2.7 and 3.5 See also http://www.rafekettler.com/magicmethods.html"));
+                                ("match",
+                                 `String ("(?x)\n(def|\\.)?\n\\s*\\b(\n  __(?:\n    abs | add | aenter | aexit | aiter | and | anext | await | bool |\n    bytes | call | ceil | cmp | coerce | complex | contains | copy |\n    deepcopy | del | delattr | delete | delitem | delslice | dir | div |\n    divmod | enter | eq | exit | float | floor | floordiv | format | ge |\n    get | getattr | getattribute | getinitargs | getitem | getnewargs |\n    getnewargs_ex | getslice | getstate | gt | hash | hex | iadd | iand |\n    idiv | idivmod | ifloordiv | ilshift | imatmul | imod | imul | index |\n    init | instancecheck | int | invert | iop | ior | ipow | irshift |\n    isub | iter | itruediv | ixor | le | len | length_hint | long |\n    lshift | lt | matmul | missing | mod | mul | ne | neg | new | next |\n    nonzero | oct | op | or | pos | pow | prepare | radd | rand | rcmp |\n    rdiv | rdivmod | reduce | reduce_ex | repr | reversed | rfloordiv |\n    rlshift | rmatmul | rmod | rmul | rop | ror | round | rpow | rrshift |\n    rshift | rsub | rtruediv | rxor | set | setattr | setitem | setslice |\n    setstate | sizeof | str | sub | subclasscheck | truediv | trunc |\n    unicode | xor)\n  __)\n\\b"))
+                                ]));
+                     ("magic_variable_names",
+                      `Assoc ([("captures",
+                                `Assoc ([("2",
+                                          `Assoc ([("name",
+                                                    `String ("support.variable.magic.python"))
+                                                    ]))
+                                          ]));
+                                ("comment",
+                                 `String ("magic attributes which a class/module may have."));
+                                ("match",
+                                 `String ("(?x)\n(\\.)?\n\\b(\n  __(?:\n    all | annotations | bases | class | closure | code | debug |\n    defaults | dict | doc | file | func | globals | kwdefaults |\n    members | metaclass | methods | module | mro | name | qualname |\n    self | slots | subclasses | version | weakref)\n  __) \\b"))
+                                ]));
+                     ("regular_expressions",
+                      `Assoc ([("patterns",
+                                `List ([`Assoc ([("include",
+                                                  `String ("source.regexp.python.improved"))
+                                                  ])
+                                         ]))
+                                ]));
+                     ("string_formatting",
+                      `Assoc ([("captures",
+                                `Assoc ([("11",
+                                          `Assoc ([("name",
+                                                    `String ("constant.numeric.integer.octal.python"))
+                                                    ]));
+                                          ("12",
+                                           `Assoc ([("name",
+                                                     `String ("constant.numeric.integer.hexadecimal.python"))
+                                                     ]));
+                                          ("13",
+                                           `Assoc ([("name",
+                                                     `String ("constant.numeric.integer.binary.python"))
+                                                     ]));
+                                          ("14",
+                                           `Assoc ([("name",
+                                                     `String ("attribute.name"))
+                                                     ]));
+                                          ("16",
+                                           `Assoc ([("name",
+                                                     `String ("attribute.identifier"))
+                                                     ]));
+                                          ("6",
+                                           `Assoc ([("name",
+                                                     `String ("identifier"))]));
+                                          ("8",
+                                           `Assoc ([("name",
+                                                     `String ("constant.numeric.integer.decimal.python"))
+                                                     ]))
+                                          ]));
+                                ("comment",
+                                 `String ("Attempt from @sprt to add support for new-style string formatting."));
+                                ("match",
+                                 `String ("(?x)\n(?<![^\\{]\\{)\n\\{\n(?<fieldname>\n  (\n    (?<argname>\n      (\n        (?<identifier>([[:alpha:]_][[:alnum:]_]*)) |\n        (?<integer>\n          ([1-9]\\d* | 0) |\n          (\n            0\n            (\n              (?i:\n                ([o]?[0-7]+) |\n                ([x][0-9a-f]+) |\n                ([b][01]+)\n              )\n            )\n          )\n        )\n      )\n    )?\n  )\n  (\n    (?<attributename>\n      (\\.\\g<identifier>)\n    ) |\n    \\[\n    (\n      (?<elementindex>\n        (\n          (\\g<integer>) |\n          (?<indexstring>[^\\]\\}\\{]+)\n        )\n      )\n    )\n    \\]\n  )*\n)?\n(\n  ((?<conversion>(\\![rsa])))\n)?\n(\n  (?<formatspec>\n    (\n      \\:\n      (\n        (?<fill>.)?\n        (?<align>([<>=\\^]))\n      )?\n      (?<sign>([\\ +-]))?\n      \\#?0?\n      (?<width>\n        (\\g<integer>)\n      )?\n      ,?\n      (?<precision>\n        \\.\n        (\\g<integer>)\n      )?\n      (?<type>([bcdEeFfGgnosXx%]))?\n    )?\n  )\n)?\n\\}\n(?!\\}[^\\}])"))
+                                ]));
+                     ("string_quoted_double",
+                      `Assoc ([("patterns",
+                                `List ([`Assoc ([("begin",
+                                                  `String ("([uU]r)(\"\"\")"));
+                                                  ("beginCaptures",
+                                                   `Assoc ([("1",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "storage.type.string.python"))
+                                                               ]));
+                                                             ("2",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.begin.python"))
+                                                                ]))
+                                                             ]));
+                                                  ("end",
+                                                   `String ("((?<=\"\"\")(\")\"\"|\"\"\")"));
+                                                  ("endCaptures",
+                                                   `Assoc ([("1",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.string.end.python"))
+                                                               ]));
+                                                             ("2",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "meta.empty-string.double.python"))
+                                                                ]))
+                                                             ]));
+                                                  ("name",
+                                                   `String ("string.quoted.double.block.unicode-raw-regex.python"));
+                                                  ("patterns",
+                                                   `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                            `Assoc ([("include",
+                                                                    `String (
+                                                                    "#escaped_char_raw_double"))
+                                                                    ]);
+                                                            `Assoc ([("include",
+                                                                    `String (
+                                                                    "#regular_expressions"))
+                                                                    ])
+                                                            ]))
+                                                  ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([uU]R)(\"\"\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=\"\"\")(\")\"\"|\"\"\")"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.block.unicode-raw.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_double"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([bB]r)(\"\"\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=\"\"\")(\")\"\"|\"\"\")"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.block.bytes-raw-regex.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_double"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#regular_expressions"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([bB]R)(\"\"\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=\"\"\")(\")\"\"|\"\"\")"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.block.bytes-raw.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_double"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("(r)(\"\"\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=\"\"\")(\")\"\"|\"\"\")"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.block.raw-regex.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_double"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#regular_expressions"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("(R)(\"\"\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=\"\"\")(\")\"\"|\"\"\")"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.block.raw.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_double"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([uU])(\"\"\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("comment",
+                                                    `String ("double quoted unicode string"));
+                                                   ("end",
+                                                    `String ("((?<=\"\"\")(\")\"\"|\"\"\")"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.block.unicode.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_unicode_char"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([bB])(\"\"\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("comment",
+                                                    `String ("double quoted bytes string"));
+                                                   ("end",
+                                                    `String ("((?<=\"\"\")(\")\"\"|\"\"\")"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.block.bytes.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_unicode_char"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([uU]r)(\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=\")(\")|\")|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.python"))
+                                                                 ]));
+                                                              ("3",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.single-line.unicode-raw-regex.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_double"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#regular_expressions"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([uU]R)(\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=\")(\")|\")|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.python"))
+                                                                 ]));
+                                                              ("3",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.single-line.unicode-raw.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_double"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([bB]r)(\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=\")(\")|\")|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.python"))
+                                                                 ]));
+                                                              ("3",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.single-line.bytes-raw-regex.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_double"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#regular_expressions"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([bB]R)(\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=\")(\")|\")|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.python"))
+                                                                 ]));
+                                                              ("3",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.single-line.bytes-raw.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_double"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("(r)(\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=\")(\")|\")|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.python"))
+                                                                 ]));
+                                                              ("3",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.single-line.raw-regex.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_double"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#regular_expressions"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("(R)(\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=\")(\")|\")|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.python"))
+                                                                 ]));
+                                                              ("3",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.single-line.raw.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_double"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([uU])(\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("comment",
+                                                    `String ("double quoted unicode string"));
+                                                   ("end",
+                                                    `String ("((?<=\")(\")|\")|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.python"))
+                                                                 ]));
+                                                              ("3",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.single-line.unicode.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_unicode_char"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([bB])(\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("comment",
+                                                    `String ("double quoted bytes string"));
+                                                   ("end",
+                                                    `String ("((?<=\")(\")|\")|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.python"))
+                                                                 ]));
+                                                              ("3",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.single-line.bytes.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_unicode_char"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("(\"\"\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.begin.python"))
+                                                                ]))
+                                                              ]));
+                                                   ("comment",
+                                                    `String ("double quoted string"));
+                                                   ("end",
+                                                    `String ("((?<=\"\"\")(\")\"\"|\"\"\")"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.block.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_unicode_char"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin", `String ("(\")"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.begin.python"))
+                                                                ]))
+                                                              ]));
+                                                   ("comment",
+                                                    `String ("double quoted string"));
+                                                   ("end",
+                                                    `String ("((?<=\")(\")|\")|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.double.python"))
+                                                                 ]));
+                                                              ("3",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.double.single-line.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_unicode_char"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char"))
+                                                               ])
+                                                             ]))
+                                                   ])
+                                         ]))
+                                ]));
+                     ("string_quoted_single",
+                      `Assoc ([("patterns",
+                                `List ([`Assoc ([("captures",
+                                                  `Assoc ([("1",
+                                                            `Assoc ([("name",
+                                                                    `String (
+                                                                    "punctuation.definition.string.begin.python"))
+                                                                    ]));
+                                                            ("2",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "punctuation.definition.string.end.python"))
+                                                               ]));
+                                                            ("3",
+                                                             `Assoc (
+                                                             [("name",
+                                                               `String (
+                                                               "meta.empty-string.single.python"))
+                                                               ]))
+                                                            ]));
+                                                  ("match",
+                                                   `String ("(?<!')(')(('))(?!')"));
+                                                  ("name",
+                                                   `String ("string.quoted.single.single-line.python"))
+                                                  ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([uU]r)(''')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=''')(')''|''')"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.single.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.block.unicode-raw-regex.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_single"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#regular_expressions"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([uU]R)(''')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=''')(')''|''')"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.single.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.block.unicode-raw.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_single"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([bB]r)(''')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=''')(')''|''')"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.single.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.block.bytes-raw-regex.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_single"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#regular_expressions"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([bB]R)(''')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=''')(')''|''')"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.single.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.block.bytes-raw.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_single"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("(r)(''')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=''')(')''|''')"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.single.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.block.raw-regex.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_single"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#regular_expressions"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("(R)(''')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=''')(')''|''')"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.single.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.block.raw.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_single"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([uU])(''')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("((?<=''')(')''|''')"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.single.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.block.unicode.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_unicode_char"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([bB])(''')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("comment",
+                                                    `String ("single quoted bytes string"));
+                                                   ("end",
+                                                    `String ("((?<=''')(')''|''')"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.single.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.block.bytes.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_unicode_char"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([uU]r)(')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("(')|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.single-line.unicode-raw-regex.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_single"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#regular_expressions"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([uU]R)(')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("(')|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.single-line.unicode-raw.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_single"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([bB]r)(')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("(')|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.single-line.bytes-raw-regex.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_single"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#regular_expressions"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([bB]R)(')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("(')|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.single-line.bytes-raw.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_single"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("(r)(')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("(')|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.single-line.raw-regex.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_single"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#regular_expressions"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("(R)(')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("end",
+                                                    `String ("(')|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.single-line.raw.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char_raw_single"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([uU])(')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("comment",
+                                                    `String ("single quoted unicode string"));
+                                                   ("end",
+                                                    `String ("(')|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.single-line.unicode.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_unicode_char"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin",
+                                                   `String ("([bB])(')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "storage.type.string.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "punctuation.definition.string.begin.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("comment",
+                                                    `String ("single quoted bytes string"));
+                                                   ("end",
+                                                    `String ("(')|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.single-line.bytes.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_unicode_char"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin", `String ("(''')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.begin.python"))
+                                                                ]))
+                                                              ]));
+                                                   ("comment",
+                                                    `String ("single quoted string"));
+                                                   ("end",
+                                                    `String ("((?<=''')(')''|''')"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "meta.empty-string.single.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.block.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_unicode_char"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char"))
+                                                               ])
+                                                             ]))
+                                                   ]);
+                                         `Assoc ([("begin", `String ("(')"));
+                                                   ("beginCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.begin.python"))
+                                                                ]))
+                                                              ]));
+                                                   ("comment",
+                                                    `String ("single quoted string"));
+                                                   ("end",
+                                                    `String ("(')|(\\n)"));
+                                                   ("endCaptures",
+                                                    `Assoc ([("1",
+                                                              `Assoc (
+                                                              [("name",
+                                                                `String (
+                                                                "punctuation.definition.string.end.python"))
+                                                                ]));
+                                                              ("2",
+                                                               `Assoc (
+                                                               [("name",
+                                                                 `String (
+                                                                 "invalid.illegal.unclosed-string.python"))
+                                                                 ]))
+                                                              ]));
+                                                   ("name",
+                                                    `String ("string.quoted.single.single-line.python"));
+                                                   ("patterns",
+                                                    `List ([`Assoc ([("include",
+                                                                    `String (
+                                                                    "#constant_placeholder"))
+                                                                    ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_unicode_char"))
+                                                               ]);
+                                                             `Assoc (
+                                                             [("include",
+                                                               `String (
+                                                               "#escaped_char"))
+                                                               ])
+                                                             ]))
+                                                   ])
+                                         ]))
+                                ]));
+                     ("strings",
+                      `Assoc ([("patterns",
+                                `List ([`Assoc ([("include",
+                                                  `String ("#string_quoted_double"))
+                                                  ]);
+                                         `Assoc ([("include",
+                                                   `String ("#string_quoted_single"))
+                                                   ])
+                                         ]))
+                                ]))
+                     ]));
+          ("scopeName", `String ("source.python"));
+          ("uuid", `String ("11B0273F-0284-4483-B17B-4B8D0A9294CC"))])
+
+
 let diff =
 `Assoc ([("fileTypes",
           `List ([`String ("patch"); `String ("diff"); `String ("rej")]));

@@ -9,30 +9,36 @@
 ;  (mode promote)
 ;  (target jsons.ml)
 ;  (deps
+;   ./pp/pp.exe
 ;   syntaxes/ocaml.interface.json
 ;   syntaxes/ocaml.json
 ;   syntaxes/dune.json
 ;   syntaxes/shell.json
-;   syntaxes/opam.json)
+;   syntaxes/opam.json
+;   syntaxes/python.json
+;   syntaxes/diff.json)
 ;  (action
 ;   (with-stdout-to
 ;    %{target}
 ;    (progn
 ;     (echo "let ocaml_interface =\n")
-;     (run ./../pp/pp.exe syntaxes/ocaml.interface.json)
+;     (run ./pp/pp.exe syntaxes/ocaml.interface.json)
 ;     (echo "\n\n")
 ;     (echo "let ocaml =\n")
-;     (run ./../pp/pp.exe syntaxes/ocaml.json)
+;     (run ./pp/pp.exe syntaxes/ocaml.json)
 ;     (echo "\n\n")
 ;     (echo "let dune =\n")
-;     (run ./../pp/pp.exe syntaxes/dune.json)
+;     (run ./pp/pp.exe syntaxes/dune.json)
 ;     (echo "\n\n")
 ;     (echo "let shell =\n")
-;     (run ./../pp/pp.exe syntaxes/shell.json)
+;     (run ./pp/pp.exe syntaxes/shell.json)
 ;     (echo "\n\n")
 ;     (echo "let opam =\n")
-;     (run ./../pp/pp.exe syntaxes/opam.json)
+;     (run ./pp/pp.exe syntaxes/opam.json)
+;     (echo "\n\n")
+;     (echo "let python =\n")
+;     (run ./pp/pp.exe syntaxes/python.json)
 ;     (echo "\n\n")
 ;     (echo "let diff =\n")
-;     (run ./../pp/pp.exe ./syntaxes/diff.json)
+;     (run ./pp/pp.exe ./syntaxes/diff.json)
 ;     (echo "\n")))))

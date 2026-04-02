@@ -1,0 +1,3 @@
+(executable
+ (name pl2json)
+ (libraries plist-xml jsonm))
