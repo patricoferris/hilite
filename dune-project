@@ -28,5 +28,5 @@
   (cmarkit (and (>= 0.3.0) :with-test))
   (textmate-language (>= 0.3.3)))
  (depopts
-  (cmarkit (>= 0.3.0)))
+  (cmarkit (and (>= 0.3.0))))
 )

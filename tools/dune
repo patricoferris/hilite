@@ -1,0 +1,5 @@
+; Uncomment should you need to convert a textmate grammar plist to JSON
+
+; (executable
+;  (name pl2json)
+;  (libraries plist-xml jsonm))

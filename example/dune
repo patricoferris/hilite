@@ -1,0 +1,12 @@
+(executable
+ (name main)
+ (libraries hilite.markdown))
+
+(rule
+ (mode promote)
+ (deps README.md ./main.exe)
+ (targets index.html)
+ (action
+  (with-stdout-to
+   index.html
+   (run ./main.exe README.md))))

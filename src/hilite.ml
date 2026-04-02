@@ -1,6 +1,7 @@
 type error = [ `Unknown_lang of string ]
 
-let langs = [ "ocaml"; "dune"; "opam"; "sh"; "shell"; "diff"; "bash" ]
+let langs =
+  [ "ocaml"; "dune"; "opam"; "sh"; "shell"; "diff"; "bash"; "python"; "go" ]
 
 let filteri p l =
   let rec aux i acc = function
@@ -111,6 +112,8 @@ let lang_to_plists s =
   | "shell" -> [ Jsons.shell |> add_name "shell" ]
   | "bash" -> [ Jsons.shell |> add_name "bash" ]
   | "diff" -> [ Jsons.diff |> add_name "diff" ]
+  | "python" -> [ Jsons.python |> add_name "python" ]
+  | "go" -> [ Jsons.go |> add_name "go" ]
   | _ -> []
 
 type tm_lookup_method = [ `Name | `Scope_name | `Filetype ]
