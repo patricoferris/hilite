@@ -1,5 +1,6 @@
 ## Unreleased
 
+- Make `Hilite_markdown.transform` support ocaml-mdx syntax (#31, @patricoferris)
 - Add python and go syntaxes to the library (#30, @patricoferris)
 
 ## v0.5.0 (31/03/2024) Cambridge, UK

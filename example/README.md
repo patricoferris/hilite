@@ -51,6 +51,15 @@ let () =
     Format.eprintf "%s: %s\n%!" usage (Printexc.to_string e) 
 ```
 
+We also take care to support the OCaml MDX syntax too.
+
+```ocaml
+# let f () = 1 + 1;;
+# 123 "line.ml";;
+# 50.123;;
+# 50 + 50;;
+```
+
 ### Dune
 
 And this is the dune file that will build it!
