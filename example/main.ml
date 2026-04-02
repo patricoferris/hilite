@@ -1,11 +1,11 @@
 let () =
   Printexc.register_printer (function
     | Xmlm.Error ((pos1, pos2), _error) ->
-      Format.sprintf "pos: (%i, %i)" pos1 pos2
-    |> Option.some
-  | _ -> None)
+        Format.sprintf "pos: (%i, %i)" pos1 pos2 |> Option.some
+    | _ -> None)
 
-let css = {|
+let css =
+  {|
 body {
   margin: auto 20%
 }
@@ -77,10 +77,12 @@ span[class*='inserted'] {
 let () =
   let file = In_channel.with_open_bin "./README.md" In_channel.input_all in
   let doc = Cmarkit.Doc.of_string file in
-  let s = Hilite_markdown.transform ~lookup_method:`Name doc
-  |> Cmarkit_html.of_doc ~safe:false
+  let s =
+    Hilite_markdown.transform ~lookup_method:`Name doc
+    |> Cmarkit_html.of_doc ~safe:false
   in
-  Format.printf {|
+  Format.printf
+    {|
     <!doctype html>
 <html>
   <head>
@@ -91,4 +93,5 @@ let () =
     %s
   </body>
 </html>
-  |} css s
+  |}
+    css s

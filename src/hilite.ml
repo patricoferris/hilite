@@ -1,6 +1,7 @@
 type error = [ `Unknown_lang of string ]
 
-let langs = [ "ocaml"; "dune"; "opam"; "sh"; "shell"; "diff"; "bash"; "python"; "go" ]
+let langs =
+  [ "ocaml"; "dune"; "opam"; "sh"; "shell"; "diff"; "bash"; "python"; "go" ]
 
 let filteri p l =
   let rec aux i acc = function
@@ -81,8 +82,7 @@ let rec highlight_tokens i spans line = function
       let scope =
         match TmLanguage.scopes tok with
         | [] -> []
-        | scope :: _ -> 
-          String.split_on_char '.' scope
+        | scope :: _ -> String.split_on_char '.' scope
       in
       highlight_tokens j ((scope, text) :: spans) line toks
 
