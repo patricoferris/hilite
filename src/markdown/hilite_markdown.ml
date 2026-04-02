@@ -8,6 +8,8 @@ end
 module String = struct
   include String
 
+  (* This code is Copyright (c) 2015 The astring programmers.
+     SPDX-License-Identifier: ISC *)
   let bytes_unsafe_blit_string s sfirst d dfirst len =
     Bytes.(unsafe_blit (unsafe_of_string s) sfirst d dfirst len)
 
@@ -107,21 +109,25 @@ let transform ?(options = Options.default) ?(skip_unknown_languages = true)
                     end;
                     let lines = List.combine mdx_lines html_lines in
                     let html =
-                      List.fold_left
-                        (fun s (hashed, line) ->
+                      List.mapi
+                        (fun idx (hashed, line) ->
                           if hashed then begin
-                            (* Logic for the first line *)
-                            match String.cuts ~sep:"<pre><code>" line with
-                            | "" :: [ line ] ->
-                                "<pre><code>" ^ s
-                                ^ "<span class='ocaml-mdx-hash'>#</span>" ^ line
-                                ^ sep
-                            | _ ->
-                                s ^ "<span class='ocaml-mdx-hash'>#</span>"
-                                ^ line ^ sep
+                            if not (Int.equal idx 0) then
+                              "<span class='ocaml-mdx-hash'>#</span>" ^ line
+                              ^ sep
+                            else
+                              (* Logic for the first line *)
+                              match String.cuts ~sep:"<pre><code>" line with
+                              | "" :: [ line ] ->
+                                  "<pre><code><span \
+                                   class='ocaml-mdx-hash'>#</span>" ^ line ^ sep
+                              | _ ->
+                                  "<span class='ocaml-mdx-hash'>#</span>" ^ line
+                                  ^ sep
                           end
-                          else s ^ line ^ sep)
-                        "" lines
+                          else line ^ sep)
+                        lines
+                      |> String.concat ""
                     in
                     let h = Cmarkit.Block_line.list_of_string html in
                     `Map (Some (Cmarkit.Block.Html_block (h, meta)))
