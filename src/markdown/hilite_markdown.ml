@@ -46,26 +46,26 @@ module String = struct
   let cuts ?(empty = true) ~sep s = fcuts ~no_empty:(not empty) ~sep s
 end
 
-(* let _debug_lists a b = *)
-(*   let rec loop = function *)
-(*     | (x, d) :: xs, y :: ys -> *)
-(*         let d = *)
-(*           Option.map (fun v -> Re.Group.get v 0) d |> Option.value ~default:"" *)
-(*         in *)
-(*         Fmt.epr "X:(%a:%s)\nY:(%a)\n\n" *)
-(*           Fmt.(quote string) *)
-(*           x d *)
-(*           Fmt.(quote string) *)
-(*           y; *)
-(*         loop (xs, ys) *)
-(*     | [], [] -> () *)
-(*     | xs, [] -> *)
-(*         Fmt.epr "List X has some: %a\n" *)
-(*           Fmt.(list (quote string)) *)
-(*           (List.map fst xs) *)
-(*     | [], ys -> Fmt.epr "List Y has some: %a\n" Fmt.(list (quote string)) ys *)
-(*   in *)
-(*   loop (a, b) *)
+let _debug_lists a b =
+  let rec loop = function
+    | (x, d) :: xs, y :: ys ->
+        let d =
+          Option.map (fun v -> Re.Group.get v 0) d |> Option.value ~default:""
+        in
+        Fmt.epr "X:(%a:%s)\nY:(%a)\n\n"
+          Fmt.(quote string)
+          x d
+          Fmt.(quote string)
+          y;
+        loop (xs, ys)
+    | [], [] -> Fmt.epr "All done\n"
+    | xs, [] ->
+        Fmt.epr "List X has some: %a\n"
+          Fmt.(list (quote string))
+          (List.map fst xs)
+    | [], ys -> Fmt.epr "List Y has some: %a\n" Fmt.(list (quote string)) ys
+  in
+  loop (a, b)
 
 let html_newlines =
   let notnl_or_angle = Re.(diff notnl (char '<')) in
@@ -74,7 +74,13 @@ let html_newlines =
   let comment =
     Re.(seq [ str "<span class='ocaml-comment-block'>"; newlines ])
   in
-  let regexp = Re.alt [ source; comment ] in
+  let dquote =
+    Re.(seq [ str "<span class='ocaml-string-quoted-double'>"; newlines ])
+  in
+  let braced =
+    Re.(seq [ str "<span class='ocaml-string-quoted-braced'>"; newlines ])
+  in
+  let regexp = Re.alt [ source; comment; dquote; braced ] in
   Re.compile regexp
 
 let html_break_on_newlines s =
@@ -105,6 +111,10 @@ let transform ?(options = Options.default) ?(skip_unknown_languages = true)
             let apply_mdx =
               options.ocaml_mdx_syntax
               && String.equal (String.lowercase_ascii lang) "ocaml"
+              && Option.map
+                   (String.starts_with ~prefix:"#")
+                   (try Some (List.hd code) with Failure _ -> None)
+                 |> Option.value ~default:false
             in
             let no_hash_code =
               if apply_mdx then
@@ -121,26 +131,25 @@ let transform ?(options = Options.default) ?(skip_unknown_languages = true)
                 (String.concat "\n" no_hash_code)
             with
             | Ok html -> (
-                match
-                  (String.lowercase_ascii lang, options.ocaml_mdx_syntax)
-                with
+                match (String.lowercase_ascii lang, apply_mdx) with
                 | "ocaml", true ->
+                    let html_lines = html_break_on_newlines html in
                     let mdx_lines =
                       List.map (fun s -> String.starts_with ~prefix:"#" s) code
                       (* We add an extra line for the </pre></code> HTML line *)
-                      @ [ false ]
+                      @
+                      if List.length code = List.length html_lines then []
+                      else [ false ]
                     in
-                    let html_lines = html_break_on_newlines html in
                     if List.length html_lines <> List.length mdx_lines then begin
-                      let str =
-                        Format.sprintf
-                          "MDX OCaml syntax highlighting: please report this \
-                           bug along with your codeblock\n\n\
-                           %s"
-                          (String.concat "\n" code)
-                      in
-                      (* _debug_lists html_lines code; *)
-                      failwith str
+                      Format.eprintf
+                        "MDX OCaml syntax highlighting: please report this bug \
+                         along with your codeblock\n\n\
+                         %s\n"
+                        (String.concat "\n" code);
+                      _debug_lists html_lines code;
+
+                      invalid_arg "OCaml MDX mode"
                     end;
                     let lines = List.combine mdx_lines html_lines in
                     let html =
