@@ -60,6 +60,17 @@ We also take care to support the OCaml MDX syntax too.
 # 50 + 50;;
 ```
 
+When testing on ocaml.org, we had a hard time with this:
+
+```ocaml
+# module type S = sig
+  type t
+  type t += A
+end;;
+#
+  let f = ();;
+```
+
 ### Dune
 
 And this is the dune file that will build it!
