@@ -48,8 +48,15 @@ end
 
 (* let _debug_lists a b = *)
 (*   let rec loop = function *)
-(*     | (x, _) :: xs, y :: ys -> *)
-(*         Fmt.epr "X:(%a)\nY:(%a)\n\n" Fmt.(quote string) x Fmt.(quote string) y; *)
+(*     | (x, d) :: xs, y :: ys -> *)
+(*         let d = *)
+(*           Option.map (fun v -> Re.Group.get v 0) d |> Option.value ~default:"" *)
+(*         in *)
+(*         Fmt.epr "X:(%a:%s)\nY:(%a)\n\n" *)
+(*           Fmt.(quote string) *)
+(*           x d *)
+(*           Fmt.(quote string) *)
+(*           y; *)
 (*         loop (xs, ys) *)
 (*     | [], [] -> () *)
 (*     | xs, [] -> *)
@@ -61,8 +68,13 @@ end
 (*   loop (a, b) *)
 
 let html_newlines =
-  let newlines = Re.(seq [ rep notnl; str "\n</span>" ]) in
-  let regexp = Re.(seq [ str "<span class='ocaml-source'>"; newlines ]) in
+  let notnl_or_angle = Re.(diff notnl (char '<')) in
+  let newlines = Re.(seq [ rep notnl_or_angle; str "\n</span>" ]) in
+  let source = Re.(seq [ str "<span class='ocaml-source'>"; newlines ]) in
+  let comment =
+    Re.(seq [ str "<span class='ocaml-comment-block'>"; newlines ])
+  in
+  let regexp = Re.alt [ source; comment ] in
   Re.compile regexp
 
 let html_break_on_newlines s =
@@ -127,6 +139,7 @@ let transform ?(options = Options.default) ?(skip_unknown_languages = true)
                            %s"
                           (String.concat "\n" code)
                       in
+                      (* _debug_lists html_lines code; *)
                       failwith str
                     end;
                     let lines = List.combine mdx_lines html_lines in

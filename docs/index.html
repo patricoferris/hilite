@@ -51,7 +51,7 @@ span[class*='numeric'] {
 }
 
 span[class*='comment'] {
-  font-style: italic
+  font-style: italic;
   color: #969696
 }
 
@@ -130,6 +130,17 @@ HTML. You can view this at
 </span><span class='ocaml-keyword-other'>end</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
 </span><span class='ocaml-mdx-hash'>#</span><span class='ocaml-source'>
 </span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>f</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'>
+</span></code></pre>
+<p>Another problematic codeblock.</p>
+<pre><code><span class='ocaml-comment-block'>(*</span><span class='ocaml-comment-block'> main thread </span><span class='ocaml-comment-block'>*)</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>pool</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>setup_pool</span><span class='ocaml-source'> ~</span><span class='ocaml-source'>num_additional_domains</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>promise</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>async_push</span><span class='ocaml-source'> </span><span class='ocaml-source'>pool</span><span class='ocaml-source'> </span><span class='ocaml-source'>initial_task</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-comment-block'>(*</span><span class='ocaml-comment-block'> the workers are now executing the [initial_task] and
+</span><span class='ocaml-comment-block'>   its children. main thread is free to do its thing. </span><span class='ocaml-comment-block'>*)</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>
+</span><span class='ocaml-comment-block'>(*</span><span class='ocaml-comment-block'> when it is time to terminate, for cleanup, you may optionally do </span><span class='ocaml-comment-block'>*)</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>res</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>await</span><span class='ocaml-source'> </span><span class='ocaml-source'>pool</span><span class='ocaml-source'> </span><span class='ocaml-source'>promise</span><span class='ocaml-source'> </span><span class='ocaml-comment-block'>(*</span><span class='ocaml-comment-block'> waits for the promise to resolve, if not already </span><span class='ocaml-comment-block'>*)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>teardown_pool</span><span class='ocaml-source'> </span><span class='ocaml-source'>pool</span><span class='ocaml-source'>
 </span></code></pre>
 <h3>Dune</h3>
 <p>And this is the dune file that will build it!</p>

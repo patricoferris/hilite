@@ -71,6 +71,22 @@ end;;
   let f = ();;
 ```
 
+
+Another problematic codeblock.
+
+  ```ocaml
+  (* main thread *)
+  let pool = setup_pool ~num_additional_domains () in
+  let promise = async_push pool initial_task in
+  (* the workers are now executing the [initial_task] and
+     its children. main thread is free to do its thing. *)
+  ....
+  (* when it is time to terminate, for cleanup, you may optionally do *)
+  let res = await pool promise (* waits for the promise to resolve, if not already *)
+  teardown_pool pool
+  ```
+
+
 ### Dune
 
 And this is the dune file that will build it!
