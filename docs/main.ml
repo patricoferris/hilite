@@ -47,7 +47,7 @@ span[class*='numeric'] {
 }
 
 span[class*='comment'] {
-  font-style: italic
+  font-style: italic;
   color: #969696
 }
 

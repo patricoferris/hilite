@@ -46,6 +46,54 @@ module String = struct
   let cuts ?(empty = true) ~sep s = fcuts ~no_empty:(not empty) ~sep s
 end
 
+let _debug_lists a b =
+  let rec loop = function
+    | (x, d) :: xs, y :: ys ->
+        let d =
+          Option.map (fun v -> Re.Group.get v 0) d |> Option.value ~default:""
+        in
+        Fmt.epr "X:(%a:%s)\nY:(%a)\n\n"
+          Fmt.(quote string)
+          x d
+          Fmt.(quote string)
+          y;
+        loop (xs, ys)
+    | [], [] -> Fmt.epr "All done\n"
+    | xs, [] ->
+        Fmt.epr "List X has some: %a\n"
+          Fmt.(list (quote string))
+          (List.map fst xs)
+    | [], ys -> Fmt.epr "List Y has some: %a\n" Fmt.(list (quote string)) ys
+  in
+  loop (a, b)
+
+let html_newlines =
+  let notnl_or_angle = Re.(diff notnl (char '<')) in
+  let newlines = Re.(seq [ rep notnl_or_angle; str "\n</span>" ]) in
+  let source = Re.(seq [ str "<span class='ocaml-source'>"; newlines ]) in
+  let comment =
+    Re.(seq [ str "<span class='ocaml-comment-block'>"; newlines ])
+  in
+  let dquote =
+    Re.(seq [ str "<span class='ocaml-string-quoted-double'>"; newlines ])
+  in
+  let braced =
+    Re.(seq [ str "<span class='ocaml-string-quoted-braced'>"; newlines ])
+  in
+  let regexp = Re.alt [ source; comment; dquote; braced ] in
+  Re.compile regexp
+
+let html_break_on_newlines s =
+  let split = Re.split_full html_newlines s in
+  let rec loop acc = function
+    | `Text text :: `Delim delim :: rest ->
+        loop ((text, Some delim) :: acc) rest
+    | `Delim delim :: rest -> loop (("", Some delim) :: acc) rest
+    | `Text text :: rest -> loop ((text, None) :: acc) rest
+    | [] -> List.rev acc
+  in
+  loop [] split
+
 let transform ?(options = Options.default) ?(skip_unknown_languages = true)
     ?lookup_method ?tm (doc : Cmarkit.Doc.t) =
   let block _mapper (b : Cmarkit.Block.t) =
@@ -63,6 +111,10 @@ let transform ?(options = Options.default) ?(skip_unknown_languages = true)
             let apply_mdx =
               options.ocaml_mdx_syntax
               && String.equal (String.lowercase_ascii lang) "ocaml"
+              && Option.map
+                   (String.starts_with ~prefix:"#")
+                   (try Some (List.hd code) with Failure _ -> None)
+                 |> Option.value ~default:false
             in
             let no_hash_code =
               if apply_mdx then
@@ -79,53 +131,50 @@ let transform ?(options = Options.default) ?(skip_unknown_languages = true)
                 (String.concat "\n" no_hash_code)
             with
             | Ok html -> (
-                match
-                  (String.lowercase_ascii lang, options.ocaml_mdx_syntax)
-                with
+                match (String.lowercase_ascii lang, apply_mdx) with
                 | "ocaml", true ->
+                    let html_lines = html_break_on_newlines html in
                     let mdx_lines =
                       List.map (fun s -> String.starts_with ~prefix:"#" s) code
                       (* We add an extra line for the </pre></code> HTML line *)
-                      @ [ false ]
-                    in
-                    (* We could use a regular expression here, but if anybody has more
-                       than one trailing blank space on their newline then maybe they
-                       should fix that. *)
-                    let sep = "<span class='ocaml-source'>\n</span>" in
-                    let sep_space = "<span class='ocaml-source'> \n</span>" in
-                    let html_lines =
-                      String.cuts ~sep html
-                      |> List.concat_map (String.cuts ~sep:sep_space)
+                      @
+                      if List.length code = List.length html_lines then []
+                      else [ false ]
                     in
                     if List.length html_lines <> List.length mdx_lines then begin
-                      let str =
-                        Format.sprintf
-                          "MDX OCaml syntax highlighting: please report this \
-                           bug along with your codeblock\n\n\
-                           %s"
-                          (String.concat "\n" code)
-                      in
-                      failwith str
+                      Format.eprintf
+                        "MDX OCaml syntax highlighting: please report this bug \
+                         along with your codeblock\n\n\
+                         %s\n"
+                        (String.concat "\n" code);
+                      _debug_lists html_lines code;
+
+                      invalid_arg "OCaml MDX mode"
                     end;
                     let lines = List.combine mdx_lines html_lines in
                     let html =
                       List.mapi
-                        (fun idx (hashed, line) ->
+                        (fun idx (hashed, (line, delim)) ->
+                          let delim =
+                            Option.map (fun d -> Re.Group.get d 0) delim
+                            |> Option.value ~default:""
+                          in
                           if hashed then begin
                             if not (Int.equal idx 0) then
                               "<span class='ocaml-mdx-hash'>#</span>" ^ line
-                              ^ sep
+                              ^ delim
                             else
                               (* Logic for the first line *)
                               match String.cuts ~sep:"<pre><code>" line with
                               | "" :: [ line ] ->
                                   "<pre><code><span \
-                                   class='ocaml-mdx-hash'>#</span>" ^ line ^ sep
+                                   class='ocaml-mdx-hash'>#</span>" ^ line
+                                  ^ delim
                               | _ ->
                                   "<span class='ocaml-mdx-hash'>#</span>" ^ line
-                                  ^ sep
+                                  ^ delim
                           end
-                          else line ^ sep)
+                          else line ^ delim)
                         lines
                       |> String.concat ""
                     in

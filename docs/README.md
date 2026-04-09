@@ -60,6 +60,55 @@ We also take care to support the OCaml MDX syntax too.
 # 50 + 50;;
 ```
 
+When testing on ocaml.org, we had a hard time with this:
+
+```ocaml
+# module type S = sig
+  type t
+  type t += A
+end;;
+#
+  let f = ();;
+```
+
+
+Another problematic codeblock, with newlines in comments.
+
+```ocaml
+(* main thread *)
+let pool = setup_pool ~num_additional_domains () in
+let promise = async_push pool initial_task in
+(* the workers are now executing the [initial_task] and
+ its children. main thread is free to do its thing. *)
+....
+(* when it is time to terminate, for cleanup, you may optionally do *)
+let res = await pool promise (* waits for the promise to resolve, if not already *)
+teardown_pool pool
+```
+
+Or newlines in any string values too! 
+
+```ocaml
+# type http_response =
+    | Data of string
+    | Error_code of int;;
+type http_response = Data of string | Error_code of int
+# Data "<!DOCTYPE html>
+<html lang=\"en\">
+  <head>
+    <meta charset=\"utf-8\">
+    <title>Dummy</title>
+  </head>
+  <body>
+    Dummy Page
+  </body>
+</html>";
+# let s = {|
+  hello world
+|};;
+```
+
+
 ### Dune
 
 And this is the dune file that will build it!
