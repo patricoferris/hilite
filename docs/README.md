@@ -58,6 +58,16 @@ We also take care to support the OCaml MDX syntax too.
 # 123 "line.ml";;
 # 50.123;;
 # 50 + 50;;
+# #show_type Set.S;;
+```
+
+A problematic code block.
+
+```ocaml
+# #show_type Irmin.Merge.f;;
+type nonrec 'a f =
+    old:'a Irmin.Merge.promise ->
+    'a -> 'a -> ('a, Irmin.Merge.conflict) result Lwt.t
 ```
 
 When testing on ocaml.org, we had a hard time with this:

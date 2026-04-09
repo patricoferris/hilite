@@ -30,6 +30,7 @@ val transform :
   ?skip_unknown_languages:bool ->
   ?lookup_method:Hilite.tm_lookup_method ->
   ?tm:TmLanguage.t ->
+  ?pre_class:string ->
   Cmarkit.Doc.t ->
   Cmarkit.Doc.t
 (** [transform ?tm md] will extract code blocks from [md] and replace them with
@@ -41,4 +42,6 @@ val transform :
 
     @param tm
       If no collection of textmate grammars is provided, then a default
-      OCaml-centric on will be used. See {! Hilite.Syntax.langs} for details. *)
+      OCaml-centric on will be used. See {! Hilite.Syntax.langs} for details.
+
+    @param pre_class See {! Hilite.src_code_to_html}. *)

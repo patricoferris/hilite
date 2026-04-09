@@ -1,5 +1,6 @@
 ## Unreleased
 
+- Add an optional argument for supplying a class for `<pre>` elements (#33, @patricoferris)
 - Make `Hilite_markdown.transform` support ocaml-mdx syntax (#31, @patricoferris)
 - Add python and go syntaxes to the library (#30, @patricoferris)
 

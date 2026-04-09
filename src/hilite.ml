@@ -141,14 +141,19 @@ let src_code_to_pairs ?escape ?(lookup_method = `Name) ?tm ~lang src =
         (highlight_string t grammar TmLanguage.empty src
         |> mk_block ?escape lang)
 
-let src_code_to_html ?escape ?lookup_method ?tm ~lang src =
+let src_code_to_html ?escape ?lookup_method ?pre_class ?tm ~lang src =
   let pair_to_span (class_, content) =
     "<span class='" ^ class_ ^ "'>" ^ content ^ "</span>"
   in
   src_code_to_pairs ?escape ?lookup_method ?tm ~lang src |> function
   | Ok pairs ->
+      let class_ =
+        match pre_class with
+        | Some s -> Format.sprintf " class='%s'" s
+        | None -> ""
+      in
       Ok
-        ("<pre><code>"
+        ("<pre" ^ class_ ^ "><code>"
         ^ (String.concat "" @@ List.map pair_to_span @@ List.concat pairs)
         ^ "</code></pre>")
   | Error _ as e -> e
