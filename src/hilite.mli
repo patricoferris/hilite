@@ -26,13 +26,16 @@ val src_code_to_pairs :
 val src_code_to_html :
   ?escape:bool ->
   ?lookup_method:tm_lookup_method ->
+  ?pre_class:string ->
   ?tm:TmLanguage.t ->
   lang:string ->
   string ->
   (string, error) result
 (** [src_code_to_html ~lang src] will highlight the source code [src] in
     language [lang] and return a string of HTML using span's with keyword
-    classes. *)
+    classes.
+
+    @param pre_class The class to assign the enclosing [<pre>] tag. *)
 
 (** {1 Predefined Grammars}
 

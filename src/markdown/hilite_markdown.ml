@@ -95,7 +95,7 @@ let html_break_on_newlines s =
   loop [] split
 
 let transform ?(options = Options.default) ?(skip_unknown_languages = true)
-    ?lookup_method ?tm (doc : Cmarkit.Doc.t) =
+    ?lookup_method ?tm ?pre_class (doc : Cmarkit.Doc.t) =
   let block _mapper (b : Cmarkit.Block.t) =
     match b with
     | Cmarkit.Block.Code_block (node, meta) -> (
@@ -127,7 +127,7 @@ let transform ?(options = Options.default) ?(skip_unknown_languages = true)
               else code
             in
             match
-              Hilite.src_code_to_html ?lookup_method ?tm ~lang
+              Hilite.src_code_to_html ?pre_class ?lookup_method ?tm ~lang
                 (String.concat "\n" no_hash_code)
             with
             | Ok html -> (
@@ -165,11 +165,15 @@ let transform ?(options = Options.default) ?(skip_unknown_languages = true)
                               ^ delim
                             else
                               (* Logic for the first line *)
-                              match String.cuts ~sep:"<pre><code>" line with
+                              let sep =
+                                match pre_class with
+                                | Some c -> Fmt.str "<pre class='%s'><code>" c
+                                | None -> "<pre><code>"
+                              in
+                              match String.cuts ~sep line with
                               | "" :: [ line ] ->
-                                  "<pre><code><span \
-                                   class='ocaml-mdx-hash'>#</span>" ^ line
-                                  ^ delim
+                                  sep ^ "<span class='ocaml-mdx-hash'>#</span>"
+                                  ^ line ^ delim
                               | _ ->
                                   "<span class='ocaml-mdx-hash'>#</span>" ^ line
                                   ^ delim
