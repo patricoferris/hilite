@@ -12,6 +12,7 @@ bug-reports: "https://github.com/patricoferris/hilite/issues"
 depends: [
   "dune" {>= "3.8"}
   "ocaml"
+  "fmt" {>= "0.8.7"}
   "mdx" {>= "2.4.1" & with-test}
   "cmarkit" {>= "0.3.0" & with-test}
   "re" {>= "1.14.0" & with-test}

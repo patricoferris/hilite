@@ -25,6 +25,7 @@
   "A library for adding syntax highlighting to OCaml-related code and outputing to HTML")
  (depends
    ocaml
+  (fmt (>= 0.8.7))
   (mdx (and (>= 2.4.1) :with-test))
   (cmarkit (and (>= 0.3.0) :with-test))
   (re (and (>= 1.14.0) :with-test))
