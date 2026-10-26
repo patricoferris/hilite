@@ -9,4 +9,4 @@
  (name hilite_markdown)
  (optional)
  (public_name hilite.markdown)
- (libraries hilite fmt cmarkit re))
+ (libraries hilite cmarkit re))

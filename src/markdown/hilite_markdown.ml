@@ -46,26 +46,26 @@ module String = struct
   let cuts ?(empty = true) ~sep s = fcuts ~no_empty:(not empty) ~sep s
 end
 
-let _debug_lists a b =
-  let rec loop = function
-    | (x, d) :: xs, y :: ys ->
-        let d =
-          Option.map (fun v -> Re.Group.get v 0) d |> Option.value ~default:""
-        in
-        Fmt.epr "X:(%a:%s)\nY:(%a)\n\n"
-          Fmt.(quote string)
-          x d
-          Fmt.(quote string)
-          y;
-        loop (xs, ys)
-    | [], [] -> Fmt.epr "All done\n"
-    | xs, [] ->
-        Fmt.epr "List X has some: %a\n"
-          Fmt.(list (quote string))
-          (List.map fst xs)
-    | [], ys -> Fmt.epr "List Y has some: %a\n" Fmt.(list (quote string)) ys
-  in
-  loop (a, b)
+(* let _debug_lists a b = *)
+(*   let rec loop = function *)
+(*     | (x, d) :: xs, y :: ys -> *)
+(*         let d = *)
+(*           Option.map (fun v -> Re.Group.get v 0) d |> Option.value ~default:"" *)
+(*         in *)
+(*         Fmt.epr "X:(%a:%s)\nY:(%a)\n\n" *)
+(*           Fmt.(quote string) *)
+(*           x d *)
+(*           Fmt.(quote string) *)
+(*           y; *)
+(*         loop (xs, ys) *)
+(*     | [], [] -> Fmt.epr "All done\n" *)
+(*     | xs, [] -> *)
+(*         Fmt.epr "List X has some: %a\n" *)
+(*           Fmt.(list (quote string)) *)
+(*           (List.map fst xs) *)
+(*     | [], ys -> Fmt.epr "List Y has some: %a\n" Fmt.(list (quote string)) ys *)
+(*   in *)
+(*   loop (a, b) *)
 
 let html_newlines =
   let notnl_or_angle = Re.(diff notnl (char '<')) in
@@ -147,8 +147,7 @@ let transform ?(options = Options.default) ?(skip_unknown_languages = true)
                          along with your codeblock\n\n\
                          %s\n"
                         (String.concat "\n" code);
-                      _debug_lists html_lines code;
-
+                      (* _debug_lists html_lines code; *)
                       invalid_arg "OCaml MDX mode"
                     end;
                     let lines = List.combine mdx_lines html_lines in
@@ -167,7 +166,7 @@ let transform ?(options = Options.default) ?(skip_unknown_languages = true)
                               (* Logic for the first line *)
                               let sep =
                                 match pre_class with
-                                | Some c -> Fmt.str "<pre class='%s'><code>" c
+                                | Some c -> "<pre class='" ^ c ^ "'><code>"
                                 | None -> "<pre><code>"
                               in
                               match String.cuts ~sep line with
