@@ -159,8 +159,8 @@ let transform ?(options = Options.default) ?(skip_unknown_languages = true)
                             Option.map (fun d -> Re.Group.get d 0) delim
                             |> Option.value ~default:""
                           in
-                          if hashed then begin
-                            if not (Int.equal idx 0) then
+                          if hashed then
+                            begin if not (Int.equal idx 0) then
                               "<span class='ocaml-mdx-hash'>#</span>" ^ line
                               ^ delim
                             else
@@ -177,7 +177,7 @@ let transform ?(options = Options.default) ?(skip_unknown_languages = true)
                               | _ ->
                                   "<span class='ocaml-mdx-hash'>#</span>" ^ line
                                   ^ delim
-                          end
+                            end
                           else line ^ delim)
                         lines
                       |> String.concat ""
