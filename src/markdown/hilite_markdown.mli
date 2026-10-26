@@ -12,17 +12,16 @@ module Options : sig
   (** The default options. *)
 
   val set_ocaml_mdx_syntax : bool -> t -> t
-  (** Turn on or off the OCaml MDX syntax support. Turn this on if you are writing
-      code blocks for OCaml like:
+  (** Turn on or off the OCaml MDX syntax support. Turn this on if you are
+      writing code blocks for OCaml like:
 
-      {markdown[
+      {@markdown[
         ```ocaml
         # let f () = 1 + 1;;
         ```
-      ]} 
+      ]}
 
-      It will try to strip out the [#] character for better highlighting.
-      *)
+      It will try to strip out the [#] character for better highlighting. *)
 end
 
 val transform :

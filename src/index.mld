@@ -1,0 +1,69 @@
+{1 Hilite}
+
+{! Hilite} is a library for syntax highlighting using textmate grammars.
+
+{2:quick_start Quick start}
+
+By default, {! Hilite} comes with a few pre-packaged grammars.
+
+{@ocaml[
+# Hilite.langs;;
+- : string list =
+["ocaml"; "dune"; "opam"; "sh"; "shell"; "diff"; "bash"; "python"; "go"]
+]}
+
+If you are highlighting one of these languages, then you can use {! Hilite.src_code_to_html}
+to produce HTML ready for styling.
+
+{@ocaml[
+# Hilite.src_code_to_html ~lang:"sh" "echo hello | rev";;
+- : (string, Hilite.error) result =
+Ok
+ "<pre><code><span class='sh-support-function-builtin'>echo</span><span class='sh-source'> hello </span><span class='sh-keyword-operator-pipe'>|</span><span class='sh-source'> rev\n</span></code></pre>"
+]}
+
+Alternatively, if you are targetting something that isn't HTML, you can use the
+lower-level {! Hilite.src_code_to_pairs} to receive the token alongside its
+classification according to the grammar.
+
+{@ocaml[
+# Hilite.src_code_to_pairs ~lang:"sh" "echo hello | rev";;
+- : ((string * string) list list, [> `Unknown_lang of string ]) result =
+Ok
+ [[("sh-support-function-builtin", "echo"); ("sh-source", " hello ");
+   ("sh-keyword-operator-pipe", "|"); ("sh-source", " rev\n")]]
+]}
+
+{2:markdown Markdown support}
+
+Consult {! Hilite_markdown}.
+
+{2:customisation Customisation}
+
+{! Hilite} supports users loading their own grammars so they can do custom,
+build-time syntax highlighting. Users most provided a collection of textmate
+grammars to the transformation function.
+
+Here we will use a predefined grammar that comes along with the `Hilite`
+library.
+
+{@ocaml[
+# let tm =
+    let t = TmLanguage.create () in
+    let grammar = TmLanguage.of_yojson_exn Hilite.Grammars.diff in
+    TmLanguage.add_grammar t grammar;
+    t;;
+val tm : TmLanguage.t = <abstr>
+]}
+
+With this we can now highlight code blocks that start with [diff].
+
+{@ocaml[
+# Hilite.src_code_to_html ~tm ~pre_class:"hilite" ~lang:"diff" "+ hello";;
+- : (string, Hilite.error) result =
+Ok
+ "<pre class='hilite'><code><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'> hello\n</span></code></pre>"
+]}
+
+Note the use of [pre_class] to specifiy a CSS class for the surrounding [pre]
+element.

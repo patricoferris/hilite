@@ -3,6 +3,13 @@
  (public_name hilite)
  (libraries textmate-language))
 
+(documentation
+ (package hilite))
+
+(mdx
+ (files index.mld)
+ (libraries hilite textmate-language))
+
 (data_only_dirs syntaxes)
 
 ; (rule

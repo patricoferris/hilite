@@ -1,3 +1,10 @@
+(mdx
+ (files markdown.mld)
+ (libraries hilite textmate-language))
+
+(documentation
+ (package hilite))
+
 (library
  (name hilite_markdown)
  (optional)

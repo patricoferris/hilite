@@ -1,0 +1,5 @@
+{1 Hilite Markdown}
+
+By adding [hilite.markdown] to your dune library stanzas (and ensuring [re] and [cmarkit]
+are installed), {! Hilite} provides {! Hilite_markdown} to transform markdown codeblocks into
+HTML ready for styling.
